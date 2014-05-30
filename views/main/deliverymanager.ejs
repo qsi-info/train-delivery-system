@@ -1,0 +1,50 @@
+
+<table class="table table-hover" id="deliveryTable">
+	<tbody data-bind="foreach: deliveries">
+		<tr data-bind="attr: {'data-id': id}">
+
+			<td data-bind="text: id"></td>
+
+			<td>
+				<button class="btn btn-danger delete-delivery-button" data-bind="click: $root.removeDelivery ">Supprimer</button>
+			</td>
+
+		</tr>
+
+
+
+<!-- 		<% deliveries.forEach(function (delivery) { %> 
+
+			<tr data-id="<%= delivery.id %>">
+
+				<td>
+					<%= delivery.id %>
+				</td>
+
+				<td>
+					<%= delivery.status %>
+				</td>
+
+				<td>
+					<%= delivery.createdAt %>
+				</td>
+
+				<td>
+					<button class="btn btn-danger delete-delivery-button">Supprimer</button>
+				</td>
+
+			</tr>
+
+		<% }) %> -->
+
+	</tbody>
+
+</table>
+
+
+
+<script type="text/javascript">
+	$(document).ready(function () {
+		$.getScript('/js/deliverymanager.js')
+	});
+</script>

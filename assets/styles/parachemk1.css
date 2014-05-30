@@ -1,0 +1,470 @@
+body {
+	padding-top: 100px;
+}
+#deliveryContainer {
+	margin: auto; 
+	text-align: center;
+	margin: 10px;
+	max-width: 1740px !important;
+}
+
+#deliveryStats {
+	margin-bottom: 50px;
+}
+
+.wagon {
+	display: -moz-inline-box; 
+	display: inline-block;
+	margin: 5px;
+  background-color: #d9534f;
+	/*background-color: #ACB2A1;*/
+	height: 55px;
+	width: 100px;
+	position: relative;
+	cursor: pointer;
+}
+
+.wagon.full {
+  background-color: #5cb85c;
+}
+
+.wagon:hover {
+  box-shadow: 1px 2px 5px #888888;
+}
+
+.wagon:hover .spot {
+  /*color: red;*/
+}
+
+.wagon .spot {
+	text-align: left;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	padding: 2px;
+	color: #FFF;
+	font-weight: bold;
+	border: 1px solid black;
+}
+
+.wagon .railcar {
+	position: absolute;
+	top: 25px;
+	left: 0px;
+	padding: 2px;
+	text-align: center;
+	width: 100%;
+	font-weight: bold;
+	color: #CC4629;
+}
+
+
+
+
+
+
+#deliveries tr {
+	cursor: pointer;
+}
+
+
+
+
+
+/* TRANSFERSHEET CSS */
+
+#transfersheet {
+  margin-bottom: 50px;
+}
+
+#transfersheet table {
+  font-size: 12px;
+  border: 1px solid black;
+}
+
+
+#transfersheet tbody:before {
+    line-height:1em;
+    content:"-";
+    color:transparent; /* to hide text */
+    display:block;
+}
+
+
+#transfersheet .brut-types {
+  text-align: center;
+  font-size: 10px;
+}
+
+#transfersheet td {
+  /*font-size: 12px;*/
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 3px;
+  padding-right: 3px;
+  border-bottom: 0.5px solid grey;
+}
+
+
+#transfersheet input {
+  text-align: center;
+}
+
+#transfersheet .caption td {
+  font-size: 14px ;
+  border: 2px solid black;
+}
+
+
+#transfersheet .caption td:nth-of-type(2) {
+  text-align: center;
+}
+
+#transfersheet .num-type td {
+  border: 1px solid black;
+  text-align: center;
+}
+
+#transfersheet .railcar-product td {
+  border: 1px solid black;
+}
+
+#transfersheet .railcar-product td:nth-child(2n) {
+  text-align: center;
+}
+
+#transfersheet #summary tr td:first-of-type {
+  text-align: right;
+}
+
+#transfersheet #step3b tr td:first-of-type {
+  text-align: right;
+}
+
+
+#transfersheet .signature  td:first-of-type {
+  text-align: right;
+}
+
+#transfersheet .signature td:nth-of-type(5) {
+  text-align: right;
+}
+
+#transfersheet tbody#step3b > tr.caption > td:first-of-type {
+  text-align: left
+}
+
+
+#transfersheet .railcar-product td.product {
+  border-right: 2px solid black;
+}
+
+#transfersheet .num-type td:nth-child(2n) {
+  border-right: 2px solid black;
+  
+}
+
+
+
+/* END TRANSFERSHEET CSS */
+
+
+
+
+/* TYPEAHEAD CSS */
+
+.typeahead,
+.tt-query,
+.tt-hint {
+width: 396px;
+height: 50px;
+padding: 8px 12px;
+font-size: 24px;
+line-height: 30px;
+border: 2px solid #ccc;
+-webkit-border-radius: 8px;
+-moz-border-radius: 8px;
+border-radius: 8px;
+outline: none;
+}
+.typeahead {
+background-color: #fff;
+}
+.typeahead:focus {
+border: 2px solid #0097cf;
+}
+.tt-query {
+-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+.tt-hint {
+color: #999
+}
+.tt-dropdown-menu {
+width: 422px;
+margin-top: 12px;
+padding: 8px 0;
+background-color: #fff;
+border: 1px solid #ccc;
+border: 1px solid rgba(0, 0, 0, 0.2);
+-webkit-border-radius: 8px;
+-moz-border-radius: 8px;
+border-radius: 8px;
+-webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+-moz-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+box-shadow: 0 5px 10px rgba(0,0,0,.2);
+max-height: 400px;
+overflow-y: auto;
+}
+.tt-suggestion {
+padding: 3px 20px;
+font-size: 18px;
+line-height: 24px;
+}
+.tt-suggestion.tt-cursor {
+color: #fff;
+background-color: #0097cf;
+}
+.tt-suggestion p {
+margin: 0;
+} 
+
+
+
+
+
+/* PARSLEY CSS */
+input.parsley-success,
+select.parsley-success,
+textarea.parsley-success {
+color: #468847;
+background-color: #DFF0D8;
+border: 1px solid #D6E9C6;
+}
+input.parsley-error,
+select.parsley-error,
+textarea.parsley-error {
+color: #B94A48;
+background-color: #F2DEDE;
+border: 1px solid #EED3D7;
+}
+.parsley-errors-list {
+margin: 2px 0 3px 0;
+padding: 0;
+list-style-type: none;
+font-size: 0.9em;
+line-height: 0.9em;
+opacity: 0;
+-moz-opacity: 0;
+-webkit-opacity: 0;
+transition: all .3s ease-in;
+-o-transition: all .3s ease-in;
+-ms-transition: all .3s ease-in-;
+-moz-transition: all .3s ease-in;
+-webkit-transition: all .3s ease-in;
+}
+.parsley-errors-list.filled {
+opacity: 1;
+} 
+
+.parsley-errors-list > li {
+	color: #F44;
+	font-size: 1.3em;
+	padding: 5px;
+}
+
+
+
+
+/* MENUGRID CSS */
+#menu ul {
+  list-style-type: none;
+  padding: 0px;
+  margin: 0px;
+}
+
+#menu li {
+  /*display: inline-block;*/
+}
+
+#menu a {
+  float: left;
+  position: relative;
+  width: 140px;
+  margin-bottom: 20px;
+  margin-left: 15px;
+  margin-right: 15px;
+  text-decoration: none;
+  color: #000;
+}
+
+#menu i {
+  border-radius: 0;
+  display: inline-block;
+  font-size: 56px;
+  width: 140px;
+  height: 140px;
+  line-height: 136px;
+  vertical-align: middle;
+  text-align: center;
+  position: relative;
+  background-color: #808080;
+  /*background-color: #0072C6;*/
+  color: #fff;
+}
+
+#menu i:hover {
+	color: #0DFF5E;
+}
+
+#menu.round i {
+  border-radius: 50%;
+}
+
+
+#menu h4 {
+  font-size: 14px;
+  text-align: center;
+  font-weight: bold;
+}
+
+#menu li:hover h4 {
+  text-decoration: underline;
+}
+
+#menu span.badge {
+  position: absolute;
+  z-index: 9999px !important;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: #E10000;
+  color: #FFF;
+}
+
+#menu.round span.badge {
+  right: 10px;
+  top: 5px;
+}
+
+#menu.square span.badge {
+  border-radius: 0px;
+  top: 1px;
+  right: 0px;
+}
+
+
+
+ 
+
+
+
+/* Start by setting display:none to make this hidden.
+Then we position it in relation to the viewport window
+with position:fixed. Width, height, top and left speak
+speak for themselves. Background we set to 80% white with
+our animation centered, and no-repeating */
+.modal-loading {
+display: none;
+position: fixed;
+z-index: 1000;
+top: 0;
+left: 0;
+height: 100%;
+width: 100%;
+background: rgba( 255, 255, 255, 0.8 )
+url('../images/ajax-loader_1.gif')
+50% 50%
+no-repeat;
+}
+/* When the body has the loading class, we turn
+the scrollbar off with overflow:hidden */
+body.loading {
+overflow: hidden;
+}
+/* Anytime the body has the loading class, our
+modal element will be visible */
+body.loading .modal-loading {
+display: block;
+}
+
+
+
+
+ /* Sticky footer styles
+-------------------------------------------------- */
+html,
+body {
+height: 100%;
+/* The html and body elements cannot have any padding or margin. */
+}
+/* Wrapper for page content to push down footer */
+#wrap {
+min-height: 100%;
+height: auto !important;
+height: 100%;
+/* Negative indent footer by it's height */
+margin: 0 auto -80px;
+padding-bottom: 80px;
+}
+/* Set the fixed height of the footer here */
+#push,
+#footer {
+height: 60px;
+}
+#footer {
+  margin-top: 20px;
+  border-top: 1px solid #f5f5f5;
+  padding: 5px;
+  background-color: white;
+}
+/* Lastly, apply responsive CSS fixes as necessary */
+@media (max-width: 767px) {
+  #footer {
+    margin-left: -20px;
+    margin-right: -20px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+#footer p {
+  margin-bottom: 0px;
+  font-size: 11px;
+}
+
+
+
+/*#mainNav {
+  background-color: #E51400;
+}
+
+#mainNav a:hover {
+  background-color: #F09609 !important;
+}
+
+#mainNav ul {
+  background-color: #E51400;
+}
+
+#mainNav li:hover {
+  background-color: #F09609 !important;
+
+}
+
+#mainNav a {
+  color: white; 
+}
+
+.nav .open > a, .nav .open > a:hover, .nav .open > a:focus .open {
+  background-color: #F09609 !important;
+
+}*/
+
+
+
+
+.modal-header, .modal-footer {
+  background: url("../images/home-slant-pattern-50.png") repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+

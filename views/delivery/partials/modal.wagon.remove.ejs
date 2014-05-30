@@ -1,0 +1,26 @@
+<div class="modal fade" id="ModalWagonRemove">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title"></h4>
+      </div>
+      <form action="" method="" data-parsley-validate="" id="RailcarFormRemove">
+	      <div class="modal-body">
+	      	<input type="hidden" name="spot" />
+	      	<input type="hidden" name="id"/>
+	        <input type="text"
+	        			 name="number" 
+	        			 disabled="disabled"
+	        			 class="form-control disabled"  
+	        			 required="required" 
+	        			 placeholder="<%= __('Delivery.FilterInput.placeholder') %>" />
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal"><%= __('Delivery.Modal.Close') %></button>
+	        <button type="submit" id="removeCarBtn" class="btn btn-danger"><%= __('Delivery.Modal.RemoveCar') %></button>
+	      </div>
+	    </form>
+    </div>
+  </div>
+</div>

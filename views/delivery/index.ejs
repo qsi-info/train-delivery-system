@@ -1,0 +1,52 @@
+<div class="table-responsive">
+	<table class="table table-hover table-striped" id="deliveriesTable">
+		<caption><%= __('Delivery.Table.caption') %></caption>
+		<thead>
+			<tr>
+				<th><%= __('Delivery.Table.id') %></th>
+				<th><%= __('Delivery.Table.createdAt') %></th>
+				<th><%= __('Delivery.Table.wagon_count') %></th>
+				<th><%= __('Delivery.Table.baril_count') %></th>
+				<th><%= __('Delivery.Table.actions') %></th>
+			</tr>
+		</thead>
+		<tbody id="deliveries">
+			<% deliveries.forEach(function (delivery) { %>
+				<tr class="<% switch(delivery.status) { case sails.config.k1.DELIVERY_STATUS.IN_PROGRESS: %>status<% break; } %>" id="<%= delivery.id %>">
+					<td class="delivery-id"><%= delivery.id %></td>
+					<td class="delivery-id"><%= Utils.formatDate(delivery.createdAt) %></td>
+					<td class="delivery-wagon_count"></td>
+					<td class="delivery-baril_count"></td>
+					<td class="delivery-destroy">
+						<div class="btn-group">
+						  <button type="button" class="btn btn-link dropdown-toggle delivery-actions" data-toggle="dropdown">
+						    <%= __('Delivery.Dropdown.Actions') %> <span class="caret"></span>
+						  </button>
+						  <ul class="dropdown-menu" role="menu">
+						  	<li><a href="/delivery/<%= delivery.id %>"><%= __('Delivery.Dropdown.Actions.Manage') %></a></li>
+						    <li class="divider"></li>
+						    <li><a href="/print/<%= delivery.id %>/transfersheet"><%= __('Delivery.Dropdown.Actions.Print.TransfertSheet') %></a></li>
+						    <li><a href="/print/<%= delivery.id %>/inspectionsheets"><%= __('Delivery.Dropdown.Actions.Print.InspectionSheets') %></a></li>
+						    <li><a href="/print/<%= delivery.id %>/sealsheet"><%= __('Delivery.Dropdown.Actions.Print.SealSheet') %></a></li>
+						    <li class="divider"></li>
+						    <li class="disabled"><a href="#" disabled="disabled"><%= __('Delivery.Dropdown.Actions.Archive') %></a></li>
+						    <li class="disabled destroy-link">
+						    	
+						    	<a href="/api/delivery/<%= delivery.id %>" class="delivery-delete-btn disabled"><%= __('Delivery.Dropdown.Actions.Destroy') %></a>
+						    </li>
+						  </ul>
+						</div>
+					</td>
+				</tr>
+			<% }) %>
+		</tbody>
+	</table>
+</div>
+
+
+
+<script type="text/javascript">
+$(document).ready(function () {
+	$.getScript('/js/delivery.index.js');
+})
+</script>

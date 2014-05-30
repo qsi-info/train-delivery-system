@@ -1,0 +1,1298 @@
+
+tr {
+}
+col {
+}
+br {
+}
+.style0 {
+    border: medium none;
+    color: #000000;
+    font-family: Calibri,sans-serif;
+    font-size: 11pt;
+    font-style: normal;
+    font-weight: 400;
+    text-decoration: none;
+    vertical-align: bottom;
+    white-space: nowrap;
+}
+.font5 {
+    color: #000000;
+    font-family: Calibri,sans-serif;
+    font-size: 6pt;
+    font-style: normal;
+    font-weight: 400;
+    text-decoration: none;
+}
+.font11 {
+    color: #FF0000;
+    font-family: Calibri,sans-serif;
+    font-size: 13pt;
+    font-style: normal;
+    font-weight: 400;
+    text-decoration: none;
+}
+.font16 {
+    color: #000000;
+    font-family: Calibri,sans-serif;
+    font-size: 6pt;
+    font-style: normal;
+    font-weight: 400;
+    text-decoration: none;
+}
+.font18 {
+    color: #000000;
+    font-family: Calibri,sans-serif;
+    font-size: 8pt;
+    font-style: normal;
+    font-weight: 400;
+    text-decoration: none;
+}
+td {
+    border: medium none;
+    color: #000000;
+    font-family: Calibri,sans-serif;
+    font-size: 11pt;
+    font-style: normal;
+    font-weight: 400;
+    padding: 0;
+    text-decoration: none;
+    vertical-align: bottom;
+    white-space: nowrap;
+}
+.xl65 {
+    color: #000000;
+    font-size: 12pt;
+    height: 20px !important;
+}
+.xl66 {
+    border: 0.5pt solid windowtext;
+    color: #000000;
+    font-size: 13pt;
+    font-style: italic;
+    font-weight: 700;
+    text-align: center;
+}
+.xl67 {
+    border: 0.5pt solid windowtext;
+    color: #000000;
+    font-size: 13pt;
+    text-align: center;
+}
+.xl68 {
+    border: 0.5pt solid windowtext;
+    color: #000000;
+    font-size: 13pt;
+    text-align: center;
+    vertical-align: top;
+}
+.xl69 {
+    border-color: windowtext -moz-use-text-color windowtext windowtext;
+    border-style: solid none solid solid;
+    border-width: 0.5pt medium 0.5pt 1pt;
+    color: #000000;
+    font-size: 13pt;
+}
+.xl70 {
+    border-color: windowtext -moz-use-text-color;
+    border-style: solid none;
+    border-width: 0.5pt medium;
+    color: #000000;
+    font-size: 13pt;
+}
+.xl71 {
+    border-color: windowtext windowtext windowtext -moz-use-text-color;
+    border-style: solid solid solid none;
+    border-width: 0.5pt 1pt 0.5pt medium;
+    color: #000000;
+    font-size: 13pt;
+}
+.xl72 {
+    border-color: windowtext windowtext windowtext -moz-use-text-color;
+    border-style: solid solid solid none;
+    border-width: 0.5pt 0.5pt 0.5pt medium;
+    color: #000000;
+    font-size: 13pt;
+}
+.xl73 {
+    border: 0.5pt solid windowtext;
+    color: #000000;
+    font-size: 13pt;
+    text-align: center;
+    vertical-align: middle;
+}
+.xl74 {
+    color: #000000;
+    font-size: 13pt;
+    text-align: center;
+    vertical-align: middle;
+}
+.xl75 {
+    border-color: windowtext -moz-use-text-color windowtext windowtext;
+    border-style: solid none solid solid;
+    border-width: 0.5pt medium 0.5pt 1pt;
+    color: #000000;
+    font-size: 13pt;
+    font-style: italic;
+    font-weight: 700;
+    text-align: left;
+}
+.xl76 {
+    border-color: windowtext -moz-use-text-color;
+    border-style: solid none;
+    border-width: 0.5pt medium;
+    color: #000000;
+    font-size: 13pt;
+    font-style: italic;
+    font-weight: 700;
+    text-align: left;
+}
+.xl77 {
+    border-color: windowtext windowtext windowtext -moz-use-text-color;
+    border-style: solid solid solid none;
+    border-width: 0.5pt 1pt 0.5pt medium;
+    color: #000000;
+    font-size: 13pt;
+    font-style: italic;
+    font-weight: 700;
+    text-align: left;
+}
+.xl78 {
+    border-color: windowtext;
+    border-style: solid;
+    border-width: 0.5pt 0.5pt 0.5pt 1pt;
+    color: #000000;
+    font-size: 13pt;
+    font-style: italic;
+    font-weight: 700;
+    text-align: left;
+}
+.xl79 {
+    border: 0.5pt solid windowtext;
+    color: #000000;
+    font-size: 13pt;
+    font-style: italic;
+    font-weight: 700;
+    text-align: left;
+}
+.xl80 {
+    border-color: windowtext -moz-use-text-color windowtext windowtext;
+    border-style: solid none solid solid;
+    border-width: 0.5pt medium 0.5pt 0.5pt;
+    color: #000000;
+    font-size: 13pt;
+    text-align: left;
+}
+.xl81 {
+    border-color: windowtext -moz-use-text-color;
+    border-style: solid none;
+    border-width: 0.5pt medium;
+    color: #000000;
+    font-size: 13pt;
+    text-align: left;
+}
+.xl82 {
+    border-color: windowtext windowtext windowtext -moz-use-text-color;
+    border-style: solid solid solid none;
+    border-width: 0.5pt 1pt 0.5pt medium;
+    color: #000000;
+    font-size: 13pt;
+    text-align: left;
+}
+.xl83 {
+    border-color: windowtext -moz-use-text-color windowtext windowtext;
+    border-style: solid none solid solid;
+    border-width: 0.5pt medium 0.5pt 1pt;
+    color: #000000;
+    font-size: 13pt;
+    text-align: left;
+    vertical-align: top;
+}
+.xl84 {
+    border-color: windowtext -moz-use-text-color;
+    border-style: solid none;
+    border-width: 0.5pt medium;
+    color: #000000;
+    font-size: 13pt;
+    text-align: left;
+    vertical-align: top;
+}
+.xl85 {
+    border-color: windowtext windowtext windowtext -moz-use-text-color;
+    border-style: solid solid solid none;
+    border-width: 0.5pt 0.5pt 0.5pt medium;
+    color: #000000;
+    font-size: 13pt;
+    text-align: left;
+    vertical-align: top;
+}
+.xl86 {
+    border-color: windowtext -moz-use-text-color windowtext windowtext;
+    border-style: solid none solid solid;
+    border-width: 0.5pt medium 0.5pt 1pt;
+    color: #000000;
+    font-size: 13pt;
+    text-align: left;
+}
+.xl87 {
+    border-color: windowtext windowtext windowtext -moz-use-text-color;
+    border-style: solid solid solid none;
+    border-width: 0.5pt 0.5pt 0.5pt medium;
+    color: #000000;
+    font-size: 13pt;
+    text-align: left;
+}
+.xl88 {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 0.5pt solid windowtext;
+    font-size: 13pt;
+    font-style: italic;
+    font-weight: 700;
+    text-align: center;
+}
+.xl89 {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-color: windowtext -moz-use-text-color;
+    border-style: solid none;
+    border-width: 0.5pt medium;
+    font-size: 13pt;
+}
+.xl90 {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-color: windowtext windowtext windowtext -moz-use-text-color;
+    border-style: solid solid solid none;
+    border-width: 0.5pt 0.5pt 0.5pt medium;
+    font-size: 13pt;
+}
+.xl91 {
+    border-color: windowtext -moz-use-text-color;
+    border-style: solid none;
+    border-width: 0.5pt medium;
+    color: #000000;
+    font-size: 13pt;
+    font-weight: 700;
+    text-align: center;
+}
+.xl92 {
+    border-color: windowtext -moz-use-text-color windowtext windowtext;
+    border-style: solid none solid solid;
+    border-width: 0.5pt medium 0.5pt 1pt;
+    color: #000000;
+    font-size: 13pt;
+    font-weight: 700;
+    text-align: left;
+}
+.xl93 {
+    border-color: windowtext -moz-use-text-color;
+    border-style: solid none;
+    border-width: 0.5pt medium;
+    color: #000000;
+    font-size: 13pt;
+    font-weight: 700;
+    text-align: left;
+}
+.xl94 {
+    border-color: windowtext -moz-use-text-color;
+    border-style: solid none;
+    border-width: 1pt medium;
+}
+.xl95 {
+    border-color: windowtext windowtext windowtext -moz-use-text-color;
+    border-style: solid solid solid none;
+    border-width: 1pt 0.5pt 1pt medium;
+}
+.xl96 {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-color: windowtext windowtext windowtext -moz-use-text-color;
+    border-style: solid solid solid none;
+    border-width: 0.5pt 1pt 0.5pt medium;
+    color: #000000;
+    font-size: 13pt;
+    font-style: italic;
+    font-weight: 700;
+    text-align: left;
+}
+.xl97 {
+    border-color: windowtext;
+    border-style: solid;
+    border-width: 0.5pt 0.5pt 0.5pt 1pt;
+    color: #000000;
+    font-size: 12pt;
+    font-style: italic;
+    font-weight: 700;
+    text-align: left;
+}
+.xl98 {
+    border: 0.5pt solid windowtext;
+    color: #000000;
+    font-size: 12pt;
+    font-style: italic;
+    font-weight: 700;
+    text-align: left;
+}
+.xl99 {
+    border: 0.5pt solid windowtext;
+    color: #000000;
+    font-size: 12pt;
+    text-align: left;
+}
+.xl100 {
+    border-color: windowtext;
+    border-style: solid;
+    border-width: 0.5pt 1pt 0.5pt 0.5pt;
+    color: #000000;
+    font-size: 12pt;
+    font-style: italic;
+    font-weight: 700;
+    text-align: left;
+}
+.xl101 {
+    border-color: windowtext;
+    border-style: solid;
+    border-width: 0.5pt 0.5pt 0.5pt 1pt;
+    color: #000000;
+    font-size: 13pt;
+    text-align: left;
+}
+.xl102 {
+    border: 0.5pt solid windowtext;
+    color: #000000;
+    font-size: 13pt;
+    text-align: left;
+}
+.xl103 {
+    border-color: windowtext;
+    border-style: solid;
+    border-width: 0.5pt 1pt 0.5pt 0.5pt;
+    color: #000000;
+    font-size: 13pt;
+    text-align: left;
+}
+.xl104 {
+    border-color: windowtext;
+    border-style: solid;
+    border-width: 0.5pt 0.5pt 0.5pt 1pt;
+    color: #000000;
+    font-size: 12pt;
+    font-style: italic;
+    font-weight: 700;
+    text-align: left;
+    vertical-align: top;
+}
+.xl105 {
+    border: 0.5pt solid windowtext;
+    color: #000000;
+    font-size: 12pt;
+    font-style: italic;
+    font-weight: 700;
+    text-align: left;
+    vertical-align: top;
+}
+.xl106 {
+    border-color: windowtext -moz-use-text-color -moz-use-text-color windowtext;
+    border-style: solid none none solid;
+    border-width: 0.5pt medium medium 0.5pt;
+    color: #000000;
+    font-size: 12pt;
+    font-style: italic;
+    font-weight: 700;
+    text-align: left;
+    vertical-align: top;
+}
+.xl107 {
+    border-color: windowtext -moz-use-text-color -moz-use-text-color;
+    border-style: solid none none;
+    border-width: 0.5pt medium medium;
+    color: #000000;
+    font-size: 12pt;
+    font-style: italic;
+    font-weight: 700;
+    text-align: left;
+    vertical-align: top;
+}
+.xl108 {
+    border-color: -moz-use-text-color -moz-use-text-color windowtext windowtext;
+    border-style: none none solid solid;
+    border-width: medium medium 0.5pt 0.5pt;
+    color: #000000;
+    font-size: 12pt;
+    font-style: italic;
+    font-weight: 700;
+    text-align: left;
+    vertical-align: top;
+}
+.xl109 {
+    border-color: -moz-use-text-color -moz-use-text-color windowtext;
+    border-style: none none solid;
+    border-width: medium medium 0.5pt;
+    color: #000000;
+    font-size: 12pt;
+    font-style: italic;
+    font-weight: 700;
+    text-align: left;
+    vertical-align: top;
+}
+.xl110 {
+    border-color: windowtext windowtext -moz-use-text-color -moz-use-text-color;
+    border-style: solid solid none none;
+    border-width: 0.5pt 1pt medium medium;
+    color: #000000;
+    font-size: 12pt;
+    font-style: italic;
+    font-weight: 700;
+    text-align: left;
+    vertical-align: top;
+}
+.xl111 {
+    border-color: -moz-use-text-color windowtext windowtext -moz-use-text-color;
+    border-style: none solid solid none;
+    border-width: medium 1pt 0.5pt medium;
+    color: #000000;
+    font-size: 12pt;
+    font-style: italic;
+    font-weight: 700;
+    text-align: left;
+    vertical-align: top;
+}
+.xl112 {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-color: windowtext -moz-use-text-color -moz-use-text-color windowtext;
+    border-style: solid none none solid;
+    border-width: 1pt medium medium 1pt;
+    color: #000000;
+    font-size: 13pt;
+    font-style: italic;
+    font-weight: 700;
+    text-align: left;
+}
+.xl113 {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-color: windowtext -moz-use-text-color -moz-use-text-color;
+    border-style: solid none none;
+    border-width: 1pt medium medium;
+    color: #000000;
+    font-size: 13pt;
+    font-style: italic;
+    font-weight: 700;
+    text-align: left;
+}
+.xl114 {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-color: windowtext windowtext -moz-use-text-color -moz-use-text-color;
+    border-style: solid solid none none;
+    border-width: 1pt 1pt medium medium;
+    color: #000000;
+    font-size: 13pt;
+    font-style: italic;
+    font-weight: 700;
+    text-align: left;
+}
+.xl115 {
+    border-color: windowtext;
+    border-style: solid;
+    border-width: 0.5pt 1pt 0.5pt 0.5pt;
+    color: #000000;
+    font-size: 13pt;
+    font-style: italic;
+    font-weight: 700;
+    text-align: left;
+}
+.xl116 {
+    border-color: windowtext -moz-use-text-color windowtext windowtext;
+    border-style: solid none solid solid;
+    border-width: 0.5pt medium 0.5pt 1pt;
+    color: #000000;
+    font-size: 13pt;
+    text-align: left;
+    white-space: normal;
+}
+.xl117 {
+    border-color: windowtext -moz-use-text-color;
+    border-style: solid none;
+    border-width: 0.5pt medium;
+    color: #000000;
+    font-size: 13pt;
+    text-align: left;
+    white-space: normal;
+}
+.xl118 {
+    border-color: windowtext windowtext windowtext -moz-use-text-color;
+    border-style: solid solid solid none;
+    border-width: 0.5pt 0.5pt 0.5pt medium;
+    color: #000000;
+    font-size: 13pt;
+    text-align: left;
+    white-space: normal;
+}
+.xl119 {
+    border-color: windowtext -moz-use-text-color windowtext windowtext;
+    border-style: solid none solid solid;
+    border-width: 0.5pt medium 0.5pt 0.5pt;
+    color: #000000;
+    font-size: 13pt;
+    text-align: center;
+    vertical-align: top;
+}
+.xl120 {
+    border-color: windowtext -moz-use-text-color;
+    border-style: solid none;
+    border-width: 0.5pt medium;
+    color: #000000;
+    font-size: 13pt;
+    text-align: center;
+    vertical-align: top;
+}
+.xl121 {
+    border-color: windowtext windowtext windowtext -moz-use-text-color;
+    border-style: solid solid solid none;
+    border-width: 0.5pt 1pt 0.5pt medium;
+    color: #000000;
+    font-size: 13pt;
+    text-align: center;
+    vertical-align: top;
+}
+.xl122 {
+    border-color: windowtext -moz-use-text-color windowtext windowtext;
+    border-style: solid none solid solid;
+    border-width: 0.5pt medium 0.5pt 0.5pt;
+    text-align: left;
+    vertical-align: top;
+}
+.xl123 {
+    border-color: windowtext windowtext windowtext -moz-use-text-color;
+    border-style: solid solid solid none;
+    border-width: 0.5pt 1pt 0.5pt medium;
+    color: #000000;
+    font-size: 13pt;
+    text-align: left;
+    vertical-align: top;
+}
+.xl124 {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-color: windowtext -moz-use-text-color windowtext windowtext;
+    border-style: solid none solid solid;
+    border-width: 0.5pt medium 0.5pt 1pt;
+    color: #000000;
+    font-size: 13pt;
+    font-style: italic;
+    font-weight: 700;
+    text-align: left;
+}
+.xl125 {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-color: windowtext -moz-use-text-color;
+    border-style: solid none;
+    border-width: 0.5pt medium;
+    color: #000000;
+    font-size: 13pt;
+    font-style: italic;
+    font-weight: 700;
+    text-align: left;
+}
+.xl126 {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-color: -moz-use-text-color -moz-use-text-color windowtext;
+    border-style: none none solid;
+    border-width: medium medium 0.5pt;
+    color: #000000;
+    font-size: 13pt;
+    font-style: italic;
+    font-weight: 700;
+    text-align: left;
+}
+.xl127 {
+    border-color: windowtext -moz-use-text-color -moz-use-text-color windowtext;
+    border-style: solid none none solid;
+    border-width: 0.5pt medium medium 0.5pt;
+    color: #000000;
+    font-size: 13pt;
+    text-align: left;
+    vertical-align: top;
+}
+.xl128 {
+    border-color: windowtext -moz-use-text-color -moz-use-text-color;
+    border-style: solid none none;
+    border-width: 0.5pt medium medium;
+    color: #000000;
+    font-size: 13pt;
+    text-align: left;
+    vertical-align: top;
+}
+.xl129 {
+    border-color: windowtext windowtext -moz-use-text-color -moz-use-text-color;
+    border-style: solid solid none none;
+    border-width: 0.5pt 1pt medium medium;
+    color: #000000;
+    font-size: 13pt;
+    text-align: left;
+    vertical-align: top;
+}
+.xl130 {
+    border-color: -moz-use-text-color -moz-use-text-color windowtext windowtext;
+    border-style: none none solid solid;
+    border-width: medium medium 0.5pt 0.5pt;
+    color: #000000;
+    font-size: 13pt;
+    text-align: left;
+    vertical-align: top;
+}
+.xl131 {
+    border-color: -moz-use-text-color -moz-use-text-color windowtext;
+    border-style: none none solid;
+    border-width: medium medium 0.5pt;
+    color: #000000;
+    font-size: 13pt;
+    text-align: left;
+    vertical-align: top;
+}
+.xl132 {
+    border-color: -moz-use-text-color windowtext windowtext -moz-use-text-color;
+    border-style: none solid solid none;
+    border-width: medium 1pt 0.5pt medium;
+    color: #000000;
+    font-size: 13pt;
+    text-align: left;
+    vertical-align: top;
+}
+.xl133 {
+    border-color: windowtext -moz-use-text-color windowtext windowtext;
+    border-style: solid none solid solid;
+    border-width: 0.5pt medium 0.5pt 0.5pt;
+    color: #000000;
+    font-size: 13pt;
+    font-style: italic;
+    font-weight: 700;
+    text-align: center;
+}
+.xl134 {
+    border-color: windowtext -moz-use-text-color;
+    border-style: solid none;
+    border-width: 0.5pt medium;
+    color: #000000;
+    font-size: 13pt;
+    font-style: italic;
+    font-weight: 700;
+    text-align: center;
+}
+.xl135 {
+    border-color: windowtext windowtext windowtext -moz-use-text-color;
+    border-style: solid solid solid none;
+    border-width: 0.5pt 1pt 0.5pt medium;
+    color: #000000;
+    font-size: 13pt;
+    font-style: italic;
+    font-weight: 700;
+    text-align: center;
+}
+.xl136 {
+    border-color: windowtext -moz-use-text-color windowtext windowtext;
+    border-style: solid none solid solid;
+    border-width: 0.5pt medium 1pt 1pt;
+    text-align: center;
+}
+.xl137 {
+    border-color: windowtext -moz-use-text-color;
+    border-style: solid none;
+    border-width: 0.5pt medium 1pt;
+    text-align: center;
+}
+.xl138 {
+    border-color: windowtext windowtext windowtext -moz-use-text-color;
+    border-style: solid solid solid none;
+    border-width: 0.5pt 1pt 1pt medium;
+    text-align: center;
+}
+.xl139 {
+    border-color: windowtext windowtext windowtext -moz-use-text-color;
+    border-style: solid solid solid none;
+    border-width: 0.5pt 0.5pt 0.5pt medium;
+    color: #000000;
+    font-size: 13pt;
+    font-style: italic;
+    font-weight: 700;
+    text-align: center;
+}
+.xl140 {
+    border-color: windowtext -moz-use-text-color windowtext windowtext;
+    border-style: solid none solid solid;
+    border-width: 0.5pt medium 0.5pt 0.5pt;
+    color: #000000;
+    font-size: 13pt;
+    text-align: center;
+}
+.xl141 {
+    border-color: windowtext -moz-use-text-color;
+    border-style: solid none;
+    border-width: 0.5pt medium;
+    color: #000000;
+    font-size: 13pt;
+    text-align: center;
+}
+.xl142 {
+    border-color: windowtext windowtext windowtext -moz-use-text-color;
+    border-style: solid solid solid none;
+    border-width: 0.5pt 1pt 0.5pt medium;
+    color: #000000;
+    font-size: 13pt;
+    text-align: center;
+}
+.xl143 {
+    border-color: windowtext windowtext windowtext -moz-use-text-color;
+    border-style: solid solid solid none;
+    border-width: 0.5pt 1pt 0.5pt medium;
+    color: #000000;
+    font-size: 13pt;
+    font-weight: 700;
+    text-align: left;
+}
+.xl144 {
+    border-color: windowtext -moz-use-text-color -moz-use-text-color windowtext;
+    border-style: solid none none solid;
+    border-width: 1pt medium medium 1pt;
+    color: #000000;
+    font-size: 14pt;
+    font-style: italic;
+    font-weight: 700;
+    text-align: center;
+    vertical-align: middle;
+}
+.xl145 {
+    border-color: windowtext -moz-use-text-color -moz-use-text-color;
+    border-style: solid none none;
+    border-width: 1pt medium medium;
+    color: #000000;
+    font-size: 14pt;
+    font-style: italic;
+    font-weight: 700;
+    text-align: center;
+    vertical-align: middle;
+}
+.xl146 {
+    border-color: windowtext windowtext -moz-use-text-color -moz-use-text-color;
+    border-style: solid solid none none;
+    border-width: 1pt 1pt medium medium;
+    color: #000000;
+    font-size: 14pt;
+    font-style: italic;
+    font-weight: 700;
+    text-align: center;
+    vertical-align: middle;
+}
+.xl147 {
+    border-color: -moz-use-text-color -moz-use-text-color -moz-use-text-color windowtext;
+    border-style: none none none solid;
+    border-width: medium medium medium 1pt;
+    color: #000000;
+    font-size: 14pt;
+    font-style: italic;
+    font-weight: 700;
+    text-align: center;
+    vertical-align: middle;
+}
+.xl148 {
+    color: #000000;
+    font-size: 14pt;
+    font-style: italic;
+    font-weight: 700;
+    text-align: center;
+    vertical-align: middle;
+}
+.xl149 {
+    border-color: -moz-use-text-color windowtext -moz-use-text-color -moz-use-text-color;
+    border-style: none solid none none;
+    border-width: medium 1pt medium medium;
+    color: #000000;
+    font-size: 14pt;
+    font-style: italic;
+    font-weight: 700;
+    text-align: center;
+    vertical-align: middle;
+}
+.xl150 {
+    border-color: -moz-use-text-color -moz-use-text-color windowtext windowtext;
+    border-style: none none solid solid;
+    border-width: medium medium 0.5pt 1pt;
+    color: #000000;
+    font-size: 14pt;
+    font-style: italic;
+    font-weight: 700;
+    text-align: center;
+    vertical-align: middle;
+}
+.xl151 {
+    border-color: -moz-use-text-color -moz-use-text-color windowtext;
+    border-style: none none solid;
+    border-width: medium medium 0.5pt;
+    color: #000000;
+    font-size: 14pt;
+    font-style: italic;
+    font-weight: 700;
+    text-align: center;
+    vertical-align: middle;
+}
+.xl152 {
+    border-color: -moz-use-text-color windowtext windowtext -moz-use-text-color;
+    border-style: none solid solid none;
+    border-width: medium 1pt 0.5pt medium;
+    color: #000000;
+    font-size: 14pt;
+    font-style: italic;
+    font-weight: 700;
+    text-align: center;
+    vertical-align: middle;
+}
+.xl153 {
+    border-color: windowtext -moz-use-text-color windowtext windowtext;
+    border-style: solid none solid solid;
+    border-width: 0.5pt medium 0.5pt 0.5pt;
+    text-align: center;
+    vertical-align: top;
+}
+.xl154 {
+    border-color: windowtext -moz-use-text-color;
+    border-style: solid none;
+    border-width: 0.5pt medium;
+    text-align: center;
+    vertical-align: top;
+}
+.xl155 {
+    border-color: windowtext windowtext windowtext -moz-use-text-color;
+    border-style: solid solid solid none;
+    border-width: 0.5pt 1pt 0.5pt medium;
+    text-align: center;
+    vertical-align: top;
+}
+.xl156 {
+    border-color: windowtext windowtext windowtext -moz-use-text-color;
+    border-style: solid solid solid none;
+    border-width: 0.5pt 0.5pt 0.5pt medium;
+    color: #000000;
+    font-size: 13pt;
+    font-style: italic;
+    font-weight: 700;
+    text-align: left;
+}
+.xl157 {
+    border-color: windowtext;
+    border-style: solid;
+    border-width: 0.5pt 0.5pt 0.5pt 1pt;
+    font-size: 12pt;
+    font-style: italic;
+    font-weight: 700;
+    text-align: left;
+}
+.xl158 {
+    border: 0.5pt solid windowtext;
+    font-size: 12pt;
+    font-style: italic;
+    font-weight: 700;
+    text-align: left;
+}
+.xl159 {
+    border: 0.5pt solid windowtext;
+    font-size: 12pt;
+    text-align: left;
+}
+.xl160 {
+    border-color: windowtext;
+    border-style: solid;
+    border-width: 0.5pt 1pt 0.5pt 0.5pt;
+    font-size: 12pt;
+    font-style: italic;
+    font-weight: 700;
+    text-align: left;
+}
+.xl161 {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-color: windowtext -moz-use-text-color windowtext windowtext;
+    border-style: solid none solid solid;
+    border-width: 0.5pt medium 0.5pt 1pt;
+    font-size: 13pt;
+    text-align: left;
+    vertical-align: top;
+}
+.xl162 {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-color: windowtext -moz-use-text-color;
+    border-style: solid none;
+    border-width: 0.5pt medium;
+    font-size: 13pt;
+    text-align: left;
+    vertical-align: top;
+}
+.xl163 {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-color: windowtext windowtext windowtext -moz-use-text-color;
+    border-style: solid solid solid none;
+    border-width: 0.5pt 0.5pt 0.5pt medium;
+    font-size: 13pt;
+    text-align: left;
+    vertical-align: top;
+}
+.xl164 {
+    border-color: windowtext;
+    border-style: solid;
+    border-width: 0.5pt 0.5pt 0.5pt 1pt;
+    font-size: 12pt;
+    font-style: italic;
+    font-weight: 700;
+    text-align: left;
+    vertical-align: top;
+}
+.xl165 {
+    border: 0.5pt solid windowtext;
+    font-size: 12pt;
+    font-style: italic;
+    font-weight: 700;
+    text-align: left;
+    vertical-align: top;
+}
+.xl166 {
+    border-color: windowtext -moz-use-text-color -moz-use-text-color windowtext;
+    border-style: solid none none solid;
+    border-width: 0.5pt medium medium 0.5pt;
+    font-size: 12pt;
+    font-style: italic;
+    font-weight: 700;
+    text-align: left;
+    vertical-align: top;
+}
+.xl167 {
+    border-color: windowtext -moz-use-text-color -moz-use-text-color;
+    border-style: solid none none;
+    border-width: 0.5pt medium medium;
+    font-size: 12pt;
+    font-style: italic;
+    font-weight: 700;
+    text-align: left;
+    vertical-align: top;
+}
+.xl168 {
+    border-color: -moz-use-text-color -moz-use-text-color windowtext windowtext;
+    border-style: none none solid solid;
+    border-width: medium medium 0.5pt 0.5pt;
+    font-size: 12pt;
+    font-style: italic;
+    font-weight: 700;
+    text-align: left;
+    vertical-align: top;
+}
+.xl169 {
+    border-color: -moz-use-text-color -moz-use-text-color windowtext;
+    border-style: none none solid;
+    border-width: medium medium 0.5pt;
+    font-size: 12pt;
+    font-style: italic;
+    font-weight: 700;
+    text-align: left;
+    vertical-align: top;
+}
+.xl170 {
+    border-color: windowtext windowtext -moz-use-text-color -moz-use-text-color;
+    border-style: solid solid none none;
+    border-width: 0.5pt 1pt medium medium;
+    font-size: 12pt;
+    font-style: italic;
+    font-weight: 700;
+    text-align: left;
+    vertical-align: top;
+}
+.xl171 {
+    border-color: -moz-use-text-color windowtext windowtext -moz-use-text-color;
+    border-style: none solid solid none;
+    border-width: medium 1pt 0.5pt medium;
+    font-size: 12pt;
+    font-style: italic;
+    font-weight: 700;
+    text-align: left;
+    vertical-align: top;
+}
+.xl172 {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-color: windowtext;
+    border-style: solid;
+    border-width: 0.5pt 0.5pt 0.5pt 1pt;
+    font-size: 13pt;
+    font-style: italic;
+    font-weight: 700;
+    text-align: left;
+}
+.xl173 {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 0.5pt solid windowtext;
+    font-size: 13pt;
+    font-style: italic;
+    font-weight: 700;
+    text-align: left;
+}
+.xl174 {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-color: windowtext;
+    border-style: solid;
+    border-width: 0.5pt 1pt 0.5pt 0.5pt;
+    font-size: 13pt;
+    font-style: italic;
+    font-weight: 700;
+    text-align: left;
+}
+.xl175 {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-color: windowtext;
+    border-style: solid;
+    border-width: 0.5pt 0.5pt 0.5pt 1pt;
+    font-size: 13pt;
+    text-align: left;
+}
+.xl176 {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 0.5pt solid windowtext;
+    font-size: 13pt;
+    text-align: left;
+}
+.xl177 {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-color: windowtext -moz-use-text-color windowtext windowtext;
+    border-style: solid none solid solid;
+    border-width: 0.5pt medium 0.5pt 1pt;
+    font-size: 13pt;
+    text-align: left;
+}
+.xl178 {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-color: windowtext -moz-use-text-color;
+    border-style: solid none;
+    border-width: 0.5pt medium;
+    font-size: 13pt;
+    text-align: left;
+}
+.xl179 {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-color: windowtext windowtext windowtext -moz-use-text-color;
+    border-style: solid solid solid none;
+    border-width: 0.5pt 0.5pt 0.5pt medium;
+    font-size: 13pt;
+    text-align: left;
+}
+.xl180 {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-color: windowtext;
+    border-style: solid;
+    border-width: 0.5pt 0.5pt 0.5pt 1pt;
+    font-size: 13pt;
+    text-align: left;
+    white-space: normal;
+}
+.xl181 {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 0.5pt solid windowtext;
+    font-size: 13pt;
+    text-align: left;
+    white-space: normal;
+}
+.xl182 {
+    border-color: windowtext;
+    border-style: solid;
+    border-width: 0.5pt 0.5pt 0.5pt 1pt;
+    font-size: 13pt;
+    text-align: left;
+}
+.xl183 {
+    border: 0.5pt solid windowtext;
+    font-size: 13pt;
+    text-align: left;
+}
+.xl184 {
+    border-color: windowtext;
+    border-style: solid;
+    border-width: 0.5pt 1pt 0.5pt 0.5pt;
+    font-size: 13pt;
+    text-align: left;
+}
+.xl185 {
+    border-color: windowtext;
+    border-style: solid;
+    border-width: 0.5pt 0.5pt 0.5pt 1pt;
+    font-size: 13pt;
+    font-style: italic;
+    font-weight: 700;
+    text-align: left;
+}
+.xl186 {
+    border: 0.5pt solid windowtext;
+    font-size: 13pt;
+    font-style: italic;
+    font-weight: 700;
+    text-align: left;
+}
+.xl187 {
+    border-color: windowtext;
+    border-style: solid;
+    border-width: 0.5pt 1pt 0.5pt 0.5pt;
+    font-size: 13pt;
+    font-style: italic;
+    font-weight: 700;
+    text-align: left;
+}
+.xl188 {
+    border-color: windowtext -moz-use-text-color windowtext windowtext;
+    border-style: solid none solid solid;
+    border-width: 0.5pt medium 0.5pt 1pt;
+    font-size: 13pt;
+    text-align: left;
+    vertical-align: top;
+}
+.xl189 {
+    border-color: windowtext -moz-use-text-color;
+    border-style: solid none;
+    border-width: 0.5pt medium;
+    font-size: 13pt;
+    text-align: left;
+    vertical-align: top;
+}
+.xl190 {
+    border-color: windowtext windowtext windowtext -moz-use-text-color;
+    border-style: solid solid solid none;
+    border-width: 0.5pt 0.5pt 0.5pt medium;
+    font-size: 13pt;
+    text-align: left;
+    vertical-align: top;
+}
+.xl191 {
+    border-color: windowtext -moz-use-text-color;
+    border-style: solid none;
+    border-width: 0.5pt medium;
+    font-size: 13pt;
+    text-align: left;
+}
+.xl192 {
+    border-color: windowtext windowtext windowtext -moz-use-text-color;
+    border-style: solid solid solid none;
+    border-width: 0.5pt 0.5pt 0.5pt medium;
+    font-size: 13pt;
+    text-align: left;
+}
+.xl193 {
+    border-color: windowtext -moz-use-text-color windowtext windowtext;
+    border-style: solid none solid solid;
+    border-width: 0.5pt medium 0.5pt 1pt;
+    font-size: 13pt;
+    font-style: italic;
+    font-weight: 700;
+    text-align: left;
+}
+.xl194 {
+    border-color: windowtext -moz-use-text-color;
+    border-style: solid none;
+    border-width: 0.5pt medium;
+    font-size: 13pt;
+    font-style: italic;
+    font-weight: 700;
+    text-align: left;
+}
+.xl195 {
+    border-color: windowtext windowtext windowtext -moz-use-text-color;
+    border-style: solid solid solid none;
+    border-width: 0.5pt 1pt 0.5pt medium;
+    font-size: 13pt;
+    font-style: italic;
+    font-weight: 700;
+    text-align: left;
+}
+.xl196 {
+    border-color: windowtext windowtext -moz-use-text-color;
+    border-style: solid solid none;
+    border-width: 0.5pt 0.5pt medium 1pt;
+    font-size: 13pt;
+    font-style: italic;
+    font-weight: 700;
+    text-align: left;
+}
+.xl197 {
+    border-color: windowtext windowtext -moz-use-text-color;
+    border-style: solid solid none;
+    border-width: 0.5pt 0.5pt medium;
+    font-size: 13pt;
+    font-style: italic;
+    font-weight: 700;
+    text-align: left;
+}
+.xl198 {
+    border-color: windowtext windowtext -moz-use-text-color;
+    border-style: solid solid none;
+    border-width: 0.5pt 1pt medium 0.5pt;
+    font-size: 13pt;
+    font-style: italic;
+    font-weight: 700;
+    text-align: left;
+}
+.xl199 {
+    border-color: windowtext -moz-use-text-color windowtext windowtext;
+    border-style: solid none solid solid;
+    border-width: 1pt medium 1pt 1pt;
+    font-size: 13pt;
+    text-align: left;
+}
+.xl200 {
+    border-color: windowtext -moz-use-text-color;
+    border-style: solid none;
+    border-width: 1pt medium;
+    font-size: 13pt;
+    text-align: left;
+}
+.xl201 {
+    border-color: windowtext windowtext windowtext -moz-use-text-color;
+    border-style: solid solid solid none;
+    border-width: 1pt 1pt 1pt medium;
+    font-size: 13pt;
+    text-align: left;
+}
+.xl202 {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-color: windowtext -moz-use-text-color windowtext windowtext;
+    border-style: solid none solid solid;
+    border-width: 0.5pt medium 0.5pt 1pt;
+    color: #000000;
+    font-size: 13pt;
+    text-align: left;
+}
+.xl203 {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-color: windowtext -moz-use-text-color;
+    border-style: solid none;
+    border-width: 0.5pt medium;
+    color: #000000;
+    font-size: 13pt;
+    text-align: left;
+}
+.xl204 {
+    border-color: windowtext -moz-use-text-color windowtext windowtext;
+    border-style: solid none solid solid;
+    border-width: 0.5pt medium 0.5pt 0.5pt;
+    color: #000000;
+    font-size: 13pt;
+    font-style: italic;
+    font-weight: 700;
+    text-align: left;
+}
+
+
+.last {
+
+}
+
+
+td {
+    height: 25px !important;
+}
+
+@media print {
+
+    @page {
+        size: 8in 10in;
+    }
+
+    .last {
+        page-break-after: always;
+
+    }
+}

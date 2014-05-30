@@ -1,0 +1,16 @@
+
+<% sails.config.k1.wagon_spots.forEach(function (spot) { %> 
+<a href="" class="wagon" id="<%= spot %>" data-reference="" data-id="">
+	<span class="spot"><%= spot %></span>
+	<span class="railcar"></span>
+</a>
+<% }) %>
+
+<%- partial('partials/modal.wagon.add.ejs') %>
+<%- partial('partials/modal.wagon.remove.ejs') %>
+
+<script type="text/javascript">
+$(document).ready(function () {
+	$.getScript('/js/manage.js');
+})
+</script>
