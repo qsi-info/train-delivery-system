@@ -19,20 +19,14 @@ module.exports = {
     
   
   delivery: function (req, res) {
-  	
-  	Delivery.find().exec(function (err, deliveries) {
-  		if (err) return next(err);
-
-  		// subscribe to class room
-  		Delivery.subscribe(req.socket);
-  		
-  		// subscribe to instance room
-  		Delivery.subscribe(req.socket, deliveries);
-  		
-  		// Send 200
-  		return res.send(200, { message: 'Delivery subscription success' });
-  	});
-  
+    
+    Delivery.find().exec(function (err, deliveries) {
+      if (err) return next(err);
+      Delivery.subscribe(req.socket);
+      Delivery.subscribe(req.socket, deliveries);
+      return res.send(200, { message: 'Delivery subscription success' });
+    });
+            
   },
 
 
@@ -43,7 +37,7 @@ module.exports = {
       Railcar.subscribe(req.socket);
       Railcar.subscribe(req.socket, railcars);
       return res.send(200, { message: 'Railcar subscription success', railcars: railcars });
-    })
+    });
     
   },
 

@@ -1,10 +1,68 @@
+<div class="container" id="deliveryStats">
+	<div class="col-md-6 col-xs-6">
+		<table class="table table-hover table-striped">
+			<caption><%= __('Delivery.Stats.Caption') %></caption>
+			<thead>
+				<tr>
+					<th><%= __('Delivery.Stats.Name') %></th>
+					<th><%= __('Delivery.Stats.Value') %></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><%= __('Delivery.Stats.id') %></td><td><%= delivery.id %></td>
+				</tr>
+				<tr>
+					<td><%= __('Delivery.Stats.createdAt') %></td><td><%= Utils.formatDate(delivery.createdAt) %></td>
+				</tr>
+				<tr>
+					<td><%= __('Delivery.Stats.wagon_count') %></td><td id="wagonCount"></td>
+				</tr>
+				<tr>
+					<td><%= __('Delivery.Stats.baril_count') %></td><td id="barilCount"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 
-<% sails.config.k1.wagon_spots.forEach(function (spot) { %> 
-<a href="" class="wagon" id="<%= spot %>" data-reference="" data-id="">
-	<span class="spot"><%= spot %></span>
-	<span class="railcar"></span>
-</a>
-<% }) %>
+	<div class="col-md-6 hidden-xs">
+		<div id="menu" class="square">
+			<ul>
+				<li>
+					<a href="#" data-toggle="modal" data-target="#printModal">
+						<i class="glyphicon glyphicon-print"></i>
+						<h4><%= __('Menu.Print') %></h4>
+					</a>
+				</li>
+				<li>
+					<a href="/delivery">
+						<i class="glyphicon glyphicon-pause"></i>
+						<h4><%= __('Menu.Pause') %></h4>
+					</a>
+				</li>
+<!-- 				<li>
+					<a href="#">
+						<i class="glyphicon glyphicon-trash"></i>
+						<h4><%= __('Menu.Delete') %></h4>
+					</a>
+				</li> -->
+			</ul>
+		</div>
+	</div>
+
+
+</div>
+
+<div id="deliveryContainer">
+	
+	<% sails.config.k1.wagon_spots.forEach(function (spot) { %> 
+	<a href="" class="wagon" id="<%= spot %>" data-reference="" data-id="">
+		<span class="spot"><%= spot %></span>
+		<span class="railcar"></span>
+	</a>
+	<% }) %>
+
+</div>
 
 <%- partial('partials/modal.wagon.add.ejs') %>
 <%- partial('partials/modal.wagon.remove.ejs') %>

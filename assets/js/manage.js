@@ -12,6 +12,10 @@
 		console.log(response.message); 
 	});
 
+	socket.get('/subscribe/delivery/', function (response) {
+		console.log(response.message);
+	});
+
 	// Get all the railcars from that delivery
 	socket.get('/railcar', { delivery: delivery }, function (railcars) {
 		$.each(railcars, function (i, railcar) {
@@ -22,19 +26,29 @@
 
 	// Route incomming message from the socket
 	socket.on('message', function (message) {
-		// Check if message is related to the delivery
-		if (message.model != 'railcar') return;
 
-		// Switch depending on the message verb
-		switch(message.verb) {	
-
-			// When verd is update, call RailcarController.update
-			case 'update' : RailcarController.update(message.data); break;
-
-			// Default
-			default: break;
-
+		// Check if the message is related to a railcar
+		if (message.model == 'railcar') {
+			// Switch depending on the message verb
+			switch(message.verb) {	
+				// When verd is update, call RailcarController.update
+				case 'update' : RailcarController.update(message.data); break;
+				// Default
+				default: break;
+			}
+			return;
 		}
+
+		// Check if the message is related to the deliveries.
+		if (message.model == 'delivery') {
+			switch(message.verb) {
+				// If the delivery is delete while somebody is managing it, 
+				// Redirect user to deliveries index page.
+				case 'destroy' : if (message.id == delivery) { return window.location.href = '/delivery/'; } break;
+				default: break;
+			}
+		}
+
 
 	});
 
@@ -109,14 +123,46 @@
 
 			});
 
-		}
+		},
+
+
+		get: function (id, cb) {
+			socket.get('/railcar/' + id, function (railcar) {
+				cb(railcar);
+			});
+		},
+
+
+		getWagonCount: function (cb) {
+			socket.get('/delivery/' + delivery + '/wagon-count', function (response) {
+				cb(response.count);
+			});		
+		},
+
+		getBarilCount: function (cb) {
+			socket.get('/delivery/' + delivery + '/baril-count', function (response) {
+				cb(response.count);
+			})			
+		},
+
 
 	}
 
 
 
+	// ----------------------
+	// UI 
+	// ------------------------
 
-	var UI = {};
+
+	var UI = {
+
+		initialize: function () {
+			UI.Railcar.getWagonCount();
+			UI.Railcar.getBarilCount();			
+		},
+
+	};
 
 	UI.Railcar = {
 
@@ -124,16 +170,15 @@
 			var $spot = $('#' + railcar.spot);
 			$spot.attr('data-reference', railcar.number);
 			$spot.attr('data-id', railcar.id);
-			$spot.addClass('bg-success');
+			$spot.addClass('full');
 			$spot.find('.railcar').html(railcar.number);
 		},
 
 		remove: function (railcar) {
-			console.log('asd');
 			var $railcar = $("[data-reference='" + railcar.number + "']");
 			$railcar.attr('data-reference', '');
 			$railcar.attr('data-id', '');
-			$railcar.removeClass('bg-success');
+			$railcar.removeClass('full');
 			$railcar.find('.railcar').html('');
 		},
 
@@ -146,19 +191,44 @@
 		},
 
 		getRemoveForm: function (railcar) {
+			console.log(railcar);
 			$modal = $('#ModalWagonRemove');
 			$modal.find("[name='spot']").val(railcar.spot);
 			$modal.find("[name='id']").val(railcar.id);
+			$modal.find('#removeRailcarNumber').html(railcar.number);
+			$modal.find('#removeRailcarNetVolBBL').html(railcar.netVolBBL);
+			$modal.find('#removeRailcarBillOfLading').html(railcar.billOfLading);
+			$modal.find('#removeRailcarProduct').html(railcar.product);
+			$modal.find('#removeRailcarSpot').html(railcar.spot);
+			$modal.find('#removeRailcarDelivery').html(railcar.delivery);
+			$modal.find('#removeRailcarTrain').html(railcar.train);
 			$modal.modal('toggle');
 		},
 
 		finishAdd: function (railcar) {
 			$('#ModalWagonAdd').modal('toggle');
+			UI.Railcar.getWagonCount();
+			UI.Railcar.getBarilCount();
 		},
 
 		finishRemove: function (railcar) {
 			$('#ModalWagonRemove').modal('toggle');
-		}
+			UI.Railcar.getWagonCount();
+			UI.Railcar.getBarilCount();
+		},
+
+		getWagonCount: function () {
+			RailcarController.getWagonCount(function (count) {
+				$('#wagonCount').html(count);
+			});
+		},
+
+		getBarilCount: function () {
+			RailcarController.getBarilCount(function (count) {
+				$('#barilCount').html(count);
+			});	
+		},
+
 
 	};
 
@@ -171,7 +241,7 @@
 		},
 
 		railcarAlreadyUsed: function (railcar) {
-			window.alert('railcar is already used in delivery: ' + railcar.delivery + ' a the spot: ' + railcar.spot);
+			window.alert("Ce wagon est deja utilisé dans la livraison\nLivraison: " + railcar.delivery + '\nSpot: ' + railcar.spot);
 		}
 
 	}
@@ -195,8 +265,9 @@
 		if (railcar.number == '')  return UI.Railcar.getForm(railcar);
 
 		// Get the remove form
-		return UI.Railcar.getRemoveForm(railcar);
-
+		 RailcarController.get(railcar.id, function (railcar) {
+		 	return UI.Railcar.getRemoveForm(railcar);
+		});
 	});
 
 
@@ -214,7 +285,7 @@
 	
 	});
 
-
+	// RemoveRailcarForm.Submit
 	$('#RailcarFormRemove').on('submit', function (e) {
 		e.preventDefault();
 
@@ -227,6 +298,9 @@
 
 
 
+	// -----------------------
+	// TypeAheadh plugin 
+	// -----------------------
 
 	// When the ModalWagonAdd is trigger, get all unprocessed railcars
 	$('#ModalWagonAdd').on('show.bs.modal', function () {
@@ -234,6 +308,7 @@
 			GLOBAL_UNPROCESSED_RAILCARS = railcars;
 		});
 	});
+
 
 	// Typeahead plugin setup
 	var typeaheadOptions = { hint: false, highlight: true, minLength: 1 };
@@ -259,6 +334,39 @@
 		}
 	}
 
+	
+
+
+	// -------------------
+	// Parlsey js plugin 
+	// -------------------
+
+
+	// Reset the validation plugin every time the modal is close
+	$('#ModalWagonAdd').on('hide.bs.modal', function () {
+		$('#RailcarFormAdd').parsley().reset();
+	})
+
+
+	// Validator configuration
+	window.ParsleyValidator.addValidator('inrailcars', function (value, requirement) {
+		for(var i=0, len=GLOBAL_UNPROCESSED_RAILCARS.length; i < len; i++) {
+			if (GLOBAL_UNPROCESSED_RAILCARS[i].number === value) {
+				return true;
+			}
+		}
+		return false;
+	});
+	// Validator add message for the railcars validation
+	window.ParsleyValidator.addMessage('fr', 'inrailcars', 'Le numero du wagon doit faire partie de la liste suggeree');
+
+
+
+
+	// ---------------------------
+	// UI initialization
+	// ---------------------------
+	UI.initialize();
 
 
 })()

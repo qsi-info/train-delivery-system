@@ -24,4 +24,13 @@ module.exports = {
   	done()
   },
 
+  // beforeDestroy: function (criteria, cb) {
+  //   Railcar.update({ delivery: criteria.where.id }, { isProcessed: false, spot: '', delivery: '' }, function (err, railcars) {
+  //     if (err) return cb(err);
+  //     console.log(railcars);
+  //     cb();
+  //   })
+  // },
+
+
 };

@@ -11,9 +11,7 @@
     <!-- CSS Dependencies -->
     <link rel="stylesheet" type="text/css" href="/styles/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="/styles/main.css"/>
-    <style type="text/css">
-      body { padding-top: 50px; }
-    </style>
+
 
     <!-- Preload jQuery -->
     <script type="text/javascript" src="/js/jquery.min.js"></script>
@@ -23,13 +21,14 @@
   <body>
 
     <div id="wrap">
-      <div class="container">
-        <%- body %>
-      </div>
+      <%- partial('partials/header.ejs') %>    
+      <%- body %>
     </div>
+    <%- partial('partials/footer.ejs') %>
 
     <!-- Loading GIF -->
     <div class="modal-loading"></div>
+
 
     <!-- Sails JavaScript Dependencies -->
     <script type="text/javascript" src="/js/socket.io.js"></script>
@@ -39,9 +38,8 @@
     <!-- JavaScript Dependencies -->
     <script type="text/javascript" src="/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/js/typeahead.js"></script>
-    <!-- <script type="text/javascript" src="/js/knockout.js"></script>
     <script type="text/javascript" src="/js/parsley/parsley.min.js"></script>
-    <script type="text/javascript" src="/js/parsley/i18n/fr.js"></script> -->
+    <script type="text/javascript" src="/js/parsley/i18n/fr.js"></script>
 
   </body>
 </html>

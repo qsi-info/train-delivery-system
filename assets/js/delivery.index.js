@@ -1,6 +1,21 @@
 
 (function () {
 
+	$('.delivery-delete-btn').on('click', function (e) {
+		e.preventDefault();
+		var delivery = $(this).attr('data-id');
+		socket.get('/delivery/' + delivery + '/wagon-count', function (response) {
+			if (response.count > 0) {
+				return window.alert('Vous devez vider la livraison afin de pouvoir la supprimer');				
+			}
+			if (window.confirm('Etes-vous certain de vouloir supprimer cette livraison')) {
+				socket.delete('/delivery/' + delivery, function (delivery) {
+					$('#' + delivery.id).remove();
+					return;
+				})
+			}
+		})
+	});
 
 
 	$('#deliveries tr').on('click', function (e) {

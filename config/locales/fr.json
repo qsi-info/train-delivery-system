@@ -1,3 +1,52 @@
 {
+
+	"Menu.Manage" : "Gérer les livraisons",
+  "Menu.Create" : "Nouvelle livraison",
+  "Menu.Archives" : "Consulter les archives",
+  "Menu.Print" : "Imprimer",
+  "Menu.Pause" : "Arrêter",
+  "Menu.Delete" : "Supprimer",
+
+
+  "Menu.Delivery.Dropdown" : "Livraisons",
+  "Menu.Delivery.Dropdown.Actions.new" : "Nouvelle livraison",
+  "Menu.Delivery.Dropdown.Actions.manage" : "Gestion des livraisons",
+
+  "Delivery.Table.id" : "Identifiant",
+  "Delivery.Table.createdAt" : "Date de création",
+  "Delivery.Table.wagon_count" : "Nombre de wagons",
+  "Delivery.Table.baril_count" : "Nombre de barils",
+  "Delivery.Table.actions" : "Actions",
+  "Delivery.Table.caption" : "Gestion des livraisons",
+
+  "Delivery.Dropdown.Actions" : "Actions",
+  "Delivery.Dropdown.Actions.Manage" : "Reprendre",
+  "Delivery.Dropdown.Actions.Archive" : "Archiver",
+  "Delivery.Dropdown.Actions.Destroy" : "Supprimer",
+  "Delivery.Dropdown.Actions.Print.TransfertSheet" : "Imprimer: feuille de transfert",
+  "Delivery.Dropdown.Actions.Print.InspectionSheets" : "Imprimer: feuilles d'inspections",
+  "Delivery.Dropdown.Actions.Print.SealSheet" : "Imprimer: feuille des seals",
+
+  "Delivery.FilterInput.placeholder" : "Entrer le numéro du wagon",
+
+  "Delivery.Stats.Caption" : "Statistiques de la livraison",
+
+  "Delivery.Stats.id" : "Identifiant",
+  "Delivery.Stats.createdAt" : "Date de création",
+  "Delivery.Stats.wagon_count" : "Nombre de wagons",
+  "Delivery.Stats.baril_count" : "Nombre de barils",
+
+  "Delivery.Stats.Name" : "Statistique",
+  "Delivery.Stats.Value" : "Valeur",
+
+
+  "Delivery.Modal.Close" : "Fermer",
+  "Delivery.Modal.AddCar" : "Ajouter le wagon",
+  "Delivery.Modal.RemoveCar" : "Enlever le wagon",
+
+
+
+
   "Welcome": "Bienvenue"
+
 }

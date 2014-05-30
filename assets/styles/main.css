@@ -1,9 +1,64 @@
-.wagon {
-	margin: 10px;
-	border: 1px solid black;
-	padding: 5px;
-	display: inline-block;
+body {
+  padding-top: 100px;
 }
+#deliveryContainer {
+  margin: auto; 
+  text-align: center;
+  margin: 10px;
+  max-width: 1740px !important;
+}
+
+#deliveryStats {
+  margin-bottom: 50px;
+}
+
+.wagon {
+  display: -moz-inline-box; 
+  display: inline-block;
+  margin: 5px;
+  /*background-color: #d9534f;*/
+  background-color: #808080;
+  height: 55px;
+  width: 100px;
+  position: relative;
+  cursor: pointer;
+}
+
+.wagon.full {
+  background-color: #5cb85c;
+}
+
+.wagon:hover {
+  box-shadow: 1px 2px 5px #888888;
+}
+
+.wagon:hover .spot {
+  /*color: red;*/
+}
+
+.wagon .spot {
+  text-align: left;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  padding: 2px;
+  color: #FFF;
+  font-weight: bold;
+  border: 1px solid black;
+}
+
+.wagon .railcar {
+  position: absolute;
+  top: 25px;
+  left: 0px;
+  padding: 2px;
+  text-align: center;
+  width: 100%;
+  font-weight: bold;
+  color: #CC4629;
+}
+
+
 
 
 
@@ -15,6 +70,103 @@
 
 
 
+
+/* TRANSFERSHEET CSS */
+
+#transfersheet {
+  margin-bottom: 50px;
+}
+
+#transfersheet table {
+  font-size: 12px;
+  border: 1px solid black;
+}
+
+
+#transfersheet tbody:before {
+    line-height:1em;
+    content:"-";
+    color:transparent; /* to hide text */
+    display:block;
+}
+
+
+#transfersheet .brut-types {
+  text-align: center;
+  font-size: 10px;
+}
+
+#transfersheet td {
+  /*font-size: 12px;*/
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 3px;
+  padding-right: 3px;
+  border-bottom: 0.5px solid grey;
+}
+
+
+#transfersheet input {
+  text-align: center;
+}
+
+#transfersheet .caption td {
+  font-size: 14px ;
+  border: 2px solid black;
+}
+
+
+#transfersheet .caption td:nth-of-type(2) {
+  text-align: center;
+}
+
+#transfersheet .num-type td {
+  border: 1px solid black;
+  text-align: center;
+}
+
+#transfersheet .railcar-product td {
+  border: 1px solid black;
+}
+
+#transfersheet .railcar-product td:nth-child(2n) {
+  text-align: center;
+}
+
+#transfersheet #summary tr td:first-of-type {
+  text-align: right;
+}
+
+#transfersheet #step3b tr td:first-of-type {
+  text-align: right;
+}
+
+
+#transfersheet .signature  td:first-of-type {
+  text-align: right;
+}
+
+#transfersheet .signature td:nth-of-type(5) {
+  text-align: right;
+}
+
+#transfersheet tbody#step3b > tr.caption > td:first-of-type {
+  text-align: left
+}
+
+
+#transfersheet .railcar-product td.product {
+  border-right: 2px solid black;
+}
+
+#transfersheet .num-type td:nth-child(2n) {
+  border-right: 2px solid black;
+  
+}
+
+
+
+/* END TRANSFERSHEET CSS */
 
 
 
@@ -117,9 +269,9 @@ opacity: 1;
 } 
 
 .parsley-errors-list > li {
-	color: #F44;
-	font-size: 1.3em;
-	padding: 5px;
+  color: #F44;
+  font-size: 1.3em;
+  padding: 5px;
 }
 
 
@@ -163,7 +315,7 @@ opacity: 1;
 }
 
 #menu i:hover {
-	color: #0DFF5E;
+  color: #0DFF5E;
 }
 
 #menu.round i {
@@ -281,3 +433,43 @@ height: 60px;
   font-size: 11px;
 }
 
+
+
+/*#mainNav {
+  background-color: #E51400;
+}
+
+#mainNav a:hover {
+  background-color: #F09609 !important;
+}
+
+#mainNav ul {
+  background-color: #E51400;
+}
+
+#mainNav li:hover {
+  background-color: #F09609 !important;
+
+}
+
+#mainNav a {
+  color: white; 
+}
+
+.nav .open > a, .nav .open > a:hover, .nav .open > a:focus .open {
+  background-color: #F09609 !important;
+
+}*/
+
+
+
+
+.modal-header, .modal-footer {
+  background: url("../images/home-slant-pattern-50.png") repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+
+
+
+.fourohfour {
+  margin-top: 50px;
+}

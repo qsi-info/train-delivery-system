@@ -25,6 +25,21 @@ module.exports = {
     })
   },
   
+
+  count: function (req, res) {
+    Delivery.count(function (err, count) {
+      if (err) return next(err);
+      return res.json({ count: count });
+    })
+  },
+
+  create: function (req, res) {
+    Delivery.create({}).done(function (err, delivery) {
+      if (err) return next(err);
+      return res.redirect('/delivery/manage/' + delivery.id);
+    });
+  },
+
   manage: function (req, res) {
   	var id = req.param('id');
   	Delivery.findOneById(id).done(function (err, delivery) {
@@ -38,7 +53,6 @@ module.exports = {
     var id = req.param('id');
     Railcar.countByDelivery(id).done(function (err, count) {
       if (err) return next(err);
-      console.log(count);
       return res.json({ count: count });
     });
   },

@@ -1,0 +1,43 @@
+<div class="container">
+
+	<div class="row">
+		<div class="col-md-12">
+
+			<div id="menu" class="square">
+				<ul>
+					<li>
+						<a href="/delivery/create">
+							<i class="glyphicon glyphicon-plus"></i>
+							<h4><%= __('Menu.Create') %></h4>
+						</a>
+					</li>
+					<li>
+						<a href="/delivery">
+							<i class="glyphicon glyphicon-list-alt"></i>
+							<span class="badge animated tada" id="deliveryCountNotification"></span>
+							<h4><%= __('Menu.Manage') %></h4>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<i class="glyphicon glyphicon-book"></i>
+							<h4><%= __('Menu.Archives') %></h4>
+						</a>
+					</li>
+				</ul>
+			</div>
+
+		</div>
+	</div>
+
+</div>
+
+
+<script type="text/javascript">
+	$(document).ready(function () {
+		$.getScript('/js/main.index.js');
+	})
+</script>
+
+
+

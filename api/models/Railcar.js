@@ -33,6 +33,20 @@ module.exports = {
     done()
   },
 
+  // Every time a railcar is updated
+  beforeUpdate: function (values, cb) {
+    // If there is no value for the delivery, that means that the railcar is being removed from the delivery
+    if (values.delivery == '') {
+      return cb();
+    }
+    // Try to find the delivery
+    Delivery.findOneById(values.delivery, function (err, delivery) {
+      if (err) return cb(err);
+      if (!delivery) return cb({ message: 'delivery doesnt exist anymore '});
+      return cb();
+    });
+  },
+
 
 };
 
