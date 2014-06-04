@@ -67,8 +67,6 @@ module.exports = {
 
         _.each(railcars, function (railcar) {
 
-          console.log(railcar);
-
           var inspectionRailcar = {};
           inspectionRailcar.id = railcar.id;
           inspectionRailcar.product = railcar.product;
@@ -84,7 +82,6 @@ module.exports = {
 
           ReportInspectionSheet.create(inspectionRailcar).done(function (err, inspection) {
             if (err) return res.view('500', err);
-            console.log(inspection);
           });
 
         });

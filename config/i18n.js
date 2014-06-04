@@ -12,8 +12,9 @@
 module.exports.i18n = {
 
   // Which locales are supported?
-  locales: ['fr'],
+  locales: ['fr', 'en'],
 
   defaultLocale: 'fr',
-    
+   
+  cookie: 'qsi.locale',
 };
