@@ -17,15 +17,24 @@ module.exports = {
   	delivery: { type: 'string' },
   	spot: { type: 'string' },
   	isProcessed: { type: 'boolean', defaultsTo: false },
+    number: { type: 'string' },
+    train: { type: 'string' },
+    seal1: { type: 'string' },
+    seal2: { type: 'string' },
+    seal3: { type: 'string' },
+    product: { type: 'string' },
+    billOfLading: { type: 'string' },
+    netVolBBL: { type: 'float' },
+    currentETA: { type: 'datetime' },
   },
 
 
-  toJSON: function () {
-    var obj = this.toObject();
-    obj.id = obj.id.toLowerCase();
-    console.log(obj);
-    return obj;
-  },
+  // toJSON: function () {
+  //   var obj = this.toObject();
+  //   obj.id = obj.id.toLowerCase();
+  //   console.log(obj);
+  //   return obj;
+  // },
 
   beforeCreate: function (attrs, done) {
     // Add the GUID as the primary key

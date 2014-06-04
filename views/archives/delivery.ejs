@@ -1,0 +1,40 @@
+<div class="container">
+<!-- <%- UI.buildTable(deliveries) %> -->
+<div class="row">
+	<div class="col-md-12 col-xs-12">
+	
+		<div class="table-responsive">
+			<table class="table table-hover table-striped" id="deliveriesTable">
+				<caption><%= __('Archives.Table.caption') %></caption>
+				<thead>
+					<tr>
+						<th><%= __('Delivery.Table.id') %></th>
+						<th><%= __('Delivery.Table.createdAt') %></th>
+						<th><%= __('Delivery.Table.wagon_count') %></th>
+					</tr>
+				</thead>
+				<tbody id="deliveries">
+					<% deliveries.forEach(function (delivery) { %>
+						<tr class="<% switch(delivery.status) { case sails.config.k1.DELIVERY_STATUS.IN_PROGRESS: %>status<% break; } %>" id="<%= delivery.id %>">
+							<td class="delivery-id"><%= delivery.id %></td>
+							<td class="delivery-id"><%= Utils.formatDate(delivery.createdAt) %></td>
+							<td class="delivery-wagon_count"></td>
+						</tr>
+					<% }) %>
+				</tbody>
+			</table>
+		</div>
+
+	</div>
+</div>
+
+
+</div>
+
+
+
+<script type="text/javascript">
+$(document).ready(function () {
+	$.getScript('/js/archives.delivery.js');
+})
+</script>

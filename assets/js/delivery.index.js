@@ -1,6 +1,26 @@
 
 (function () {
 
+
+	// ----------------------
+	// UI 
+	// ------------------------
+
+
+	var UI = {
+
+		loading: function () {
+			$('body').addClass('loading');
+		},
+
+		finishLoading: function () {
+			$('body').removeClass('loading');
+		},
+
+	};
+
+
+
 	$('.delivery-delete-btn').on('click', function (e) {
 		e.preventDefault();
 		var delivery = $(this).attr('data-id');
@@ -16,6 +36,8 @@
 			}
 		})
 	});
+
+
 
 
 	$('#deliveries tr').on('click', function (e) {

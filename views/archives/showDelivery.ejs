@@ -1,0 +1,57 @@
+<div class="container">
+
+	<table class="table table-hover">
+		<caption>Wagon de la livraison : <strong><%= delivery %></strong></caption>
+		<thead>
+			<th><%= __('Modal.Wagon.Number')  %></th>
+			<th><%= __('Modal.Wagon.Train')  %></th>
+			<th><%= __('Modal.Wagon.Spot')  %></th>
+			<th><%= __('Modal.Wagon.NetVolBBL')  %></th>
+			<th><%= __('Modal.Wagon.Product')  %></th>
+			<th><%= __('Modal.Wagon.BillOfLading')  %></th>
+		</thead>
+		<tbody>
+			<% railcars.forEach(function (railcar) { %>
+				<tr>
+					<td><%= railcar.number  %></td>
+					<td><%= railcar.train  %></td>
+					<td><%= railcar.spot  %></td>
+					<td><%= railcar.netVolBBL  %></td>
+					<td><%= railcar.product %></td>
+					<td><%= railcar.billOfLading %></td>
+					<td class="">
+						<div class="btn-group">
+						  <button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown">
+						    <%= __('Delivery.Dropdown.Actions') %> <span class="caret"></span>
+						  </button>
+						  <ul class="dropdown-menu" role="menu">
+						  	<li>
+						  		<a class="restore-link" href="/archives/railcar/restore/<%= railcar.id %>"><%= __('Archives.Wagon.Restore') %></a>
+						  	</li>
+						  </ul>
+						</div>
+					</td>
+				</tr>
+			<% }) %>
+		</tbody>
+	</table>
+</div>
+
+
+
+<script type="text/javascript">
+$(document).ready(function () {
+
+	$('.restore-link').on('click', function(e) {
+		e.preventDefault();
+		if (window.prompt('Cette action est irreversible, veuillez entrez le mot de passe administrateur') == 'admin') {
+			return window.location.href = $(this).attr('href');
+		}
+	});
+
+
+
+})
+
+</script>
+

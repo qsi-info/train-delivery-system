@@ -1,5 +1,5 @@
 /**
- * SubscribeController
+ * ArchiveDeliveryController
  *
  * @module      :: Controller
  * @description	:: A set of functions called `actions`.
@@ -17,34 +17,20 @@
 
 module.exports = {
     
-  
-  delivery: function (req, res) {
-    
-    Delivery.find().exec(function (err, deliveries) {
-      if (err) return req.view('500', err);
-      Delivery.subscribe(req.socket);
-      Delivery.subscribe(req.socket, deliveries);
-      return res.send(200, { message: 'Delivery subscription success' });
-    });
-            
-  },
 
-
-  railcar: function (req, res) {
-
-    Railcar.find().exec(function (err, railcars) {
+  wagonCount: function (req, res) {
+    var id = req.param('id');
+    ArchiveRailcar.countByDelivery(id).done(function (err, count) {
       if (err) return res.view('500', err);
-      Railcar.subscribe(req.socket);
-      Railcar.subscribe(req.socket, railcars);
-      return res.send(200, { message: 'Railcar subscription success' });
+      return res.json({ count: count });
     });
-    
   },
+  
 
 
   /**
    * Overrides for the settings in `config/controllers.js`
-   * (specific to SubscribeController)
+   * (specific to ArchiveDeliveryController)
    */
   _config: {}
 

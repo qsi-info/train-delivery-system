@@ -21,19 +21,6 @@ module.exports = {
   		return res.view();
   	},
 
-  	
-    deliveryManager: function (req, res) {
-      
-      // Get all active deliveries
-      Delivery.find().exec(function (err, deliveries) {
-        if (err) return next(err);
-
-        // Send the views with the deliveries
-        return res.view({ deliveries: deliveries });
-      })
-
-  	},
-
 
 
   /**

@@ -8,9 +8,15 @@
   "Menu.Delete" : "Supprimer",
 
 
+
+
   "Menu.Delivery.Dropdown" : "Livraisons",
   "Menu.Delivery.Dropdown.Actions.new" : "Nouvelle livraison",
   "Menu.Delivery.Dropdown.Actions.manage" : "Gestion des livraisons",
+
+  "Menu.Archives.Dropdown" : "Archives",
+  "Menu.Archives.Dropdown.Actions.search" : "Faire une recherche",
+  "Menu.Archives.Dropdown.Actions.delivery" : "Consulter les livraisons",
 
   "Delivery.Table.id" : "Identifiant",
   "Delivery.Table.createdAt" : "Date de création",
@@ -45,6 +51,14 @@
   "Delivery.Modal.RemoveCar" : "Enlever le wagon",
 
 
+
+  "Modal.Wagon.Spot" : "Emplacement",
+  "Modal.Wagon.Train" : "Numéro de train",
+  "Modal.Wagon.Delivery" : "Numéro de livraison",
+  "Modal.Wagon.Product" : "Type de produit",
+  "Modal.Wagon.BillOfLading" : "Bill of lading",
+  "Modal.Wagon.NetVolBBL" : "Volume net en barils",
+  
 
 
   "Welcome": "Bienvenue"

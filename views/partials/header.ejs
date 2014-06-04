@@ -22,7 +22,13 @@
             <li><a href="/delivery"><%= __('Menu.Delivery.Dropdown.Actions.manage') %></a></li>
           </ul>
         </li>
-        <li><a href="#"><%= __('Menu.Archives') %></a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= __('Menu.Archives.Dropdown') %> <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="/archives/search"><%= __('Menu.Archives.Dropdown.Actions.search') %></a></li>
+            <li><a href="/archives/delivery"><%= __('Menu.Archives.Dropdown.Actions.delivery') %></a></li>
+          </ul>
+        </li>
         <li><a href="#"><%= __('Menu.Help') %></a></li>
       </ul>
     </div><!-- /.navbar-collapse -->

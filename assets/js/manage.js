@@ -16,42 +16,6 @@
 		console.log(response.message);
 	});
 
-	// Get all the railcars from that delivery
-	socket.get('/railcar', { delivery: delivery }, function (railcars) {
-		$.each(railcars, function (i, railcar) {
-			UI.Railcar.add(railcar);
-		});
-	});
-
-
-	// Route incomming message from the socket
-	socket.on('message', function (message) {
-
-		// Check if the message is related to a railcar
-		if (message.model == 'railcar') {
-			// Switch depending on the message verb
-			switch(message.verb) {	
-				// When verd is update, call RailcarController.update
-				case 'update' : RailcarController.update(message.data); break;
-				// Default
-				default: break;
-			}
-			return;
-		}
-
-		// Check if the message is related to the deliveries.
-		if (message.model == 'delivery') {
-			switch(message.verb) {
-				// If the delivery is delete while somebody is managing it, 
-				// Redirect user to deliveries index page.
-				case 'destroy' : if (message.id == delivery) { return window.location.href = '/delivery/'; } break;
-				default: break;
-			}
-		}
-
-
-	});
-
 
 
 	/**
@@ -145,7 +109,6 @@
 			})			
 		},
 
-
 	}
 
 
@@ -160,6 +123,14 @@
 		initialize: function () {
 			UI.Railcar.getWagonCount();
 			UI.Railcar.getBarilCount();			
+		},
+
+		loading: function () {
+			$('body').addClass('loading');
+		},
+
+		finishLoading: function () {
+			$('body').removeClass('loading');
 		},
 
 	};
@@ -188,6 +159,7 @@
 			$modal.find("[name='spot']").val(railcar.spot);
 			$modal.find("[name='number']").val(railcar.number);
 			$modal.modal('toggle');
+			setTimeout(function () { $('#filterInput').focus();}, 500);
 		},
 
 		getRemoveForm: function (railcar) {
@@ -245,6 +217,64 @@
 		}
 
 	}
+
+	// ---------------------------
+	// UI initialization
+	// ---------------------------
+	UI.initialize();
+
+
+
+
+
+
+
+
+	UI.loading();
+	// Get all the railcars from that delivery
+	socket.get('/railcar', { delivery: delivery }, function (railcars) {
+		$.each(railcars, function (i, railcar) {
+			UI.Railcar.add(railcar);
+		});
+		UI.finishLoading();
+	});
+
+
+	// Route incomming message from the socket
+	socket.on('message', function (message) {
+
+		// Check if the message is related to a railcar
+		if (message.model == 'railcar') {
+			// Switch depending on the message verb
+			switch(message.verb) {	
+				// When verd is update, call RailcarController.update
+				case 'update' : RailcarController.update(message.data); break;
+				// Default
+				default: break;
+			}
+			return;
+		}
+
+		// Check if the message is related to the deliveries.
+		if (message.model == 'delivery') {
+			switch(message.verb) {
+				// If the delivery is delete while somebody is managing it, 
+				// Redirect user to deliveries index page.
+				case 'destroy' : if (message.id == delivery) { return window.location.href = '/delivery/'; } break;
+				default: break;
+			}
+		}
+
+
+	});
+
+
+
+
+
+
+
+
 
 
 	//---------------------------------------
@@ -363,10 +393,6 @@
 
 
 
-	// ---------------------------
-	// UI initialization
-	// ---------------------------
-	UI.initialize();
 
 
 })()

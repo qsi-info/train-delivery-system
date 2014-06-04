@@ -33,6 +33,12 @@ module.exports.routes = {
   '/delivery/create' : 'DeliveryController.create',
   '/delivery/:id/wagon-count' : 'DeliveryController.wagonCount',
   '/delivery/:id/baril-count' : 'DeliveryController.barilCount',
+
+  '/archivedelivery/:id/wagon-count' : 'ArchiveDeliveryController.wagonCount',
+
+  '/archives/delivery/:id' : 'ArchivesController.showDelivery',
+
+  '/archives/railcar/restore/:id' : 'ArchivesController.restoreRailcar',
 };
 
 
