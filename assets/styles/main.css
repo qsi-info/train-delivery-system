@@ -33,7 +33,7 @@ body {
 }
 
 .wagon:hover .spot {
-  /*color: red;*/
+  color: yellow;
 }
 
 .wagon .spot {
@@ -316,6 +316,7 @@ opacity: 1;
 
 #menu i:hover {
   color: #0DFF5E;
+  /*color: #58D161;*/
 }
 
 #menu.round i {
@@ -459,15 +460,17 @@ height: 60px;
 .nav .open > a, .nav .open > a:hover, .nav .open > a:focus .open {
   background-color: #F09609 !important;
 
-}*/
+}
 
-
+#mainNav {
+  border-color: transparent;
+}
 
 
 .modal-header, .modal-footer {
   background: url("../images/home-slant-pattern-50.png") repeat scroll 0 0 rgba(0, 0, 0, 0);
 }
-
+*/
 
 
 .fourohfour {

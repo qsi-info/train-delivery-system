@@ -3,7 +3,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">Wagon: <span id="removeRailcarNumber"></span></h4>
+        <h4 class="modal-title">Wagon: <strong id="removeRailcarNumber"></strong></h4>
       </div>
       <form action="" method="" id="RailcarFormRemove">
 	      <div class="modal-body">
@@ -18,14 +18,29 @@
 							<tr>
 								<td><%= __('Modal.Wagon.Train') %></td><td id="removeRailcarTrain"></td>
 							</tr>
-							<tr>
+						<!-- 	<tr>
 								<td><%= __('Modal.Wagon.Delivery') %></td><td id="removeRailcarDelivery"></td>
-							</tr>
+							</tr> -->
 							<tr>
 								<td><%= __('Modal.Wagon.Product') %></td><td id="removeRailcarProduct"></td>
 							</tr>
 							<tr>
 								<td><%= __('Modal.Wagon.BillOfLading') %></td><td id="removeRailcarBillOfLading"></td>
+							</tr>
+							<tr>
+								<td><%= __('Modal.Wagon.NetVolBBL') %></td><td id="removeRailcarNetVolBBL"></td>
+							</tr>
+							<tr>
+								<td><%= __('Modal.Wagon.Seals') %></td>
+								<td>
+									<ul class="nav nav-pills">
+										<li id="removeRailcarSeal1"></li>
+										<li>-</li>
+										<li id="removeRailcarSeal2"></li>
+										<li>-</li>
+										<li id="removeRailcarSeal3"></li>
+									</ul>
+								</td>
 							</tr>
 						</tbody>
 					</table>

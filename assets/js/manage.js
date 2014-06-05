@@ -174,6 +174,10 @@
 			$modal.find('#removeRailcarSpot').html(railcar.spot);
 			$modal.find('#removeRailcarDelivery').html(railcar.delivery);
 			$modal.find('#removeRailcarTrain').html(railcar.train);
+			$modal.find('#removeRailcarSeal1').html(railcar.seal1);
+			$modal.find('#removeRailcarSeal2').html(railcar.seal2);
+			$modal.find('#removeRailcarSeal3').html(railcar.seal3);
+			$modal.find('#removeRailcarNetVolBBL').html(railcar.netVolBBL);
 			$modal.modal('toggle');
 		},
 

@@ -14,6 +14,12 @@
   "Menu.Delivery.Dropdown.Actions.new" : "Nouvelle livraison",
   "Menu.Delivery.Dropdown.Actions.manage" : "Gestion des livraisons",
 
+  "Modal.Print.Title" : "Options d'impressions",
+  "Modal.Print.TransferSheet.Link" : "Feuille de transfert",
+  "Modal.Print.InspectionSheets.Link" : "Feuilles d'inspection",
+  "Modal.Wagon.Seals" : "Seals 1-2-3",
+  "Modal.Wagon.NetVolBBL" : "Net Vol BBL",
+
   "Menu.Archives.Dropdown" : "Archives",
   "Menu.Archives.Dropdown.Actions.search" : "Faire une recherche",
   "Menu.Archives.Dropdown.Actions.delivery" : "Consulter les livraisons",
@@ -30,7 +36,7 @@
   "Delivery.Dropdown.Actions.Archive" : "Archiver",
   "Delivery.Dropdown.Actions.Destroy" : "Supprimer",
   "Delivery.Dropdown.Actions.Print.TransfertSheet" : "Imprimer: feuille de transfert",
-  "Delivery.Dropdown.Actions.Print.InspectionSheets" : "Imprimer: feuilles d'inspections",
+  "Delivery.Dropdown.Actions.Print.InspectionSheets" : "Imprimer: feuilles d'inspection",
   "Delivery.Dropdown.Actions.Print.SealSheet" : "Imprimer: feuille des seals",
 
   "Delivery.FilterInput.placeholder" : "Entrer le numéro du wagon",
@@ -57,7 +63,6 @@
   "Modal.Wagon.Delivery" : "Numéro de livraison",
   "Modal.Wagon.Product" : "Type de produit",
   "Modal.Wagon.BillOfLading" : "Bill of lading",
-  "Modal.Wagon.NetVolBBL" : "Volume net en barils",
   
 
 
