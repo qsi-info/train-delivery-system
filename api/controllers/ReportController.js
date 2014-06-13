@@ -95,6 +95,61 @@ module.exports = {
   },
 
 
+  sealSheet: function (req, res) {
+    
+    var delivery = req.param('delivery');
+    var sealCounter = req.param('seal');
+
+    Railcar.findByDelivery(delivery, function (err, railcars) {
+      if (err) return res.view('500', err);
+
+      var sealSheet = {};
+
+      _.each(railcars, function (railcar) {
+        sealSheet[railcar.spot+'_'+'Railcar'] = railcar.number;
+      });
+
+      _.each(sails.config.k1.SEAL_POSITIONS, function (position) {
+        var references = position.split('-');
+        var track = references[0];
+        var spot = references[1];
+        var seal = references[2];
+
+        var spotString = 'S'+track+'E'+spot;
+
+        var railcar = findRailcarBySpot(railcars, spotString);
+
+        if (railcar) {
+          sealSheet[spotString+'_'+seal] = sealCounter++; 
+        }
+
+      });
+      ReportSealSheet.query("DELETE FROM " + ReportSealSheet._tableName, function (err) {
+        if (err) return console.log(err);
+
+        ReportSealSheet.create(sealSheet).done(function (err, report) {
+          if (err) return console.log(err);
+          return res.redirect('http://parachemsrv07/Reports/Pages/Report.aspx?ItemPath=%2fSealSheet');
+        });
+
+      });
+
+
+    });
+
+    var findRailcarBySpot = function (railcars, spot) {
+      for (var i=0, len=railcars.length; i < len; i++) {
+        if (railcars[i].spot == spot) {
+          return railcars[i];
+        }
+      }
+      return false;
+    }  
+
+
+  },
+
+
   /**
    * Overrides for the settings in `config/controllers.js`
    * (specific to ReportController)

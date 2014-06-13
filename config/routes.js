@@ -39,6 +39,9 @@ module.exports.routes = {
   '/archives/delivery/:id' : 'ArchivesController.showDelivery',
 
   '/archives/railcar/restore/:id' : 'ArchivesController.restoreRailcar',
+
+  '/report/sealsheet/:delivery/:seal' : 'ReportController.sealSheet',
+
 };
 
 

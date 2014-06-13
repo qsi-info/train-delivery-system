@@ -57,6 +57,13 @@
 	})
 
 
+	$('.report-sealsheet-link').on('click', function (e) {
+		e.preventDefault();
+		var firstSeal = window.prompt('Entrez le premier numero de seal', '4989501');
+		window.location = $(this).attr('href') + '/' + firstSeal;
+	});
+
+
 	$('#deliveries tr').each(function (i, tr) {
 		var id = $(this).attr('id');
 		var $wagonCountElement = $(this).find('.delivery-wagon_count');

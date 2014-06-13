@@ -19,7 +19,7 @@ module.exports = {
     
 
   index: function (req, res) {
-    Delivery.find().exec(function (err, deliveries) {
+    Delivery.find().sort('createdAt DESC').exec(function (err, deliveries) {
       if (err) return res.view('500', err);
       return res.view({ deliveries: deliveries });
     })

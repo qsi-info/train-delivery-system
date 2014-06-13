@@ -55,8 +55,8 @@
 
 <div id="deliveryContainer">
 	
-	<% sails.config.k1.wagon_spots.forEach(function (spot) { %> 
-	<a href="" class="wagon" id="<%= spot %>" data-reference="" data-id="">
+	<% sails.config.k1.wagon_spots.forEach(function (spot, i) { %> 
+	<a href="" class="wagon" id="<%= spot %>" tabindex="<%= i + 99 %>" data-reference="" data-id="">
 		<span class="spot"><%= spot %></span>
 		<span class="railcar"></span>
 	</a>

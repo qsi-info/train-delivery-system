@@ -32,7 +32,7 @@
 								    <li class="divider"></li>
 								    <li><a href="/report/transfersheet/<%= delivery.id %>"><%= __('Delivery.Dropdown.Actions.Print.TransfertSheet') %></a></li>
 								    <li><a href="/report/inspectionsheet/<%= delivery.id %>"><%= __('Delivery.Dropdown.Actions.Print.InspectionSheets') %></a></li>
-								    <!-- <li><a href="/print/<%= delivery.id %>/sealsheet"><%= __('Delivery.Dropdown.Actions.Print.SealSheet') %></a></li> -->
+								    <li><a href="/report/sealsheet/<%= delivery.id %>" class="report-sealsheet-link"><%= __('Delivery.Dropdown.Actions.Print.SealSheet') %></a></li>
 								    <li class="divider"></li>
 								    <li><a href="/delivery/archive/<%= delivery.id %>" class="archive-link"><%= __('Delivery.Dropdown.Actions.Archive') %></a></li>
 								    <li class="destroy-link">

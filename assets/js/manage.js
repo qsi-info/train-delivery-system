@@ -331,6 +331,11 @@
 	})
 
 
+	$('.report-sealsheet-link').on('click', function (e) {
+		e.preventDefault();
+		var firstSeal = window.prompt('Entrez le premier numero de seal', '4989501');
+		window.location = $(this).attr('href') + '/' + firstSeal;
+	});
 
 	// -----------------------
 	// TypeAheadh plugin 
