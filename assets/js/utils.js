@@ -18,7 +18,7 @@ Utils.popupWindow = function (url, width, height) {
           ', scrollbars=no, menubar=no, toolbar=no, status=no, location=no, directories=no'
         );
 
-  newwindow=window.open(url,'facebook',features);
+  newwindow=window.open(url,'',features);
 
   if (window.focus) {
     newwindow.focus();
