@@ -22,7 +22,7 @@ module.exports = {
   	var delivery = req.param('id');
 
   	Railcar.findByDelivery(delivery, function (err, railcars) {
-  		if (err) return res.view('500', err);
+  		if (err) return res.send(500, err);
 
  			// Car mapping for buiding report
  			var acc = {};
@@ -42,10 +42,11 @@ module.exports = {
 
 			// Delete every lines in reports 			
  			ReportTransferSheet.query('DELETE FROM ReportTransferSheet', function (err) {
- 				if (err) return res.view('500', err);
+ 				if (err) return res.send(500, err);
  				// Create the line with all the informations for the transfer report
  				ReportTransferSheet.create(acc).done(function (err, report) {
- 					if (err) return res.view('500', err);
+ 					if (err) return res.send(500, err);
+          return res.send(200, { message: 'done' });
  					return res.redirect('http://parachemsrv07/Reports/Pages/Report.aspx?ItemPath=%2fTransferSheet');
  				});
  			});
@@ -60,10 +61,10 @@ module.exports = {
     var delivery = req.param('id');
 
     ReportInspectionSheet.query('DELETE FROM ReportInspectionSheet', function (err) {
-      if (err) return res.view('500', err);
+      if (err) return res.send(500, err);
 
       Railcar.findByDelivery(delivery, function (err, railcars) {
-        if (err) return res.view('500', err);
+        if (err) return res.send(500, err);
 
         _.each(railcars, function (railcar) {
 
@@ -81,12 +82,12 @@ module.exports = {
 
 
           ReportInspectionSheet.create(inspectionRailcar).done(function (err, inspection) {
-            if (err) return res.view('500', err);
+            if (err) return res.send(500, err);
           });
 
         });
-
-        return res.redirect('http://parachemsrv07/Reports/Pages/Report.aspx?ItemPath=%2fInspectionSheets');
+        return res.send(200, { message: 'done' });
+        // return res.redirect('http://parachemsrv07/Reports/Pages/Report.aspx?ItemPath=%2fInspectionSheets');
 
       });
 
@@ -101,7 +102,7 @@ module.exports = {
     var sealCounter = req.param('seal');
 
     Railcar.findByDelivery(delivery, function (err, railcars) {
-      if (err) return res.view('500', err);
+      if (err) return res.send(500, err);
 
       var sealSheet = {};
 
@@ -129,7 +130,8 @@ module.exports = {
 
         ReportSealSheet.create(sealSheet).done(function (err, report) {
           if (err) return console.log(err);
-          return res.redirect('http://parachemsrv07/Reports/Pages/Report.aspx?ItemPath=%2fSealSheet');
+          return res.send(200, { message: 'done' });
+          // return res.redirect('http://parachemsrv07/Reports/Pages/Report.aspx?ItemPath=%2fSealSheet');
         });
 
       });

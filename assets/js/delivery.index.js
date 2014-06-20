@@ -57,11 +57,11 @@
 	})
 
 
-	$('.report-sealsheet-link').on('click', function (e) {
-		e.preventDefault();
-		var firstSeal = window.prompt('Entrez le premier numero de seal', '4989501');
-		window.location = $(this).attr('href') + '/' + firstSeal;
-	});
+	// $('.report-sealsheet-link').on('click', function (e) {
+	// 	e.preventDefault();
+	// 	var firstSeal = window.prompt('Entrez le premier numero de seal', '4989501');
+	// 	window.location = $(this).attr('href') + '/' + firstSeal;
+	// });
 
 
 	$('#deliveries tr').each(function (i, tr) {
@@ -76,6 +76,38 @@
 			$barilCountElement.html(response.count);
 		})
 	})
+
+
+	$('.report-transfersheet').on('click', function (e) {
+		e.preventDefault();
+		socket.get($(this).attr('href'), function (response) {
+			var url = 'http://parachemsrv07/Reports/Pages/Report.aspx?ItemPath=%2fTransferSheet';
+			Utils.popupWindow(url, 1200, 800);
+			$('#printModal').modal('toggle');
+		})
+	})
+
+
+	$('.report-inspectionsheet').on('click', function (e) {
+		e.preventDefault();
+		socket.get($(this).attr('href'), function (response) {
+			var url = 'http://parachemsrv07/Reports/Pages/Report.aspx?ItemPath=%2fInspectionSheets';
+			Utils.popupWindow(url, 1200, 800);
+			$('#printModal').modal('toggle');
+		})
+	})
+
+
+	$('.report-sealsheet').on('click', function (e) {
+		e.preventDefault();
+		var firstSeal = window.prompt('Entrez le premier numero de seal', '4989501');
+		socket.get($(this).attr('href') + '/' + firstSeal, function (response) {
+			var url = 'http://parachemsrv07/Reports/Pages/Report.aspx?ItemPath=%2fSealSheet';
+			Utils.popupWindow(url, 1200, 800);
+			$('#printModal').modal('toggle');
+		})
+	});
+
 
 })()
 
