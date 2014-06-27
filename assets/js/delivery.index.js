@@ -100,7 +100,10 @@
 
 	$('.report-sealsheet').on('click', function (e) {
 		e.preventDefault();
-		var firstSeal = window.prompt('Entrez le premier numero de seal', '4989501');
+		var firstSeal = window.prompt('Entrez le premier numero de seal');
+		if (!isInt(window.parseInt(firstSeal))) {
+			return window.alert('Le numero du seal doit etre un nombre entier.');
+		}		
 		socket.get($(this).attr('href') + '/' + firstSeal, function (response) {
 			var url = 'http://parachemsrv07/Reports/Pages/Report.aspx?ItemPath=%2fSealSheet';
 			Utils.popupWindow(url, 1200, 800);
