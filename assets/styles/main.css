@@ -24,6 +24,10 @@ body {
   cursor: pointer;
 }
 
+.wagon.blue {
+  background-color:#4C9BFF !important;
+}
+
 .wagon.full {
   background-color: #5cb85c;
 }

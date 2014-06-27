@@ -29,7 +29,7 @@
 		update: function (railcar) {
 			// Check if the railcar is in this delivery.
 			// If not return because it is irrelevant for this delivery.
-			// if (railcar.delivery != delivery) return
+			if (railcar.delivery != '                                    ' && railcar.delivery != delivery) return;
 
 			// If spot is empty, find the spot with the number and apply the remove transformations.
 			if (railcar.spot == '') return UI.Railcar.remove(railcar);
@@ -90,6 +90,16 @@
 		},
 
 
+		create: function (railcar) {
+
+			socket.post('/railcar', railcar, function (railcar) {
+					// Call UI action for finish update
+				return UI.Railcar.finishCreate(railcar);
+
+			});
+
+		},
+
 		get: function (id, cb) {
 			socket.get('/railcar/' + id, function (railcar) {
 				cb(railcar);
@@ -142,6 +152,7 @@
 			$spot.attr('data-reference', railcar.number);
 			$spot.attr('data-id', railcar.id);
 			$spot.addClass('full');
+			$spot.addClass(railcar.color);
 			$spot.find('.railcar').html(railcar.number);
 		},
 
@@ -150,6 +161,7 @@
 			$railcar.attr('data-reference', '');
 			$railcar.attr('data-id', '');
 			$railcar.removeClass('full');
+			$railcar.removeClass('blue');
 			$railcar.find('.railcar').html('');
 		},
 
@@ -189,6 +201,12 @@
 
 		finishRemove: function (railcar) {
 			$('#ModalWagonRemove').modal('toggle');
+			UI.Railcar.getWagonCount();
+			UI.Railcar.getBarilCount();
+		},
+
+		finishCreate: function (railcar) {
+			$('#ModalAdminAddRailcar').modal('toggle');
 			UI.Railcar.getWagonCount();
 			UI.Railcar.getBarilCount();
 		},
@@ -252,6 +270,7 @@
 			// Switch depending on the message verb
 			switch(message.verb) {	
 				// When verd is update, call RailcarController.update
+				case 'create' : 
 				case 'update' : RailcarController.update(message.data); break;
 				// Default
 				default: break;
@@ -331,6 +350,33 @@
 	})
 
 
+
+	$('#AdminAddRailcarForm').on('submit', function (e) {
+		e.preventDefault();
+
+		if (window.confirm('Etes vous certain de vouloir ajouter ce wagon?')) {
+			var railcar = {
+				number: $(this).find("#railcar_number").val(),
+				product: $(this).find("#railcar_product").val(),
+				train: $(this).find("#railcar_train").val(),
+				netVolBBL: $(this).find('#railcar_netVolBBL').val(),
+				billOfLading: $(this).find('#railcar_billOfLading').val(),
+				isProcessed: true,
+				color: 'blue',
+				delivery: delivery,
+				spot: $(this).find('#railcar_spot').val(),
+			}
+
+			return RailcarController.create(railcar);		
+		} else {
+			$('#ModalAdminAddRailcar').modal('toggle');
+		}
+
+
+
+	});
+
+
 	$('.report-transfersheet').on('click', function (e) {
 		e.preventDefault();
 		socket.get($(this).attr('href'), function (response) {
@@ -364,6 +410,20 @@
 		})
 	});
 
+
+
+	$('#addCarBtn').on('click', function (e) {
+		if ($('#filterInput').val() == 'admin') {
+			e.preventDefault();
+			
+			var spot = $('#ModalWagonAdd').find('.spot-title').html();
+			$('#ModalWagonAdd').modal('toggle');
+			$('#ModalAdminAddRailcar').find('#railcar_spot').val(spot);
+			$('#ModalAdminAddRailcar').modal('toggle');
+		}
+	});
+
+
 	// -----------------------
 	// TypeAheadh plugin 
 	// -----------------------
@@ -375,6 +435,9 @@
 		});
 	});
 
+	$('#ModalAdminAddRailcar').on('hide.bs.modal', function () {
+		$('#AdminAddRailcarForm').parsley().reset();
+	})
 
 	// Typeahead plugin setup
 	var typeaheadOptions = { hint: false, highlight: true, minLength: 1 };
@@ -404,7 +467,7 @@
 
 
 	// -------------------
-	// Parlsey js plugin 
+	// Parlsey js plugin  
 	// -------------------
 
 
@@ -431,5 +494,5 @@
 
 
 
-})()
+})();
 

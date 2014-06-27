@@ -26,6 +26,7 @@ module.exports = {
     billOfLading: { type: 'string' },
     netVolBBL: { type: 'float' },
     currentETA: { type: 'datetime' },
+    color: { type: 'string' },
   },
 
 

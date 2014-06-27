@@ -1,0 +1,40 @@
+<div class="modal fade" id="ModalAdminAddRailcar">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title spot-title"><%= __('Modal.Admin.Title') %></h4>
+      </div>
+      <form action="" method="" data-parsley-validate="" id="AdminAddRailcarForm">
+      	<input type="hidden" id="railcar_spot"/>
+	      <div class="modal-body">
+	      	<div class="form-group">
+	      		<label for="railcar_number"><%= __('Modal.Admin.Number.Label') %></label>
+	      		<input type="text" name="railcar[number]" required="required" data-parsley-minlength="10" data-parsley-maxlength="10" id="railcar_number" class="form-control" placeholder="<%= __('Modal.Admin.Number.Placeholder') %>"/>
+	      	</div>
+	      	<div class="form-group">
+	      		<label for="railcar_product"><%= __('Modal.Admin.Product.Label') %></label>
+	      		<input type="text" name="railcar[product]" id="railcar_product" class="form-control" placeholder="<%= __('Modal.Admin.Product.Placeholder') %>"/>
+	      	</div>
+	      	<div class="form-group">
+	      		<label for="railcar_train"><%= __('Modal.Admin.Train.Label') %></label>
+	      		<input type="text" name="railcar[train]" id="railcar_train" class="form-control" placeholder="<%= __('Modal.Admin.Train.Placeholder') %>"/>
+	      	</div>
+	      	<div class="form-group">
+	      		<label for="railcar_billOfLading"><%= __('Modal.Admin.BillOfLading.Label') %></label>
+	      		<input type="text" name="railcar[billOfLading]" id="railcar_billOfLading" class="form-control" placeholder="<%= __('Modal.Admin.BillOfLading.Placeholder') %>"/>
+	      	</div>
+	      	<div class="form-group">
+	      		<label for="railcar_netVolBBL"><%= __('Modal.Admin.NetVolBBL.Label') %></label>
+	      		<input type="text" name="railcar[netVolBBL]" id="railcar_netVolBBL" class="form-control" placeholder="<%= __('Modal.Admin.NetVolBBL.Placeholder') %>"/>
+	      	</div>	      
+
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal"><%= __('Delivery.Modal.Close') %></button>
+	        <button type="submit" id="addCarBtn" class="btn btn-primary"><%= __('Delivery.Modal.AddCar') %></button>
+	      </div>
+	    </form>
+    </div>
+  </div>
+</div>
