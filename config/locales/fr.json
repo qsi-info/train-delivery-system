@@ -8,7 +8,7 @@
   "Menu.Delete" : "Supprimer",
 
   "Modal.Admin.Title": "Formulaire d'ajout de train",
-  "Modal.Admin.Number.Label": "Numero de train",
+  "Modal.Admin.Number.Label": "Numero de wagon",
   "Modal.Admin.Number.Placeholder": "Entrez le numéro du train",
   "Modal.Admin.Product.Label" : "Type de Produit",
   "Modal.Admin.Product.Placeholder": "Entrez le type de produit",
