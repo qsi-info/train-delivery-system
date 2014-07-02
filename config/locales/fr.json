@@ -7,7 +7,17 @@
   "Menu.Pause" : "Arrêter",
   "Menu.Delete" : "Supprimer",
 
-
+  "Modal.Admin.Title": "Formulaire d'ajout de train",
+  "Modal.Admin.Number.Label": "Numero de train",
+  "Modal.Admin.Number.Placeholder": "Entrez le numéro du train",
+  "Modal.Admin.Product.Label" : "Type de Produit",
+  "Modal.Admin.Product.Placeholder": "Entrez le type de produit",
+  "Modal.Admin.Train.Label": "Numéro de train",
+  "Modal.Admin.Train.Placeholder": "Entrez le numéro de train",
+  "Modal.Admin.BillOfLading.Label": "Bill of lading",
+  "Modal.Admin.BillOfLading.Placeholder": "Entrez le bill of lading",
+  "Modal.Admin.NetVolBBL.Label": "Volume net de barils",
+  "Modal.Admin.NetVolBBL.Placeholder": "Entrez le volume net de barils",
 
 
   "Menu.Delivery.Dropdown" : "Livraisons",
