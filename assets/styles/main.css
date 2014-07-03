@@ -318,8 +318,25 @@ opacity: 1;
   color: #fff;
 }
 
+#menu i.stop {
+  background-color: #A70000;
+}
+
+#menu i.print {
+  background-color: #1BB49B;
+}
+
+#menu i.create {
+  background-color: #358D09;
+}
+
+#menu i.manage {
+  background-color: #BE8509;
+}
+
 #menu i:hover {
   color: #0DFF5E;
+  color: #B5D3D5;
   /*color: #58D161;*/
 }
 
