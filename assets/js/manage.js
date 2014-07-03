@@ -410,7 +410,16 @@
 		})
 	});
 
+	$('.report-endday-link').on('click', function (e) {
+		e.preventDefault();
+		var destination = window.prompt('Entrez la destination');
 
+		socket.get($(this).attr('href')+'?destination='+destination, function (response) {
+			var url = 'http://parachemsrv07/Reports/Pages/Report.aspx?ItemPath=%2fEndDay';
+			Utils.popupWindow(url, 1200, 800);
+			$('#printModal').modal('toggle');
+		})
+	})
 
 	$('#addCarBtn').on('click', function (e) {
 		if ($('#filterInput').val() == 'admin') {

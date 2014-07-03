@@ -133,7 +133,7 @@ module.exports = {
           return res.send(200, { message: 'done' });
           // return res.redirect('http://parachemsrv07/Reports/Pages/Report.aspx?ItemPath=%2fSealSheet');
         });
-
+        return res.send(200, { message: 'done' });
       });
 
 
@@ -148,6 +148,51 @@ module.exports = {
       return false;
     }  
 
+
+  },
+
+  endDay: function (req, res) {
+    var delivery = req.param('id');
+    var destination = req.param('destination');
+
+    Railcar.findByDelivery(delivery, function (err, railcars) {
+      if (err) return console.log(err);
+
+      // console.log(railcars);
+
+      // return res.json({railcars: railcars});
+
+
+
+
+      ReportEndDay.query("DELETE FROM "+ReportEndDay._tableName, function (err) {
+        if (err) return console.log(err);
+        _.each(railcars, function (railcar) {
+          
+          // console.log(railcar);
+
+          var endDayRailcar = {
+            id: railcar.id,
+            number: railcar.number,
+            billOfLading: railcar.billOfLading,
+            netVolBBL: railcar.netVolBBL,
+            product: railcar.product,
+            destination: destination,           
+          };
+
+          ReportEndDay.create(endDayRailcar).done(function (err, doneRailcar) {
+            if (err) return console.log(err);
+
+          });
+
+        });
+
+        return res.send(200, { message: 'done' });
+
+      });
+
+
+    })
 
   },
 
