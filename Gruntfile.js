@@ -58,7 +58,7 @@ module.exports = function (grunt) {
 
     // *->    put other dependencies here   <-*
 
- 
+    'linker/js/bootstrap.min.js',
 
     // All of the rest of your app scripts imported here
     'linker/**/*.js'
@@ -148,7 +148,14 @@ module.exports = function (grunt) {
           cwd: './assets',
           src: ['**/*.!(coffee)'],
           dest: '.tmp/public'
-        }
+          },
+        // Fix for the fonts loading.
+        {
+          expand: true,
+          cwd: './assets/linker/fonts',
+          src: ['**/*'],
+          dest: '.tmp/public/fonts'
+          }           
         ]
       },
       build: {
