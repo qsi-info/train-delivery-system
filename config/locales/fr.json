@@ -30,7 +30,7 @@
   "Modal.Wagon.Seals" : "Seals 1-2-3",
   "Modal.Wagon.NetVolBBL" : "Net Vol BBL",
   "Modal.Print.SealSheet.Link" : "Feuille des seals",
-  "Modal.Print.EndDay.Link" : "Rapport de fin de journée",
+  "Modal.Print.EndDay.Link" : "Rapport fin de transfert (Offload Data)",
 
   "Menu.Archives.Dropdown" : "Archives",
   "Menu.Archives.Dropdown.Actions.search" : "Faire une recherche",
@@ -50,7 +50,7 @@
   "Delivery.Dropdown.Actions.Print.TransfertSheet" : "Imprimer: feuille de transfert",
   "Delivery.Dropdown.Actions.Print.InspectionSheets" : "Imprimer: feuilles d'inspection",
   "Delivery.Dropdown.Actions.Print.SealSheet" : "Imprimer: feuille des seals",
-  "Delivery.Dropdown.Actions.Print.EndDay" : "Imprimer: rapport de fin de journée",
+  "Delivery.Dropdown.Actions.Print.EndDay" : "Imprimer: rapport fin de transfert (Offload Data)",
   
   "Delivery.FilterInput.placeholder" : "Entrer le numéro du wagon",
 
