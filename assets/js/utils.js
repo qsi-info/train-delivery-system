@@ -20,7 +20,7 @@ Utils.popupWindow = function (url, width, height) {
 
   newwindow=window.open(url,'',features);
 
-  if (window.focus) {
+  if (newwindow.focus) {
     newwindow.focus();
   }
   return newwindow;
