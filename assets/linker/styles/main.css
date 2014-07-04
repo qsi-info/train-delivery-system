@@ -336,7 +336,7 @@ opacity: 1;
 
 #menu i:hover {
   color: #0DFF5E;
-  color: #B5D3D5;
+  /*color: #B5D3D5;*/
   /*color: #58D161;*/
 }
 
@@ -496,4 +496,13 @@ height: 60px;
 
 .fourohfour {
   margin-top: 50px;
+}
+
+
+a, .btn-link {
+  color: #666 !important;
+}
+
+a:hover, .btn-link:hover {
+  color: #e51400 !important;
 }
