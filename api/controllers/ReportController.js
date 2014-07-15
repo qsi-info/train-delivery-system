@@ -196,6 +196,38 @@ module.exports = {
 
   },
 
+  offloadData: function (req, res) {
+    var delivery = req.param('id');
+
+    Railcar.findByDelivery(delivery, function (err, railcars) {
+
+
+      ReportOffloadData.query("DELETE FROM "+ ReportOffloadData._tableName, function (err) {
+        if (err) return console.log(err);
+
+        _.each(railcars, function (railcar) {
+
+          ReportOffloadData.create(railcar).done(function (err, doneRailcar) {
+            if (err) return console.log(err);
+          })
+        })
+
+        return res.send(200, { message: 'done' });
+
+      });
+
+    })
+
+
+
+
+    // Railcar.findByDelivery(delivery, function (err, railcars) {
+    //   if (err) return console.log(err);
+    //   console.log(railcars);
+    //   return res.json(railcars);
+    // })
+  },
+
 
   /**
    * Overrides for the settings in `config/controllers.js`

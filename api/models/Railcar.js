@@ -8,7 +8,7 @@
 
 module.exports = {
 
-	tableName	: 'dev_Railcar',
+	tableName	: 'dev_CarsAtStation',
 	migrate		: 'safe',
 	autoPK		: false,
 

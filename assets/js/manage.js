@@ -362,7 +362,6 @@
 				netVolBBL: $(this).find('#railcar_netVolBBL').val(),
 				billOfLading: $(this).find('#railcar_billOfLading').val(),
 				isProcessed: true,
-				color: 'blue',
 				delivery: delivery,
 				spot: $(this).find('#railcar_spot').val(),
 			}
@@ -418,8 +417,19 @@
 			var url = 'http://parachemsrv07/Reports/Pages/Report.aspx?ItemPath=%2fEndDay';
 			Utils.popupWindow(url, 1200, 800);
 			$('#printModal').modal('toggle');
+		});
+	});
+
+
+	$('.report-offload-data-link').on('click', function (e) {
+		e.preventDefault();
+		socket.get($(this).attr('href'), function (response) {
+			var url = 'http://parachemsrv07/Reports/Pages/Report.aspx?ItemPath=%2fOffloadData';
+			Utils.popupWindow(url, 1200, 800);
+			$('#printModal').modal('toggle');
 		})
-	})
+	});
+
 
 	$('#addCarBtn').on('click', function (e) {
 		if ($('#filterInput').val() == 'admin') {
