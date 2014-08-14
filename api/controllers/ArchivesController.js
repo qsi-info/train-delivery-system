@@ -22,7 +22,7 @@ module.exports = {
   },
   
 	delivery: function (req, res) {
-		ArchiveDelivery.find().exec(function (err, deliveries) {
+		ArchiveDelivery.find().sort('createdAt DESC').exec(function (err, deliveries) {
 			if (err) return res.view('500', err);
 			return res.view({ deliveries: deliveries });
 		});

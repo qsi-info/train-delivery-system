@@ -17,7 +17,7 @@
 					<% deliveries.forEach(function (delivery) { %>
 						<tr class="<% switch(delivery.status) { case sails.config.k1.DELIVERY_STATUS.IN_PROGRESS: %>status<% break; } %>" id="<%= delivery.id %>">
 							<td class="delivery-id"><%= delivery.id %></td>
-							<td class="delivery-id"><%= Utils.formatDate(delivery.createdAt) %></td>
+							<td class="delivery-date"><%= Utils.formatDate(delivery.createdAt) %></td>
 							<td class="delivery-wagon_count"></td>
 						</tr>
 					<% }) %>

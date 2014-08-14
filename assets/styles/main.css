@@ -1,6 +1,8 @@
 body {
   padding-top: 100px;
 }
+
+
 #deliveryContainer {
   margin: auto; 
   text-align: center;
@@ -457,11 +459,11 @@ height: 60px;
 
 
 
-/*#mainNav {
+#mainNav {
   background-color: #E51400;
 }
 
-#mainNav a:hover {
+/*#mainNav a:hover {
   background-color: #F09609 !important;
 }
 
@@ -485,9 +487,9 @@ height: 60px;
 
 #mainNav {
   border-color: transparent;
-}
+}*/
 
-*/
+
 .modal-header, .modal-footer {
   background: url("../images/home-slant-pattern-50.png") repeat scroll 0 0 rgba(0, 0, 0, 0);
 }
