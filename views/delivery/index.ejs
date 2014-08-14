@@ -1,5 +1,12 @@
 <div class="container">
-<!-- <%- UI.buildTable(deliveries) %> -->
+<div class="row">
+	<div class="col-sm-6">
+		<p>
+		<b>Livraison vide:</b> <span class="bg-warning">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;&nbsp;
+		<b>Livraison active:</b> <span class="bg-info">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;&nbsp;
+		<b>Livraison pleine:</b> <span class="bg-success">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;&nbsp;</p>
+	</div>
+</div>
 <div class="row">
 	<div class="col-md-12 col-xs-12">
 	
@@ -11,7 +18,7 @@
 						<th><%= __('Delivery.Table.id') %></th>
 						<th><%= __('Delivery.Table.createdAt') %></th>
 						<th><%= __('Delivery.Table.wagon_count') %></th>
-						<th><%= __('Delivery.Table.baril_count') %></th>
+						<!-- <th><%= __('Delivery.Table.baril_count') %></th> -->
 						<th><%= __('Delivery.Table.actions') %></th>
 					</tr>
 				</thead>
@@ -21,7 +28,7 @@
 							<td class="delivery-id"><%= delivery.id %></td>
 							<td class="delivery-id"><%= Utils.formatDate(delivery.createdAt) %></td>
 							<td class="delivery-wagon_count"></td>
-							<td class="delivery-baril_count"></td>
+							<!-- <td class="delivery-baril_count"></td> -->
 							<td class="delivery-destroy">
 								<div class="btn-group">
 								  <button type="button" class="btn btn-link dropdown-toggle delivery-actions" data-toggle="dropdown">

@@ -65,16 +65,22 @@
 
 
 	$('#deliveries tr').each(function (i, tr) {
+		var $row = $(this);
 		var id = $(this).attr('id');
 		var $wagonCountElement = $(this).find('.delivery-wagon_count');
 		var $barilCountElement = $(this).find('.delivery-baril_count');
 		socket.get('/delivery/' + id + '/wagon-count', function (response) {
 			$wagonCountElement.html(response.count);
+			switch(response.count) {
+				case 0  : $row.addClass('warning'); break;
+				case 60 : $row.addClass('success'); break;
+				default: $row.addClass('info'); break;
+			}
 		});
-		socket.get('/delivery/' + id + '/baril-count', function (response) {
-			console.log(response);
-			$barilCountElement.html(response.count);
-		})
+		// socket.get('/delivery/' + id + '/baril-count', function (response) {
+		// 	console.log(response);
+		// 	$barilCountElement.html(response.count);
+		// })
 	})
 
 
