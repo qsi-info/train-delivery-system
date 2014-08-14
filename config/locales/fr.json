@@ -19,6 +19,8 @@
   "Modal.Admin.NetVolBBL.Label": "Volume net de barils",
   "Modal.Admin.NetVolBBL.Placeholder": "Entrez le volume net de barils",
 
+  "Modal.Wagon.Number" : "Numero de wagon",
+
 
   "Menu.Delivery.Dropdown" : "Livraisons",
   "Menu.Delivery.Dropdown.Actions.new" : "Nouvelle livraison",
@@ -79,6 +81,8 @@
   
 
   "Archives.Table.caption" : "Tables des archives",
+
+  "Archives.Wagon.Restore" : "Restaurer ce wagon.",
 
 
   "Welcome": "Bienvenue"

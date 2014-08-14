@@ -109,7 +109,7 @@ module.exports = {
 
         ArchiveRailcar.create(archive).done(function (err, archive) {
           if (err) return res.view('500', err);
-          console.log(archive);
+          // console.log(archive);
         })
       })
 
