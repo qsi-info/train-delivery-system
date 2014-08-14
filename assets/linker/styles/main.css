@@ -3,25 +3,32 @@ body {
 }
 #deliveryContainer {
   margin: auto; 
-  text-align: center;
-  margin: 10px;
-  max-width: 1740px !important;
+  /*text-align: center;*/
+  padding: 25px;
+  /*margin: 10px;*/
+  /*max-width: 1740px !important;*/
 }
 
 #deliveryStats {
   margin-bottom: 50px;
 }
 
+
 .wagon {
-  display: -moz-inline-box; 
-  display: inline-block;
-  margin: 5px;
+  display: block; 
+  display: block;
+  /*margin: 5px;*/
   /*background-color: #d9534f;*/
   background-color: #808080;
   height: 55px;
-  width: 100px;
+  width: 100%;
   position: relative;
   cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.wagon-container {
+  padding: 5px !important;
 }
 
 .wagon.blue {
@@ -505,4 +512,36 @@ a, .btn-link {
 
 a:hover, .btn-link:hover {
   color: #e51400 !important;
+}
+
+
+
+
+/* Fifteen Column */
+@media (min-width: 768px){
+  .fifteen-cols .col-md-1,
+  .fifteen-cols .col-sm-1,
+  .fifteen-cols .col-lg-1  {
+    width: 6.666666666666666666666667%;
+    *width: 6.666666666666666666666667%;
+  }
+}
+
+@media (min-width: 992px) {
+  .fifteen-cols .col-md-1,
+  .fifteen-cols .col-sm-1,
+  .fifteen-cols .col-lg-1 {
+    width: 6.666666666666666666666667%;
+    *width: 6.666666666666666666666667%;
+  }
+}
+
+    
+@media (min-width: 1200px) {
+  .fifteen-cols .col-md-1,
+  .fifteen-cols .col-sm-1,
+  .fifteen-cols .col-lg-1 {
+    width: 6.666666666666666666666667%;
+    *width: 6.666666666666666666666667%;
+  }
 }
