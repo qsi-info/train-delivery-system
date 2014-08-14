@@ -29,6 +29,7 @@
 module.exports.routes = {
 
   '/' : 'MainController.index',
+  '/help' : "MainController.help",
 
   '/delivery/create' : 'DeliveryController.create',
   '/delivery/:id/wagon-count' : 'DeliveryController.wagonCount',

@@ -21,6 +21,9 @@ module.exports = {
   		return res.view();
   	},
 
+  	help: function (req, res) {
+  		return res.view();
+  	},
 
 
   /**
