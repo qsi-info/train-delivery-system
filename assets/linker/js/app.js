@@ -62,7 +62,7 @@
   
 
   // Check if the page has been more disconnect that TIMEOUT_CHECK
-  var TIMEOUT_CHECK = 1500
+  var TIMEOUT_CHECK = 2000
   var $status = $('#status');
   var $disconnectUrl = $('#disconnectUrl');
   socket.on('disconnect', function () {
