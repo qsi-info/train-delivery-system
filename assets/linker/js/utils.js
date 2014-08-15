@@ -30,3 +30,15 @@ Utils.popupWindow = function (url, width, height) {
 function isInt(n) {
    return typeof n === 'number' && n % 1 == 0;
 }
+
+
+
+
+(function () {
+  socket.on('disconnect', function () {
+    // window.alert('Your session has been disconnected');
+    setTimeout(function () {
+      $.blockUI({ message: $('#domMessage') });
+    }, 1000);
+  })
+})();
