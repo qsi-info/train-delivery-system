@@ -430,7 +430,7 @@ height: 100%;
 /* Wrapper for page content to push down footer */
 #wrap {
   max-height: 300px !important;
-  min-height: 60%;
+  /*min-height: 60%;*/
   /*margin-bottom: 150px;*/
 /*height: auto !important;*/
 /*height: 100%;*/
