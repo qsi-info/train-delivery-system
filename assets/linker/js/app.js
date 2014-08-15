@@ -61,14 +61,36 @@
   }
   
 
-  // This function is used when the socket get disconnected
+  // Check if the page has been more disconnect that TIMEOUT_CHECK
+  var TIMEOUT_CHECK = 1500
+  var $status = $('#status');
+  var $disconnectUrl = $('#disconnectUrl');
   socket.on('disconnect', function () {
-    // window.alert('Your session has been disconnected');
     setTimeout(function () {
-      $('#disconnectUrl').attr('href', window.location.href);
+      clearTimeout(showStatus);
+      $disconnectUrl.attr('href', window.location.href);
+      $status.addClass('disconnect');
+      $status.html('DISCONNECTED');
       $.blockUI({ message: $('#domMessage') });
-    }, 1000);
+    }, TIMEOUT_CHECK);
   });
+
+
+
+  // Show the status
+  var showStatus = setInterval(function () {
+    if (socket.socket.connected) {
+      $status.addClass('connected');
+      $status.html('CONNECTED');
+    } else {
+      $status.removeClass('connected');
+      $status.html('PENDING');
+    }
+  }, 142);
+
+
+
+
 
 })(
 

@@ -557,3 +557,58 @@ a:hover, .btn-link:hover {
 .blockUI {
   z-index: 5000 !important;
 }
+
+
+#statusContainer {
+  cursor: text;
+}
+
+#status {
+  color: orange;
+  font-weight: bold;
+}
+
+
+#status.connected {
+  color: green;
+}
+
+#status.disconnect {
+  color: red;
+}
+
+
+#statusLi {
+  width: 180px !important;
+  min-width: 180px !important;
+  max-width: 180px !important;
+}
+
+
+.navbar .divider-vertical {
+height: 50px;
+margin: 0 9px;
+border-right: 1px solid #ffffff;
+border-left: 1px solid #000;
+}
+
+.navbar-inverse .divider-vertical {
+border-right-color: #222222;
+border-left-color: #111111;
+}
+
+@media (max-width: 767px) {
+.navbar-collapse .nav > .divider-vertical {
+    display: none;
+  }
+}
+
+
+
+
+
+
+
+
+
+

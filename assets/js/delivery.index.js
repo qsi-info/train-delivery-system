@@ -77,11 +77,8 @@
 				default: $row.addClass('info'); break;
 			}
 		});
-		// socket.get('/delivery/' + id + '/baril-count', function (response) {
-		// 	console.log(response);
-		// 	$barilCountElement.html(response.count);
-		// })
-	})
+
+	});
 
 
 	$('.report-transfersheet').on('click', function (e) {
@@ -127,6 +124,8 @@
 			$('#printModal').modal('toggle');
 		})
 	});
+
+
 
 
 })()
