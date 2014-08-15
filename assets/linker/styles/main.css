@@ -430,7 +430,8 @@ height: 100%;
 /* Wrapper for page content to push down footer */
 #wrap {
   max-height: 300px !important;
-  min-height: 80%;
+  /*min-height: 80%;*/
+  margin-bottom: 50px;
 /*height: auto !important;*/
 /*height: 100%;*/
 /* Negative indent footer by it's height */
