@@ -43,6 +43,10 @@ module.exports.routes = {
 
   '/report/sealsheet/:delivery/:seal' : 'ReportController.sealSheet',
 
+  '/admin/login' : 'MainController.adminLogin',
+
+  '/admin' : 'MainController.admin',
+
 };
 
 

@@ -25,6 +25,21 @@ module.exports = {
   		return res.view();
   	},
 
+    adminLogin: function (req, res) {
+      var password = req.param('password');
+      if (password == 'qualitech') {
+        return res.send({ status: 200 });
+      }
+      else {
+        return res.send({ status: 403 });
+      }
+    },
+
+
+    admin: function (req, res) {
+      return res.view();
+    },
+
 
   /**
    * Overrides for the settings in `config/controllers.js`

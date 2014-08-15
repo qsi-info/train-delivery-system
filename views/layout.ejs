@@ -12,8 +12,7 @@
     
 
     <!--STYLES-->
-    <link rel="stylesheet" href="/linker/styles/bootstrap.min.css">
-    <link rel="stylesheet" href="/linker/styles/main.css">
+    <link rel="stylesheet" href="/min/production.css">
     <!--STYLES END-->
 
 
@@ -41,18 +40,25 @@
         <p>In the mean time, yout can <a href="/" id="disconnectUrl">try to reload the page</a></p>
     </div>
 
+    <%- partial('./partials/admin.modal.ejs') %>
+    <div id="footer">
+        <div class="container">
+
+            <p>
+                <a href="javascript:;" id="adminLink">
+                    <img src="/images/qsi_crop.jpg" height="20"/>
+                    <br/>
+                    <span>administrateurs</span>
+                </a>
+            </p>
+        </div>
+    </div>
+
 
     <!-- Sails JavaScript Dependencies -->
 
     <!--SCRIPTS-->
-    <script src="/linker/js/socket.io.js"></script>
-    <script src="/linker/js/sails.io.js"></script>
-    <script src="/linker/js/app.js"></script>
-    <script src="/linker/js/bootstrap.min.js"></script>
-    <script src="/linker/js/jquery.blockui.js"></script>
-    <script src="/linker/js/parsley.min.js"></script>
-    <script src="/linker/js/typeahead.js"></script>
-    <script src="/linker/js/utils.js"></script>
+    <script src="/min/production.js"></script>
     <!--SCRIPTS END-->
     <script type="text/javascript" src="/js/parsley/i18n/<%= req.cookies[sails.config.i18n.cookie] || sails.config.i18n.defaultLocale %>.js"></script>
 

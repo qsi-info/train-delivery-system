@@ -92,6 +92,28 @@
 
 
 
+  $('#adminLink').on('click', function (e) {
+    e.preventDefault();
+    var $adminModal = $('#adminModal')
+    $adminModal.modal('toggle');
+  });
+
+
+  $('#adminLoginForm').on('submit', function (e) {
+    e.preventDefault();
+    var password = document.getElementById('password_admin').value;
+    $.post('/admin/login', { password: password}, function (response) {
+      if (response.status == 200) {
+        window.location.href = "/admin";
+      }
+      else {
+        window.alert('ACCESS DENIED !');
+      }
+    })
+  })
+
+
+
 })(
 
   // In case you're wrapping socket.io to prevent pollution of the global namespace,
