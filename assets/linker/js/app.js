@@ -61,6 +61,15 @@
   }
   
 
+  // This function is used when the socket get disconnected
+  socket.on('disconnect', function () {
+    // window.alert('Your session has been disconnected');
+    setTimeout(function () {
+      $('#disconnectUrl').attr('href', window.location.href);
+      $.blockUI({ message: $('#domMessage') });
+    }, 1000);
+  });
+
 })(
 
   // In case you're wrapping socket.io to prevent pollution of the global namespace,

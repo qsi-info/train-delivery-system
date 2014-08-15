@@ -549,3 +549,11 @@ a:hover, .btn-link:hover {
     *width: 6.666666666666666666666667%;
   }
 }
+
+
+
+
+
+.blockUI {
+  z-index: 5000 !important;
+}

@@ -33,12 +33,3 @@ function isInt(n) {
 
 
 
-
-(function () {
-  socket.on('disconnect', function () {
-    // window.alert('Your session has been disconnected');
-    setTimeout(function () {
-      $.blockUI({ message: $('#domMessage') });
-    }, 1000);
-  })
-})();
