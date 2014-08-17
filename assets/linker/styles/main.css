@@ -563,17 +563,17 @@ a:hover, .btn-link:hover {
   cursor: text;
 }
 
-#status {
+.connection-status {
   color: orange;
   font-weight: bold;
 }
 
 
-#status.connected {
+.connection-status.connected {
   color: green;
 }
 
-#status.disconnect {
+.connection-status.disconnect {
   color: red;
 }
 
