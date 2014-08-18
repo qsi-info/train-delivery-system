@@ -69,6 +69,12 @@ window.addEventListener('load', function () {
 		var password = window.prompt('Enter your admin password.');
 		if (password == 'admin') {
 			socket.post('/admin/query', { query: query }, function (message) {
+				if (message !== null && message.code && message.code == 'EREQUEST') {
+					window.alert(message.message)
+				}
+				if (message == null) {
+					window.alert('Query executed');
+				}
 				console.log(message);
 			});
 		} else {
