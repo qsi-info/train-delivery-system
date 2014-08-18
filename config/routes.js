@@ -47,6 +47,8 @@ module.exports.routes = {
 
   '/admin' : 'MainController.admin',
 
+  'post /admin/query' : 'AdminController.query',
+
 };
 
 
