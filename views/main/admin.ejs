@@ -7,7 +7,7 @@
 			<h4>General</h4>
 			<ul class="nav nav-stacked">
 				<li>
-					<a href="javascript:;" class="admin-query" data-query="SELECT * FROM information_schema.tables">show database tables</a>
+					<a href="javascript:;" class="admin" data-query="SELECT * FROM information_schema.tables">show database tables</a>
 				</li>
 			</ul>
 
@@ -17,7 +17,10 @@
 			<h4>Deliveries</h4>
 			<ul class="nav nav-stacked">
 				<li>
-					<a href="javascript:;" class="admin-query" data-query="DELETE FROM dev_Delivery">delete deliveries</a>
+					<a href="javascript:;" class="admin" data-query="SELECT * FROM dev_CarsAtStation WHERE isProcessed=1">select cars from deliveries</a>
+				</li>
+				<li>
+					<a href="javascript:;" class="admin execute" data-query="DELETE FROM dev_Delivery">delete deliveries</a>
 				</li>
 			</ul>
 
@@ -28,10 +31,10 @@
 			<h4>Archives</h4>
 			<ul class="nav nav-stacked">
 				<li>
-					<a href="javascript:;" class="admin-query" data-query="DELETE FROM ArchiveDelivery">delete archive deliveries</a>
+					<a href="javascript:;" class="admin execute" data-query="DELETE FROM ArchiveDelivery">delete archive deliveries</a>
 				</li>
 				<li>
-					<a href="javascript:;" class="admin-query" data-query="DELETE FROM ArchiveDelivery">delete archive railcars</a>
+					<a href="javascript:;" class="admin execute" data-query="DELETE FROM ArchiveDelivery">delete archive railcars</a>
 				</li>
 			</ul>
 		</div>
@@ -41,13 +44,13 @@
 			<h4>Cars at station</h4>
 			<ul class="nav nav-stacked">
 				<li>
-					<a href="javascript:;" class="admin-query" data-query="SELECT * FROM dev_CarsAtStation">select all cars</a>
+					<a href="javascript:;" class="admin" data-query="SELECT * FROM dev_CarsAtStation">select all cars</a>
 				</li>
 				<li>
-					<a href="javascript:;" class="admin-query" data-query="UPDATE dev_CarsAtStation SET delivery='', isProcessed=0">unprocess all cars</a>
+					<a href="javascript:;" class="admin execute" data-query="UPDATE dev_CarsAtStation SET delivery='', isProcessed=0">unprocess all cars</a>
 				</li>
 				<li>
-					<a href="javascript:;" class="admin-query" data-query="DELETE FROM dev_CarsAtStation">delete all cars at station</a>
+					<a href="javascript:;" class="admin execute" data-query="DELETE FROM dev_CarsAtStation">delete all cars at station</a>
 				</li>
 			</ul>
 
@@ -57,25 +60,40 @@
 
 
 	</div>
+
+
+	<div class="row">
+		<div class="col-sm-12">
+			<br/>
+			<pre id="log"></pre>
+		</div>
+	</div>
+
 </div>
 
 
 <script type="text/javascript">
 window.addEventListener('load', function () {
 
-	$('.admin-query').on('click', function (e) {
+	var $log = $('#log');
+
+	$('.admin').on('click', function (e) {
 		e.preventDefault();
 		var query = $(this).attr('data-query');
-		var password = window.prompt('Enter your admin password.');
-		if (password == 'admin') {
+
+		if ($(this).hasClass('execute')) {
+			var password = window.prompt('Enter your admin password.');
+		}
+
+		if (!password || password == 'admin') {
 			socket.post('/admin/query', { query: query }, function (message) {
-				if (message !== null && message.code && message.code == 'EREQUEST') {
-					window.alert(message.message)
+				if (message !== null && message.code) {
+					return $log.html(syntaxHighlight(message));
 				}
 				if (message == null) {
-					window.alert('Query executed');
+					return $log.html('query executed');
 				}
-				console.log(message);
+				$log.html(syntaxHighlight(message));
 			});
 		} else {
 			window.alert('wrong password');
