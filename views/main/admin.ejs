@@ -82,10 +82,13 @@ window.addEventListener('load', function () {
 		var query = $(this).attr('data-query');
 
 		if ($(this).hasClass('execute')) {
-			var password = window.prompt('Enter your admin password.');
+			var isSure = window.confirm('Are your sure you want to: ' + $(this).html());
+			if (!isSure) {
+				return false;
+			}
 		}
 
-		if (!password || password == 'admin') {
+		// if (!password || password == 'admin') {
 			socket.post('/admin/query', { query: query }, function (message) {
 				if (message !== null && message.code) {
 					return $log.html(syntaxHighlight(message));
@@ -95,9 +98,6 @@ window.addEventListener('load', function () {
 				}
 				$log.html(syntaxHighlight(message));
 			});
-		} else {
-			window.alert('wrong password');
-		}
 
 	})
 
