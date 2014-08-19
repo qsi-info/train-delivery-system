@@ -79,6 +79,7 @@
 				isProcessed : false,
 				delivery    : '',
 				spot        : '',
+				color       : '',
 			}
 
 			// Update railcar informations to free to the spot.
