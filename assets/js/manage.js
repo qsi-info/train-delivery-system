@@ -57,6 +57,8 @@
 					isProcessed : true,
 					delivery    : railcar.delivery,
 					spot        : railcar.spot,
+					Status      : 'Y',
+					color       : 'full',
 				};
 
 				// Update the railcar with the informations 
@@ -119,6 +121,24 @@
 			})			
 		},
 
+
+		changeStatus: function (railcar, status, cb) {
+			var updateInformations = {
+				Status: status ? 'Y' : 'N',
+				color: status ? 'full' : 'defective'
+			};
+
+			socket.put('/railcar/' + railcar, updateInformations, cb);
+		},
+
+		changeNetVolBBL: function (railcar, vol, cb) {
+			var updateInformations = {
+				netVolBBL: vol,
+			};
+
+			socket.put('/railcar/' + railcar, updateInformations, cb);
+		}
+
 	}
 
 
@@ -151,7 +171,10 @@
 			var $spot = $('#' + railcar.spot);
 			$spot.attr('data-reference', railcar.number);
 			$spot.attr('data-id', railcar.id);
-			$spot.addClass('full');
+			$spot.removeClass('full');
+			$spot.removeClass('defective');
+			$spot.removeClass('manual');
+			// $spot.addClass('full');
 			$spot.addClass(railcar.color);
 			$spot.find('.railcar').html(railcar.number);
 		},
@@ -161,7 +184,8 @@
 			$railcar.attr('data-reference', '');
 			$railcar.attr('data-id', '');
 			$railcar.removeClass('full');
-			$railcar.removeClass('blue');
+			$railcar.removeClass('defective');
+			$railcar.removeClass('manual');
 			$railcar.find('.railcar').html('');
 		},
 
@@ -180,7 +204,11 @@
 			$modal.find("[name='spot']").val(railcar.spot);
 			$modal.find("[name='id']").val(railcar.id);
 			$modal.find('#removeRailcarNumber').html(railcar.number);
-			$modal.find('#removeRailcarNetVolBBL').html(railcar.netVolBBL);
+
+			$editNetVolBBLForm = $('#editNetVolBBLForm');
+			$editNetVolBBLForm.find('#editNetVolBBLRailcarId').val(railcar.id);
+			$editNetVolBBLForm.find('#editNetVolBBLInput').val(railcar.netVolBBL);
+
 			$modal.find('#removeRailcarBillOfLading').html(railcar.billOfLading);
 			$modal.find('#removeRailcarProduct').html(railcar.product);
 			$modal.find('#removeRailcarSpot').html(railcar.spot);
@@ -189,7 +217,19 @@
 			$modal.find('#removeRailcarSeal1').html(railcar.seal1);
 			$modal.find('#removeRailcarSeal2').html(railcar.seal2);
 			$modal.find('#removeRailcarSeal3').html(railcar.seal3);
-			$modal.find('#removeRailcarNetVolBBL').html(railcar.netVolBBL);
+			// $modal.find('#removeRailcarNetVolBBL').html(railcar.netVolBBL);
+
+			var $status = $modal.find('#removeRailcarStatus');
+			var $statusSwitch = $modal.find('#myonoffswitch');
+			var status = railcar.Status ? railcar.Status.trim() : 'Y';
+			if (status == 'Y') {
+				$statusSwitch.prop('checked', true);
+			}
+			if (status == 'N') {
+				$statusSwitch.prop('checked', false);
+			}
+
+			$statusSwitch.attr('data-railcar', railcar.id);
 			$modal.modal('toggle');
 		},
 
@@ -364,6 +404,7 @@
 				isProcessed: true,
 				delivery: delivery,
 				spot: $(this).find('#railcar_spot').val(),
+				color: 'manual',
 			}
 
 			return RailcarController.create(railcar);		
@@ -423,7 +464,8 @@
 
 	$('.report-offload-data-link').on('click', function (e) {
 		e.preventDefault();
-		socket.get($(this).attr('href'), function (response) {
+		var operator = window.prompt('Entrez votre nom ou vos initial');
+		socket.get($(this).attr('href') + "?operator=" + operator, function (response) {
 			var url = 'http://parachemsrv07/Reports/Pages/Report.aspx?ItemPath=%2fOffloadData';
 			Utils.popupWindow(url, 1200, 800);
 			$('#printModal').modal('toggle');
@@ -442,6 +484,29 @@
 		}
 	});
 
+
+
+	$('#myonoffswitch').on('change', function (e) {
+		var railcar = $(this).attr('data-railcar');
+		var status = $(this).prop('checked');
+			$('#ModalWagonRemove').modal('toggle');
+
+		RailcarController.changeStatus(railcar, status, function () {
+		})
+	});
+
+
+
+	$('#changeNetVolBBLButton').on('click', function (e) {
+		e.preventDefault();
+		var $editNetVolBBLForm = $('#editNetVolBBLForm');
+		var railcar = $editNetVolBBLForm.find('#editNetVolBBLRailcarId').val();
+		var netVolBBL = $editNetVolBBLForm.find('#editNetVolBBLInput').val();
+		// console.log(railcar);
+			$('#ModalWagonRemove').modal('toggle');
+		RailcarController.changeNetVolBBL(railcar, netVolBBL, function () {
+		}) 
+	})
 
 	// -----------------------
 	// TypeAheadh plugin 

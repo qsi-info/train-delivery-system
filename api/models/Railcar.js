@@ -27,6 +27,8 @@ module.exports = {
     netVolBBL: { type: 'float' },
     currentETA: { type: 'datetime' },
     color: { type: 'string' },
+    Status: { type: 'string' },
+    ShipDate: { type: 'datetime'},
   },
 
 
@@ -45,8 +47,9 @@ module.exports = {
 
   // Every time a railcar is updated
   beforeUpdate: function (values, cb) {
+    // console.log(values);
     // If there is no value for the delivery, that means that the railcar is being removed from the delivery
-    if (values.delivery == '') {
+    if (values.delivery == undefined || values.delivery == '') {
       return cb();
     }
     // Try to find the delivery

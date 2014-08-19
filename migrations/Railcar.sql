@@ -13,7 +13,7 @@ create table dev_Railcar (
 	seal2 nvarchar(6),
 	seal3 nvarchar(6),
 	currentETA datetime,
-	createdAt datetime,
+	createdAt datetime default null,
 	updatedAt datetime
 );
 

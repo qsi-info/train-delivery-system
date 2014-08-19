@@ -28,7 +28,16 @@
 								<td><%= __('Modal.Wagon.BillOfLading') %></td><td id="removeRailcarBillOfLading"></td>
 							</tr>
 							<tr>
-								<td><%= __('Modal.Wagon.NetVolBBL') %></td><td id="removeRailcarNetVolBBL"></td>
+								<td><%= __('Modal.Wagon.NetVolBBL') %></td>
+								<td id="removeRailcarNetVolBBL">
+									<div id="editNetVolBBLForm" class="form-inline">
+										<input type="hidden" id="editNetVolBBLRailcarId"/>
+										<div class="form-group">
+											<input type="text" class='form-control' id="editNetVolBBLInput"/>
+										</div>
+										<button type="submit" id="changeNetVolBBLButton" class="btn btn-default">Modifier</button>											
+									</div>
+								</td>
 							</tr>
 							<tr>
 								<td><%= __('Modal.Wagon.Seals') %></td>
@@ -40,6 +49,12 @@
 										<li>-</li>
 										<li id="removeRailcarSeal3"></li>
 									</ul>
+								</td>
+							</tr>
+							<tr>
+								<td>Status</td>
+								<td id="removeRailcarStatus">
+									<input type="checkbox" id="myonoffswitch" checked="checked" />
 								</td>
 							</tr>
 						</tbody>

@@ -198,6 +198,7 @@ module.exports = {
 
   offloadData: function (req, res) {
     var delivery = req.param('id');
+    var operator = req.param('operator');
 
     Railcar.findByDelivery(delivery, function (err, railcars) {
 
@@ -206,6 +207,12 @@ module.exports = {
         if (err) return console.log(err);
 
         _.each(railcars, function (railcar) {
+            
+          railcar.shipDate = railcar.ShipDate;
+          railcar.offloadStatus = railcar.Status;
+          railcar.operator = operator;
+          railcar.entryType = 'ORIG', 
+          console.log(railcar);
 
           ReportOffloadData.create(railcar).done(function (err, doneRailcar) {
             if (err) return console.log(err);

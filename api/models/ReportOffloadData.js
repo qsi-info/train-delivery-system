@@ -31,10 +31,11 @@ module.exports = {
     offloadSTPNetVol: { type: 'string' },
     carrier: { type: 'string' },
     orderNo: { type: 'string' },
-    entryType: { type: 'string' },
+    entryType: { type: 'string', defaultsTo: 'ORIG' },
     offloadStatus: { type: 'string' },
     operator: { type: 'string' },
     sourceFileData: { type: 'string' },
+    shipDate: { type: 'datetime' },
   }
 
 };
