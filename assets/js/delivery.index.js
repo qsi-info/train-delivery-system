@@ -102,14 +102,15 @@
 
 	$('.report-endday').on('click', function (e) {
 		e.preventDefault();
-		// var destination = window.prompt('Entrez la destination');
-
-		socket.get($(this).attr('href'), function (response) {
+		var operator = window.prompt('Entrez votre nom ou vos initial');
+		socket.get($(this).attr('href') + "?operator=" + operator, function (response) {
 			var url = 'http://parachemsrv07/Reports/Pages/Report.aspx?ItemPath=%2fOffloadData';
 			Utils.popupWindow(url, 1200, 800);
 			$('#printModal').modal('toggle');
 		})
 	})
+
+
 
 
 	$('.report-sealsheet').on('click', function (e) {
