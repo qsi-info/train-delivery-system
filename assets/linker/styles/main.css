@@ -41,10 +41,14 @@ body {
 }
 
 .defective {
-  background-color: red ;
+  background-color: red !important;
 }
 
-.wagon.defective .railcar {
+.incorrect {
+  background-color: orange !important;
+}
+
+.wagon.defective .railcar, .wagon.incorrect .railcar {
   color: white !important;
 }
 

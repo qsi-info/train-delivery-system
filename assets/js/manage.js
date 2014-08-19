@@ -174,8 +174,12 @@
 			$spot.removeClass('full');
 			$spot.removeClass('defective');
 			$spot.removeClass('manual');
+			$spot.removeClass('incorrect');
 			// $spot.addClass('full');
 			$spot.addClass(railcar.color);
+			if (railcar.netVolBBL < 500 || railcar.netVolBBL > 800) {
+				$spot.addClass('incorrect');
+			}
 			$spot.find('.railcar').html(railcar.number);
 		},
 
@@ -186,6 +190,7 @@
 			$railcar.removeClass('full');
 			$railcar.removeClass('defective');
 			$railcar.removeClass('manual');
+			$railcar.removeClass('incorrect');
 			$railcar.find('.railcar').html('');
 		},
 
