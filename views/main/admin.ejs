@@ -56,9 +56,20 @@
 
 		</div>
 
+	</div>
 
 
+	<div class="row">
+		<div class="col-md-6">
+			<form id="queryForm" class="form">
+				<div class="form-group">
+					<label for="query">Custom query</label>
+					<textarea class="form-control" rows="5" id="query"></textarea>
+				</div>
+				<button type="submit">Submit</button>
 
+			</form>
+		</div>
 	</div>
 
 
@@ -99,6 +110,30 @@ window.addEventListener('load', function () {
 				$log.html(syntaxHighlight(message));
 			});
 
+	});
+
+
+
+
+	$('#queryForm').on('submit', function (e) {
+		e.preventDefault();
+		var query = $('#query').val();
+
+		var isSure = window.confirm('Are your sure you want to: ' + query);
+		if (!isSure) {
+			return false;
+		}
+
+		// if (!password || password == 'admin') {
+			socket.post('/admin/query', { query: query }, function (message) {
+				if (message !== null && message.code) {
+					return $log.html(syntaxHighlight(message));
+				}
+				if (message == null) {
+					return $log.html('query executed');
+				}
+				$log.html(syntaxHighlight(message));
+			});
 	})
 
 
