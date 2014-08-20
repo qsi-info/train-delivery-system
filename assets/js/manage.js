@@ -50,11 +50,11 @@
 				var foundRailcar = railcars[0];
 				
 				// If the railcar is in processed, throw UI Exception already used
-				if (foundRailcar.isProcessed) return UI.Exceptions.railcarAlreadyUsed(foundRailcar);
+				if (foundRailcar.isProcessed && !foundRailcar.isDefect) return UI.Exceptions.railcarAlreadyUsed(foundRailcar);
 				
 				// Informations that need to be update
 				var updateInformations = {
-					isProcessed : true,
+					isProcessed : !railcar.isDefect,
 					delivery    : railcar.delivery,
 					spot        : railcar.spot,
 					Status      : 'Y',
@@ -126,7 +126,9 @@
 		changeStatus: function (railcar, status, cb) {
 			var updateInformations = {
 				Status: status ? 'Y' : 'N',
-				color: status ? 'full' : 'defective'
+				color: status ? 'full' : 'defective',
+				isDefect: !status,
+				isProcessed: status,
 			};
 
 			socket.put('/railcar/' + railcar, updateInformations, cb);
@@ -181,6 +183,9 @@
 			if (railcar.netVolBBL < 500 || railcar.netVolBBL > 800) {
 				$spot.addClass('incorrect');
 			}
+			if (railcar.isDefect) {
+				$spot.addClass('defective');
+			}
 			$spot.find('.railcar').html(railcar.number);
 		},
 
@@ -228,12 +233,14 @@
 			var $status = $modal.find('#removeRailcarStatus');
 			var $statusSwitch = $modal.find('#myonoffswitch');
 			var status = railcar.Status ? railcar.Status.trim() : 'Y';
-			if (status == 'Y') {
-				$statusSwitch.prop('checked', true);
-			}
-			if (status == 'N') {
-				$statusSwitch.prop('checked', false);
-			}
+			// if (status == 'Y') {
+			// 	$statusSwitch.prop('checked', true);
+			// }
+			// if (status == 'N') {
+			// 	$statusSwitch.prop('checked', false);
+			// }
+
+			$statusSwitch.prop('checked', !railcar.isDefect);
 
 			$statusSwitch.attr('data-railcar', railcar.id);
 			$modal.modal('toggle');

@@ -113,8 +113,11 @@ module.exports = {
         })
       })
 
-      Railcar.query("DELETE FROM " + Railcar._tableName + " WHERE delivery='"+ delivery +"'", function (err, results) {
-        if (err) return res.view('500', err);
+      Railcar.query("DELETE FROM " + Railcar._tableName + " WHERE delivery='"+ delivery +"' AND isDefect != 1", function (err, results) {
+        if (err) {
+         console.log(err);
+          return res.view('500', err);
+        }
 
         return res.redirect('/delivery');
 

@@ -29,6 +29,7 @@ module.exports = {
     color: { type: 'string' },
     Status: { type: 'string' },
     ShipDate: { type: 'datetime'},
+    isDefect: { type: 'boolean'},
   },
 
 
