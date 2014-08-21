@@ -16,6 +16,32 @@
  */
 
 module.exports = {
+
+
+  mesure: function (req, res) {
+    var delivery = req.param('id');
+    Railcar.findByDelivery(delivery, function (err, railcars) {
+      if (err) res.send(500, err);
+
+      var acc = {};
+      _.each(railcars, function (car) {
+        acc[car.spot+'_Railcar'] = car.number;
+      });
+
+      acc.id = 1;
+
+      ReportMesure.query('DELETE FROM ReportMesure', function (err) {
+        if (err) return res.send(500, err);
+
+        ReportMesure.create(acc).done(function (err, report) {
+          if (err) return res.send(500, err);
+          return res.send(200, { message: 'done' });
+        })
+
+      })
+
+    })
+  },
     
   
   transfersheet: function (req, res) {
@@ -212,7 +238,7 @@ module.exports = {
           railcar.offloadStatus = railcar.Status;
           railcar.operator = operator;
           railcar.entryType = 'ORIG', 
-          console.log(railcar);
+          // console.log(railcar);
 
           ReportOffloadData.create(railcar).done(function (err, doneRailcar) {
             if (err) return console.log(err);

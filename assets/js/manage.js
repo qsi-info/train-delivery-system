@@ -321,6 +321,12 @@
 	});
 
 
+
+	// ----------------------------
+	// ROUTER
+	// ----------------------------
+
+
 	// Route incomming message from the socket
 	socket.on('message', function (message) {
 
@@ -346,7 +352,6 @@
 				default: break;
 			}
 		}
-
 
 	});
 
@@ -490,6 +495,16 @@
 			$('#printModal').modal('toggle');
 		})
 	});
+	
+
+	$('.report-mesure-link').on('click', function (e) {
+		e.preventDefault();
+		socket.get($(this).attr('href'), function (response) {
+			var url = 'http://parachemsrv07/Reports/Pages/Report.aspx?ItemPath=%2fMesure';
+			Utils.popupWindow(url, 1200, 800);
+			$('#printModal').modal('hide');
+		})
+	});
 
 
 	$('#addCarBtn').on('click', function (e) {
@@ -511,6 +526,7 @@
 			$('#ModalWagonRemove').modal('toggle');
 
 		RailcarController.changeStatus(railcar, status, function () {
+			UI.Railcar.finishAdd();
 		})
 	});
 
@@ -524,6 +540,7 @@
 		// console.log(railcar);
 			$('#ModalWagonRemove').modal('toggle');
 		RailcarController.changeNetVolBBL(railcar, netVolBBL, function () {
+			UI.Railcar.finishAdd();
 		}) 
 	})
 
@@ -593,9 +610,4 @@
 	window.ParsleyValidator.addMessage('fr', 'inrailcars', 'Le numero du wagon doit faire partie de la liste suggeree');
 
 
-
-
-
-
 })();
-

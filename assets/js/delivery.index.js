@@ -127,6 +127,15 @@
 	});
 
 
+	$('.report-mesure-link').on('click', function (e) {
+		e.preventDefault();
+		socket.get($(this).attr('href'), function (response) {
+			var url = 'http://parachemsrv07/Reports/Pages/Report.aspx?ItemPath=%2fMesure';
+			Utils.popupWindow(url, 1200, 800);
+			$('#printModal').modal('hide');
+		})
+	});
+
 
 
 })()
