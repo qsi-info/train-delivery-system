@@ -34,6 +34,8 @@
 			// If spot is empty, find the spot with the number and apply the remove transformations.
 			if (railcar.spot == '') return UI.Railcar.remove(railcar);
 
+			console.log('Update controlle action');
+
 			// Update the spot and apply the adding transformations.
 			return UI.Railcar.add(railcar); 			
 		},
@@ -187,6 +189,7 @@
 				$spot.addClass('defective');
 			}
 			$spot.find('.railcar').html(railcar.number);
+			UI.Railcar.finishAdd();
 		},
 
 		remove: function (railcar) {
@@ -198,6 +201,7 @@
 			$railcar.removeClass('manual');
 			$railcar.removeClass('incorrect');
 			$railcar.find('.railcar').html('');
+			UI.Railcar.finishRemove();
 		},
 
 		getForm: function (railcar) {
@@ -247,19 +251,21 @@
 		},
 
 		finishAdd: function (railcar) {
-			$('#ModalWagonAdd').modal('toggle');
+			// console.log('Add railcar: ', railcar);
+			$('#ModalWagonAdd').modal('hide');
 			UI.Railcar.getWagonCount();
 			UI.Railcar.getBarilCount();
 		},
 
 		finishRemove: function (railcar) {
-			$('#ModalWagonRemove').modal('toggle');
+			// console.log('Remove railcar: ', railcar);
+			$('#ModalWagonRemove').modal('hide');
 			UI.Railcar.getWagonCount();
 			UI.Railcar.getBarilCount();
 		},
 
 		finishCreate: function (railcar) {
-			$('#ModalAdminAddRailcar').modal('toggle');
+			$('#ModalAdminAddRailcar').modal('hide');
 			UI.Railcar.getWagonCount();
 			UI.Railcar.getBarilCount();
 		},
