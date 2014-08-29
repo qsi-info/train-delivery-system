@@ -28,26 +28,28 @@
 
 module.exports.routes = {
 
-  '/' : 'MainController.index',
-  '/help' : "MainController.help",
+  
 
-  '/delivery/create' : 'DeliveryController.create',
-  '/delivery/:id/wagon-count' : 'DeliveryController.wagonCount',
-  '/delivery/:id/baril-count' : 'DeliveryController.barilCount',
+  // '/' : 'MainController.index',
+  // '/help' : "MainController.help",
 
-  '/archivedelivery/:id/wagon-count' : 'ArchiveDeliveryController.wagonCount',
+  // '/delivery/create' : 'DeliveryController.create',
+  // '/delivery/:id/wagon-count' : 'DeliveryController.wagonCount',
+  // '/delivery/:id/baril-count' : 'DeliveryController.barilCount',
 
-  '/archives/delivery/:id' : 'ArchivesController.showDelivery',
+  // '/archivedelivery/:id/wagon-count' : 'ArchiveDeliveryController.wagonCount',
 
-  '/archives/railcar/restore/:id' : 'ArchivesController.restoreRailcar',
+  // '/archives/delivery/:id' : 'ArchivesController.showDelivery',
 
-  '/report/sealsheet/:delivery/:seal' : 'ReportController.sealSheet',
+  // '/archives/railcar/restore/:id' : 'ArchivesController.restoreRailcar',
 
-  '/admin/login' : 'MainController.adminLogin',
+  // '/report/sealsheet/:delivery/:seal' : 'ReportController.sealSheet',
 
-  '/admin' : 'MainController.admin',
+  // '/admin/login' : 'MainController.adminLogin',
 
-  'post /admin/query' : 'AdminController.query',
+  // '/admin' : 'MainController.admin',
+
+  // 'post /admin/query' : 'AdminController.query',
 
 };
 

@@ -22,7 +22,7 @@ module.exports.adapters = {
     module: 'sails-mssql',
     user: 'SP_RO',
     password: 'password',
-    database: 'LogistiqueK1',
+    database: 'QSI_TrainSystem',
     host: 'parachemsrv07',
     port: 1433,
   },
