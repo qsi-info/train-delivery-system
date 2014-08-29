@@ -19,9 +19,11 @@ module.exports = {
     
   
   delivery: function (req, res) {
+
+    var delivery = req.param('delivery');
     
-    Delivery.find().exec(function (err, deliveries) {
-      if (err) return req.view('500', err);
+    Delivery.find(delivery).exec(function (err, deliveries) {
+      if (err) return res.json(err);
       Delivery.subscribe(req.socket);
       Delivery.subscribe(req.socket, deliveries);
       return res.send(200, { message: 'Delivery subscription success' });
@@ -32,11 +34,13 @@ module.exports = {
 
   railcar: function (req, res) {
 
-    Railcar.find().exec(function (err, railcars) {
-      if (err) return res.view('500', err);
-      Railcar.subscribe(req.socket);
-      Railcar.subscribe(req.socket, railcars);
-      return res.send(200, { message: 'Railcar subscription success' });
+    var delivery = req.param('delivery');
+
+    RailcarInDelivery.find({ delivery: delivery }).exec(function (err, railcars) {
+      if (err) return res.json(err);
+      RailcarInDelivery.subscribe(req.socket);
+      RailcarInDelivery.subscribe(req.socket, railcars);
+      return res.send(200, { message: 'RailcarInDelivery subscription success' });
     });
     
   },

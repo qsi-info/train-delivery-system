@@ -1,5 +1,5 @@
 /**
- * CNRailcarController
+ * RailcarInDeliveryController
  *
  * @module      :: Controller
  * @description	:: A set of functions called `actions`.
@@ -17,29 +17,21 @@
 
 module.exports = {
     
-
-  getCloseRailcars: function (req, res) {
-  	CNRailcar.query("SELECT Railcar as number FROM " + CNRailcar._tableName + " WHERE CLMLocation LIKE '%PQ%'", function (err, railcars) {
-  		if (err) return res.json({ error: err });
-  		return res.json(railcars);
-  	})
-  },
-
-
-  get: function (req, res) {
-  	var number = req.param('number');
-  	CNRailcar.findOneByRailcar(number, function (err, foundRailcar) {
-  		if (err) return res.json({ error: err });
-  		if (!foundRailcar) return res.json({ isNotFound: true});
-  		return res.json(foundRailcar);
-  	})
-  },
   
+  isAlreadyUsed: function (req, res) {
+  	var cn_id    = req.param('cn_id');
+  	RailcarInDelivery.findOneByCNRailcarID(cn_id, function (err, foundRailcar) {
+  		if (err) return res.json({ error: err });
+  		if (foundRailcar && !foundRailcar.isDefective) return res.json({ isAlreadyUsed: true, railcar: foundRailcar });
+  		if (foundRailcar && foundRailcar.isDefective) return res.json({ isDefective: true, railcar: foundRailcar });
+  		return res.json({isAvailable: true});
+  	})
+  },
 
 
   /**
    * Overrides for the settings in `config/controllers.js`
-   * (specific to CNRailcarController)
+   * (specific to RailcarInDeliveryController)
    */
   _config: {}
 

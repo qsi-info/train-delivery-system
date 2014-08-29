@@ -1,8 +1,16 @@
-create table dev_Delivery (
-	id char(36) default lower(newid()) not null, 
-	status int not null,
-	createdAt datetime,
-	updatedAt datetime
-);
+USE QSI_TrainSystem;
 
-alter table dev_Delivery add primary key(id);
+
+-- Delivery
+IF OBJECT_ID('dbo.Delivery', 'U') IS NOT NULL
+  DROP TABLE dbo.Delivery;
+  
+CREATE TABLE dbo.Delivery (
+	id char(36) PRIMARY KEY NOT NULL,
+	updatedAt datetime,
+	createdAt datetime,
+
+	status nvarchar(20)
+
+
+);

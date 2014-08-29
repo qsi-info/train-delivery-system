@@ -1,5 +1,5 @@
 /**
- * CNRailcarController
+ * HomeController
  *
  * @module      :: Controller
  * @description	:: A set of functions called `actions`.
@@ -17,29 +17,39 @@
 
 module.exports = {
     
+	// Home Page  
+	index: function (req, res) {
+		return res.view();
+	},
 
-  getCloseRailcars: function (req, res) {
-  	CNRailcar.query("SELECT Railcar as number FROM " + CNRailcar._tableName + " WHERE CLMLocation LIKE '%PQ%'", function (err, railcars) {
-  		if (err) return res.json({ error: err });
-  		return res.json(railcars);
-  	})
-  },
+	// Page de gestion des livraisons actives
+	delivery: function (req, res) {
+		Delivery.find({ status: 'active'}).sort('createdAt DESC').exec(function (err, deliveries) {
+			if (err) return res.json(err);
+			return res.view({ deliveries: deliveries });
+		})
+	},
 
 
-  get: function (req, res) {
-  	var number = req.param('number');
-  	CNRailcar.findOneByRailcar(number, function (err, foundRailcar) {
-  		if (err) return res.json({ error: err });
-  		if (!foundRailcar) return res.json({ isNotFound: true});
-  		return res.json(foundRailcar);
-  	})
-  },
-  
+	// This load a delivery in the station
+	station: function (req, res) {
+		var delivery = req.param('delivery');
+		Delivery.findOneById(delivery, function (err, delivery) {
+			if (err) return res.json(err);
+			return res.view({ delivery: delivery });
+		})
+	},
+
+
+	// This page is for managing the reports link to a delivery
+	reports: function (req, res) {
+
+	},
 
 
   /**
    * Overrides for the settings in `config/controllers.js`
-   * (specific to CNRailcarController)
+   * (specific to HomeController)
    */
   _config: {}
 

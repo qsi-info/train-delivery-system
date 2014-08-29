@@ -1,0 +1,146 @@
+<!-- 
+
+	Home.Station
+
+	* This file is the station where we can see delivery
+
+ -->
+
+ <input type="hidden" value="<%= delivery.id %>" id="DELIVERY_ID"/>
+
+
+<script type="text/javascript">
+window.addEventListener('load', function () {
+
+
+var delivery = document.getElementById('DELIVERY_ID').value;
+
+
+/**
+ * station_connect
+ * 
+ * - This function subscribe the station to the current delivery.
+ * @param delivery
+ * @param cb
+ */
+function station_connect (delivery, cb) {
+	socket.get('/_api/subscribe/delivery/', { delivery: delivery }, function (response) {
+		console.log(response);
+		socket.get('/_api/subscribe/railcar', { delivery: delivery }, function (response) { 
+			console.log(response); 
+			cb();
+		});
+	});
+}
+
+
+
+/**
+ * get_close_railcars
+ * 
+ * - This function get all CN Railcar near the station.
+ * @param cb
+ */
+function get_close_railcars (cb) {
+	socket.get('/_api/cnrailcar/getcloserailcars', function (results) {
+		if (results.error) return console.log(results.error);
+		return cb(results);
+	});
+}
+
+
+
+/**
+ * bind_socket_message
+ * 
+ * - This function bind a socket message to a model/verb.
+ * @param model
+ * @param verb
+ * @param cb
+ */
+function bind_socket_message (model, verb, cb) {
+	socket.on('message', function (message) {
+		if (message.model && message.model == model) {
+			if (message.verb && message.verb == verb) {
+				cb(message.data);
+			}
+		}
+	});
+}
+
+
+
+/**
+ * add_railcar_to_delivery
+ * 
+ * - This function add a railcar to the current delivery at a spot
+ * @param railcarNumber
+ * @param spot
+ * @param delivery
+ */
+function add_railcar_to_delivery (railcarNumber, spot, delivery) {
+	// Check if spot is available
+	socket.get('/_api/delivery/checkspot', { delivery: delivery, spot: spot }, function (results) {
+		if (results.error) return console.log(results.error);
+		if (results.isAvailable) {
+
+			// Check if CNRailcar exist
+			socket.get('/_api/cnrailcar/get', { Railcar: railcarNumber }, function (results) {
+				if (results.error) return console.log(results.error);
+				if (results.isNotFound) return window.alert('CN Railcar not found');
+
+				var railcar = results;
+
+				// Check if Railcar already used
+				socket.get('/_api/railcarindelivery/isalreadyused', { cn_id: railcar.id }, function (results) {
+					if (results.error) return console.log(results.error);
+					if (results.isAlreadyUsed) return window.alert('Railcar already used in delivery: ' + results.railcar.delivery);
+					if (results.isAvailable) {
+
+						var railcarToAdd = {
+							delivery     : delivery,
+							spot         : spot,
+							CNRailcarID  : railcar.id,
+							number       : railcar.Railcar,
+							isDefective  : (results.railcar && results.railcar.isDefective) ? true : false,
+							informations : JSON.stringify(railcar);
+						};
+
+						// Add railcar to delivery
+						socket.post('/_api/railcarindelivery', railcarToAdd, function (results) {
+							console.log(results);
+						})
+
+					}
+				})
+
+
+			})
+		}
+	})
+}
+
+
+station_connect(delivery, function () {
+
+
+	bind_socket_message('railcarindelivery', 'create', function (railcar) {
+		console.log('Created railcar: ', railcar);
+	})
+
+	// add_railcar_to_delivery()
+
+
+
+})
+
+
+
+
+
+
+
+
+
+})
+</script>
