@@ -11,6 +11,15 @@ module.exports = {
 	migrate: 'safe',
 
   attributes: {
+
+  	id: {
+  		type: 'string',
+  		primaryKey: true,
+  	},
+
+  	Railcar: {
+  		type: 'string',
+  	},
     
   }
 

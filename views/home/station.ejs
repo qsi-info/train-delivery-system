@@ -6,14 +6,92 @@
 
  -->
 
- <input type="hidden" value="<%= delivery.id %>" id="DELIVERY_ID"/>
+<input type="hidden" value="<%= delivery.id %>" id="DELIVERY_ID"/>
+
+
+<div id="deliveryContainer">
+	
+	<% sails.config.TrainSystem.rails.forEach(function (rail, i) {  %>
+	<div class="row">
+		<div class="fifteen-cols">
+			<% rail.forEach(function (spot, j) { %>
+			<div class="col-sm-1 wagon-container">
+				<a href="" class="wagon" id="<%= spot %>" tabindex="<%= j + i + 99 %>" data-reference="" data-spot="<%= spot %>" data-id="">
+					<span class="spot"><%= spot %></span>
+					<span class="railcar"></span>
+				</a>
+			</div>
+			<% }) %>
+		</div>		
+	</div>
+
+	<% }) %>
+
+</div>
+
+
+<%- partial('./partials/modal.railcar.add.ejs') %>
+<%- partial('./partials/modal.railcar.edit.ejs') %>
 
 
 <script type="text/javascript">
 window.addEventListener('load', function () {
 
+	disable_station();
 
-var delivery = document.getElementById('DELIVERY_ID').value;
+	var delivery = document.getElementById('DELIVERY_ID').value;
+
+
+
+	station_connect(delivery, function (railcars) {
+
+		// ROUTING
+		bind_socket_message('railcarindelivery', 'create', function (railcar) {
+			if (railcar.delivery && railcar.delivery == delivery) {
+				// show_message_add_railcar(railcar);
+				show_railcar_in_spot(railcar);
+			}
+		});
+
+		bind_socket_message('railcarindelivery', 'destroy', function (railcar) {
+			// show_message_remove_railcar
+			remove_railcar_from_spot(railcar.id);
+		});
+
+		load_delivery_in_station(delivery, function () {
+			activate_typeahead_plugin(railcars);
+			initialize_event_handlers(delivery, railcars);
+			enable_station();
+		});
+		
+	});
+});
+
+
+
+
+
+/**
+ * disable_station
+ * 
+ * - This function disable the station.
+ */
+function disable_station () {
+	$('body').addClass('loading');
+	console.log('Station is DISABLE')
+}
+
+
+/**
+ * enable_station
+ * 
+ * - This function enable the station.
+ */
+function enable_station () {
+	$('body').removeClass('loading');
+	console.log('Station is ENABLE')
+}
+
 
 
 /**
@@ -28,7 +106,7 @@ function station_connect (delivery, cb) {
 		console.log(response);
 		socket.get('/_api/subscribe/railcar', { delivery: delivery }, function (response) { 
 			console.log(response); 
-			cb();
+			get_close_railcars(cb);
 		});
 	});
 }
@@ -60,9 +138,10 @@ function get_close_railcars (cb) {
  */
 function bind_socket_message (model, verb, cb) {
 	socket.on('message', function (message) {
+		console.log(message);
 		if (message.model && message.model == model) {
 			if (message.verb && message.verb == verb) {
-				cb(message.data);
+				return (message.data) ? cb(message.data) : cb(message);
 			}
 		}
 	});
@@ -78,14 +157,15 @@ function bind_socket_message (model, verb, cb) {
  * @param spot
  * @param delivery
  */
-function add_railcar_to_delivery (railcarNumber, spot, delivery) {
+function add_railcar_to_delivery (railcarNumber, spot, delivery, cb) {
 	// Check if spot is available
 	socket.get('/_api/delivery/checkspot', { delivery: delivery, spot: spot }, function (results) {
 		if (results.error) return console.log(results.error);
+		if (results.isTaken) return window.alert('Spot is already taken by railcar: ', results.railcar.number);
 		if (results.isAvailable) {
 
 			// Check if CNRailcar exist
-			socket.get('/_api/cnrailcar/get', { Railcar: railcarNumber }, function (results) {
+			socket.get('/_api/cnrailcar/get', { number: railcarNumber }, function (results) {
 				if (results.error) return console.log(results.error);
 				if (results.isNotFound) return window.alert('CN Railcar not found');
 
@@ -94,7 +174,7 @@ function add_railcar_to_delivery (railcarNumber, spot, delivery) {
 				// Check if Railcar already used
 				socket.get('/_api/railcarindelivery/isalreadyused', { cn_id: railcar.id }, function (results) {
 					if (results.error) return console.log(results.error);
-					if (results.isAlreadyUsed) return window.alert('Railcar already used in delivery: ' + results.railcar.delivery);
+					if (results.isAlreadyUsed) return window.alert('Railcar already used in delivery: <a href="/">test</a>' + results.railcar.delivery + ' at spot: ' + results.railcar.spot);
 					if (results.isAvailable) {
 
 						var railcarToAdd = {
@@ -103,36 +183,226 @@ function add_railcar_to_delivery (railcarNumber, spot, delivery) {
 							CNRailcarID  : railcar.id,
 							number       : railcar.Railcar,
 							isDefective  : (results.railcar && results.railcar.isDefective) ? true : false,
-							informations : JSON.stringify(railcar);
+							informations : railcar,
 						};
 
 						// Add railcar to delivery
 						socket.post('/_api/railcarindelivery', railcarToAdd, function (results) {
-							console.log(results);
+							cb(results);
 						})
-
 					}
-				})
-
-
-			})
+				});
+			});
 		}
+	});
+}
+
+
+
+/**
+ * show_railcar_in_spot
+ * 
+ * - This function show a railcar at is spot. UI method
+ * @param railcar object
+ */
+function show_railcar_in_spot (railcar) {
+	var $spot = $('#'+railcar.spot);
+	$spot.attr('data-spot', railcar.spot);
+	$spot.attr('data-id', railcar.id);
+	$spot.find('.railcar').html(railcar.number);
+	$spot.addClass('occupy');
+}
+
+
+/**
+ * remove_railcar_from_spot
+ * 
+ * - This function remove a railcar from a spot. UI method
+ * @param railcar_id
+ */
+function remove_railcar_from_spot (railcar_id) {
+
+	var $spot = $('[data-id="' + railcar_id + '"]');
+	$spot.attr('data-spot', '');
+	$spot.attr('data-id', '');
+	$spot.find('.railcar').html('');
+	$spot.removeClass('occupy');
+
+}
+
+
+/**
+ * load_delivery_in_station
+ * 
+ * - This function load are railcars related to the current delivery and place them at their spot
+ * @param railcar object
+ * @param cb
+ */
+function load_delivery_in_station (delivery, cb) {
+	socket.get('/_api/railcarindelivery/railcarsfromdelivery', { delivery: delivery }, function (results) {
+		if (results.error) return console.log(results.error);
+		$.each(results, function (index, railcar) {
+			show_railcar_in_spot(railcar);
+		});
+		cb();
 	})
 }
 
 
-station_connect(delivery, function () {
+
+/**
+ * get_railcar_from_delivery
+ * 
+ * - This function get the railcar in delivery with all the informations related
+ * @param railcar_id
+ * @param cb
+ */
+function get_railcar_from_delivery (railcar_id, cb) {
+	socket.get('/_api/railcarindelivery/' + railcar_id, function (response) {
+		if (response.status && response.status == 404) return window.alert('Railcar not found, id: ' + railcar_id);
+		if (response.informations) {
+			response.informations = response.informations.replace(/'/ig, '"');
+		}
+		cb(response);
+	});
+}
 
 
-	bind_socket_message('railcarindelivery', 'create', function (railcar) {
-		console.log('Created railcar: ', railcar);
+
+/**
+ * remove_railcar_from_delivery
+ * 
+ * - This function remove a railcar from the RailcarInDelivery 
+ * @param railcar_id
+ * @param cb
+ */
+function remove_railcar_from_delivery (railcar_id, cb) {
+	socket.delete('/_api/railcarindelivery/' + railcar_id, function (response) {
+		if (response.status && response.status == 404) return window.alert('Railcar not found, id: ' + railcar_id);
+		cb(response);
+	});
+}
+
+
+/**
+ * initialize_event_handlers
+ * 
+ * - This function initialize all the ui events 
+ * @param delivery
+ * @param railcars
+ */
+function initialize_event_handlers (delivery, railcars) {
+
+	// When click on a spot
+	$('.wagon').on('click', function (e) {
+		e.preventDefault();
+		var spot = $(this).attr('data-spot');
+		var railcar_id = $(this).attr('data-id');
+		if (railcar_id == '') {
+			reset_add_form();
+			$modal = $('#ModalWagonAdd');
+			$modal.find('.spot-title').html(spot);
+			$modal.find("[name='spot']").val(spot);
+			$modal.modal('show');
+			setTimeout(function () { $('#filterInput').focus();}, 500);
+		}
+		else {
+			get_railcar_from_delivery(railcar_id, function (railcar) {
+
+				var informations = $.parseJSON(railcar.informations);
+
+				console.log(informations);
+
+				$modal = $('#ModalWagonRemove');
+				$modal.find("[name='id']").val(railcar.id);
+				$modal.find('#removeRailcarNumber').html(railcar.number);
+				$modal.find('#removeRailcarBillOfLading').html(informations.BillofLading);
+				$modal.find('#removeRailcarProduct').html(informations.Product);
+				$modal.find('#removeRailcarSpot').html(railcar.spot);
+				$modal.find('#removeRailcarDelivery').html(railcar.delivery);
+				$modal.find('#removeRailcarTrain').html(informations.TrainId);
+				$modal.find('#removeRailcarSeal1').html(informations.Seal1);
+				$modal.find('#removeRailcarSeal2').html(informations.Seal2);
+				$modal.find('#removeRailcarSeal3').html(informations.Seal3);
+				$modal.find('#myonoffswitch').prop('checked', !railcar.isDefective);
+
+				$editNetVolBBLForm = $('#editNetVolBBLForm');
+				$editNetVolBBLForm.find('#editNetVolBBLRailcarId').val(railcar.id);
+				$editNetVolBBLForm.find('#editNetVolBBLInput').val(informations.NetVolBBL);
+
+				$modal.modal('show');
+			})	
+		}
+	});
+
+
+	// When submit add railcar form
+	$('#RailcarFormAdd').on('submit', function (e) {
+		e.preventDefault();
+		var number = $(this).find("[name='number']").val();
+		var spot = $(this).find("[name='spot']").val();
+		add_railcar_to_delivery(number, spot, delivery, function (railcar) {
+			reset_add_form();
+		})
+	});
+
+
+	// RemoveRailcarForm.Submit
+	$('#RailcarFormRemove').on('submit', function (e) {
+		e.preventDefault();
+		var railcar_id = $(this).find("[name='id']").val();
+		remove_railcar_from_delivery(railcar_id, function () {
+			$('#ModalWagonRemove').modal('hide');
+		})
 	})
 
-	// add_railcar_to_delivery()
+}
 
 
 
-})
+/**
+ * activate_typeahead_plugin
+ * 
+ * - This function initialize the typeahead plugins 
+ * @param raiclars
+ */
+function activate_typeahead_plugin (railcars) {
+	// Typeahead plugin setup
+	var typeaheadOptions = { hint: false, highlight: true, minLength: 1 };
+	var typeaheadDataset = { name: 'cars', displayKey: 'value', source: railcarMatcher() };
+	$('#filterInput').typeahead(typeaheadOptions, typeaheadDataset);
+
+	function railcarMatcher () {
+		return function (q, cb) {
+			var matches, substringRegex;
+			matches = [];
+			substringRegex = new RegExp(q, 'i');
+			$.each(railcars, function (i, car) {
+				if (substringRegex.test(car.number)) {
+					matches.push({ value: car.number });
+				}
+			});
+			cb(matches);
+		}
+	}
+}
+
+
+
+
+/**
+ * reset_add_form
+ * 
+ * - This function reset the railcar add form
+ */
+function reset_add_form () {
+	$modal = $('#ModalWagonAdd');
+	$('#RailcarFormAdd').parsley().reset();
+	$modal.find('#filterInput').val('');
+	$modal.find('.spot-title').html('');
+	$modal.find('[name="spot"]').val('');
+	$modal.modal('hide');
+};
 
 
 
@@ -140,7 +410,4 @@ station_connect(delivery, function () {
 
 
 
-
-
-})
 </script>

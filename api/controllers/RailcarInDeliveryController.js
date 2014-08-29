@@ -19,13 +19,22 @@ module.exports = {
     
   
   isAlreadyUsed: function (req, res) {
-  	var cn_id    = req.param('cn_id');
+  	var cn_id = req.param('cn_id');
   	RailcarInDelivery.findOneByCNRailcarID(cn_id, function (err, foundRailcar) {
   		if (err) return res.json({ error: err });
   		if (foundRailcar && !foundRailcar.isDefective) return res.json({ isAlreadyUsed: true, railcar: foundRailcar });
   		if (foundRailcar && foundRailcar.isDefective) return res.json({ isDefective: true, railcar: foundRailcar });
   		return res.json({isAvailable: true});
   	})
+  },
+
+
+  railcarsFromDelivery: function (req, res) {
+    var delivery = req.param('delivery');
+    RailcarInDelivery.query("SELECT number, spot, id FROM " + RailcarInDelivery._tableName + " WHERE delivery='" + delivery + "'", function (err, railcars) {
+      if (err) return res.json({ error: err });
+      return res.json(railcars);
+    });
   },
 
 

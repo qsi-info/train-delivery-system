@@ -18,7 +18,11 @@ module.exports = {
       primaryKey: true   		
   	},
 
-  	delivery: {
+    number: {
+      type: 'string',
+    },
+  	
+    delivery: {
   		type: 'string'
   	},
 
@@ -26,8 +30,8 @@ module.exports = {
   		type: 'string',
   	},
 
-  	information: {
-  		type: 'json'
+  	informations: {
+  		type: 'json',
   	},
 
   	isDefective: {
@@ -39,7 +43,6 @@ module.exports = {
   		type: 'string',	
   	},
 
-    
-  }
+  },
 
 };

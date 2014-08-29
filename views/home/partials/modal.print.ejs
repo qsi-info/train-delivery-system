@@ -1,0 +1,22 @@
+<div class="modal fade" id="printModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title"><%= __('Modal.Print.Title') %></h4>
+      </div>
+      <div class="modal-body">
+      	<ul class="nav">
+      		<li><a href="/report/transfersheet/<%= delivery.id %>" class="report-transfersheet"><%= __('Modal.Print.TransferSheet.Link') %></a></li>
+      		<li><a href="/report/inspectionsheet/<%= delivery.id %>" class="report-inspectionsheet"><%= __('Modal.Print.InspectionSheets.Link') %></a></li>
+          <li><a href="/report/sealsheet/<%= delivery.id %>" class="report-sealsheet-link"><%= __('Modal.Print.SealSheet.Link') %></a></li>
+          <li><a href="/report/offloaddata/<%= delivery.id %>" class="report-offload-data-link"><%= __('Modal.Print.EndDay.Link') %></a></li>
+          <li><a href="/report/mesure/<%= delivery.id %>" class="report-mesure-link">Feuille des mesures</a></li>
+      	</ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal"><%= __('Delivery.Modal.Close') %></button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -36,7 +36,7 @@ body {
   background-color:#4C9BFF !important;
 }
 
-.full {
+.full, .occupy {
   background-color: #5cb85c !important;
 }
 
@@ -422,7 +422,7 @@ left: 0;
 height: 100%;
 width: 100%;
 background: rgba( 255, 255, 255, 0.8 )
-url('../images/ajax-loader_1.gif')
+url('/images/ajax-loader_1.gif')
 50% 50%
 no-repeat;
 }
@@ -519,7 +519,7 @@ height: 60px;
 
 
 .modal-header, .modal-footer {
-  background: url("../images/home-slant-pattern-50.png") repeat scroll 0 0 rgba(0, 0, 0, 0);
+  background: url("/images/home-slant-pattern-50.png") repeat scroll 0 0 rgba(0, 0, 0, 0);
 }
 
 
