@@ -223,7 +223,6 @@ function show_railcar_in_spot (railcar) {
 function remove_railcar_from_spot (railcar_id) {
 
 	var $spot = $('[data-id="' + railcar_id + '"]');
-	$spot.attr('data-spot', '');
 	$spot.attr('data-id', '');
 	$spot.find('.railcar').html('');
 	$spot.removeClass('occupy');
