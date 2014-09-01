@@ -13,6 +13,7 @@ CREATE TABLE dbo.RailcarInDelivery (
 	CNRailcarID char(36),
 	delivery char(36),
 	number char(10),
+	netVolBBL float,
 	spot nvarchar(10),
 	isDefective bit default 0,
 	informations nvarchar(max),

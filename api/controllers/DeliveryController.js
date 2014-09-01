@@ -27,8 +27,30 @@ module.exports = {
       if (railcars.length > 0) return res.json({ isTaken: true, railcar: railcars[0]});
       return res.json({ isAvailable: true });
     })
-
   },
+
+
+  wagonCount: function (req, res) {
+    var delivery = req.param('delivery');
+    RailcarInDelivery.countByDelivery(delivery, function (err, count) {
+      if (err) return res.json({ error: err });
+      return res.json({ count: count });
+    });
+  },
+
+
+  barilCount: function (req, res) {
+    var id = req.param('delivery');
+    var query = 'SELECT SUM(netVolBBL) as baril_count FROM ' + RailcarInDelivery._tableName + ' WHERE delivery = \'' + id + '\'';
+    RailcarInDelivery.query(query , function (err, results) {
+      if (err) return res.json({ error: err });
+      var baril_count = results[0].baril_count;
+      if (baril_count == null) baril_count = 0;
+      return res.json({ count: baril_count.toFixed(1) });
+    });
+  },
+
+
 
   // index: function (req, res) {
   //   Delivery.find().sort('createdAt DESC').exec(function (err, deliveries) {
@@ -70,16 +92,6 @@ module.exports = {
   // },
 
 
-  // barilCount: function (req, res) {
-  //   var id = req.param('id');
-  //   var query = 'SELECT SUM(NetVolBBL) as baril_count FROM ' + Railcar._tableName + ' WHERE delivery = \'' + id + '\'';
-  //   Railcar.query(query , function (err, results) {
-  //     if (err) return res.view('500', err);
-  //     var baril_count = results[0].baril_count;
-  //     if (baril_count == null) baril_count = 0;
-  //     return res.json({ count: baril_count.toFixed(1) });
-  //   });
-  // },
 
 
   // archive: function (req, res) {

@@ -26,6 +26,10 @@ module.exports = {
   		type: 'string'
   	},
 
+    netVolBBL: { 
+      type: 'float'
+    },
+
   	CNRailcarID: {
   		type: 'string',
   	},

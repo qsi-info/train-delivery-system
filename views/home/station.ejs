@@ -8,6 +8,56 @@
 
 <input type="hidden" value="<%= delivery.id %>" id="DELIVERY_ID"/>
 
+<div class="container" id="deliveryStats">
+	<div class="col-md-6 col-xs-12">
+		<table class="table table-hover table-striped">
+			<caption><%= __('Delivery.Stats.Caption') %></caption>
+			<thead>
+				<tr>
+					<th><%= __('Delivery.Stats.Name') %></th>
+					<th><%= __('Delivery.Stats.Value') %></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><%= __('Delivery.Stats.id') %></td><td><%= delivery.id %></td>
+				</tr>
+				<tr>
+					<td><%= __('Delivery.Stats.createdAt') %></td><td><%= Utils.formatDate(delivery.createdAt) %></td>
+				</tr>
+				<tr>
+					<td><%= __('Delivery.Stats.wagon_count') %></td><td id="wagonCount"></td>
+				</tr>
+				<tr>
+					<td><%= __('Delivery.Stats.baril_count') %></td><td id="barilCount"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<div class="col-md-6 hidden-xs">
+		<div id="menu" class="square">
+			<ul>
+				<li>
+					<a href="#" data-toggle="modal" data-target="#printModal">
+						<i class="glyphicon glyphicon-print print"></i>
+						<h4><%= __('Menu.Print') %></h4>
+					</a>
+				</li>
+				<li>
+					<a href="/delivery">
+						<i class="glyphicon glyphicon-pause stop"></i>
+						<h4><%= __('Menu.Pause') %></h4>
+					</a>
+				</li>
+			</ul>
+		</div>
+ </div>
+
+
+</div>
+
+
 
 <div id="deliveryContainer">
 	
@@ -48,14 +98,16 @@ window.addEventListener('load', function () {
 		// ROUTING
 		bind_socket_message('railcarindelivery', 'create', function (railcar) {
 			if (railcar.delivery && railcar.delivery == delivery) {
-				// show_message_add_railcar(railcar);
-				show_railcar_in_spot(railcar);
+				update_delivery_stats(delivery);
+				add_railcar_to_spot(railcar);
+				show_message_add_railcar(railcar);
 			}
 		});
 
 		bind_socket_message('railcarindelivery', 'destroy', function (railcar) {
-			// show_message_remove_railcar
+			update_delivery_stats(delivery);
 			remove_railcar_from_spot(railcar.id);
+			show_message_remove_railcar();
 		});
 
 		load_delivery_in_station(delivery, function () {
@@ -182,6 +234,7 @@ function add_railcar_to_delivery (railcarNumber, spot, delivery, cb) {
 							spot         : spot,
 							CNRailcarID  : railcar.id,
 							number       : railcar.Railcar,
+							netVolBBL    : railcar.NetVolBBL,
 							isDefective  : (results.railcar && results.railcar.isDefective) ? true : false,
 							informations : railcar,
 						};
@@ -200,12 +253,12 @@ function add_railcar_to_delivery (railcarNumber, spot, delivery, cb) {
 
 
 /**
- * show_railcar_in_spot
+ * add_railcar_to_spot
  * 
  * - This function show a railcar at is spot. UI method
  * @param railcar object
  */
-function show_railcar_in_spot (railcar) {
+function add_railcar_to_spot (railcar) {
 	var $spot = $('#'+railcar.spot);
 	$spot.attr('data-spot', railcar.spot);
 	$spot.attr('data-id', railcar.id);
@@ -241,10 +294,10 @@ function load_delivery_in_station (delivery, cb) {
 	socket.get('/_api/railcarindelivery/railcarsfromdelivery', { delivery: delivery }, function (results) {
 		if (results.error) return console.log(results.error);
 		$.each(results, function (index, railcar) {
-			show_railcar_in_spot(railcar);
+			add_railcar_to_spot(railcar);
 		});
-		cb();
-	})
+		update_delivery_stats(delivery, cb);
+	});
 }
 
 
@@ -405,6 +458,89 @@ function reset_add_form () {
 
 
 
+
+
+
+/**
+ * show_message_add_railcar 
+ * 
+ * - This function show a growl message when a car is added
+ * @param railcar
+ */
+function show_message_add_railcar (railcar) {
+	$.growl(
+	{
+		icon: 'glyphicon glyphicon-ok-sign',
+		// title: ' Message: ',
+		message: '<span style="padding: 20px">Railcar added to delivery: ' + railcar.number + '</span>',
+	},
+	{
+		type: 'success',
+		offset: 60,
+		delay: 3000,
+	})
+}
+
+
+
+/**
+ * show_message_remove_railcar
+ * 
+ * - This function show a growl message when a car is removed
+ * @param railcar
+ */
+function show_message_remove_railcar () {
+	$.growl(
+	{
+		icon: ' glyphicon glyphicon-exclamation-sign',
+		// title: ' Message: ',
+		message: '<span style="padding: 20px">Railcar remove to delivery</span>',
+	},
+	{
+		type: 'danger',
+		offset: 60,
+		delay: 3000,
+	})
+}
+
+
+
+/**
+ * show_wagon_count
+ * 
+ * - This function show the updated wagon count
+ * @param railcar
+ */
+function show_wagon_count (delivery, cb) {
+	socket.get('/_api/delivery/wagoncount', { delivery: delivery }, function (response) {
+		if (response.error) return console.log(response.error);
+		$('#wagonCount').html(response.count);
+		cb()
+	});
+};
+
+
+
+/**
+ * show_baril_count
+ * 
+ * - This function show the updated baril count
+ * @param railcar
+ */
+function show_baril_count (delivery, cb) {
+	socket.get('/_api/delivery/barilcount', { delivery: delivery }, function (response) {
+		if (response.error) return console.log(response.error);
+		$('#barilCount').html(response.count);
+		cb();
+	});
+};
+
+
+function update_delivery_stats (delivery, cb) {
+	show_wagon_count(delivery, function () {
+		show_baril_count(delivery, cb);
+	});
+};
 
 
 
