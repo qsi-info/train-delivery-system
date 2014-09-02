@@ -23,7 +23,7 @@ module.exports = {
   	RailcarInDelivery.findOneByCNRailcarID(cn_id, function (err, foundRailcar) {
   		if (err) return res.json({ error: err });
   		if (foundRailcar && !foundRailcar.isDefective) return res.json({ isAlreadyUsed: true, railcar: foundRailcar });
-  		if (foundRailcar && foundRailcar.isDefective) return res.json({ isDefective: true, railcar: foundRailcar });
+  		if (foundRailcar && foundRailcar.isDefective) return res.json({ isDefective: true, isAvailable: true, railcar: foundRailcar });
   		return res.json({isAvailable: true});
   	})
   },
@@ -31,11 +31,40 @@ module.exports = {
 
   railcarsFromDelivery: function (req, res) {
     var delivery = req.param('delivery');
-    RailcarInDelivery.query("SELECT number, spot, id FROM " + RailcarInDelivery._tableName + " WHERE delivery='" + delivery + "'", function (err, railcars) {
+    RailcarInDelivery.query("SELECT number, spot, id, isDefective FROM " + RailcarInDelivery._tableName + " WHERE delivery='" + delivery + "'", function (err, railcars) {
       if (err) return res.json({ error: err });
       return res.json(railcars);
     });
   },
+
+
+  updateNetVolBBL: function (req, res) {
+    var id = req.param('id');
+    var netVolBBL = req.param('netVolBBL');
+    RailcarInDelivery.update({ id: id }, { netVolBBL: netVolBBL }, function (err, updatedRailcars) {
+      if (err) return res.json({ error: err });
+      if (updatedRailcars.length < 1) return res.json({ error: 'not found' });
+      var updatedRailcar = updatedRailcars[0];
+      RailcarInDelivery.publishUpdate(updatedRailcar.id, { netVolBBL: netVolBBL, delivery: updatedRailcar.delivery }); 
+      return res.json({ status: 'OK'});
+
+    });
+  },
+
+
+  updateStatus: function (req, res) {
+    var railcar = req.param('railcar');
+    var status = req.param('status');
+    RailcarInDelivery.update({ id: railcar }, { isDefective: status }, function (err, updatedRailcars) {
+      if (err) return res.json({ error: err });
+      if (updatedRailcars.length < 1) return res.json({ error: 'not found' });
+      var updatedRailcar = updatedRailcars[0];
+      RailcarInDelivery.publishUpdate(updatedRailcar.id, { isDefective: updatedRailcar.isDefective, delivery: updatedRailcar.delivery, spot: updatedRailcar.spot }); 
+      return res.json({ status: 'OK'});
+
+    })
+  },
+
 
 
   /**

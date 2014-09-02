@@ -46,7 +46,9 @@ window.addEventListener('load', function () {
 
 	socket.get('/_api/delivery/count', function (response) {
 		if (response.error) return console.log(response.error);
-		$('#deliveryCountNotification').html(response.count);
+		if (response.count > 0) {
+			$('#deliveryCountNotification').html(response.count);
+		}
 	});
 
 

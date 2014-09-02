@@ -58,6 +58,108 @@ module.exports = {
 
 
 
+  transferIsComplete: function (req, res) {
+    var delivery = req.param('delivery');
+    TransferReport.findOneByDelivery(delivery, function (err, report) {
+      if (err) return res.json({ error: err });
+      if (!report) return res.json({ isComplete: false});
+      return res.json({ isComplete: true });
+    });
+  },
+
+
+  inspection: function (req, res) {
+    var delivery = req.param('delivery');
+
+
+    Delivery.findOneById(delivery, function (err, delivery) {
+      if (err) return res.json({ error: err });
+      if (!delivery) return res.view('404');
+
+
+      InspectionReport.query("DELETE FROM " + InspectionReport._tableName + " WHERE delivery='" + delivery.id + "'", function (err) {
+        if (err) return res.json({ error: err });
+
+        RailcarInDelivery.findByDelivery(delivery.id, function (err, railcars) {
+          if (err) return res.json({ error: err });
+
+          _.each(railcars, function (railcar) {
+            var informations = Utils.JSONFixParse(railcar.informations);
+            var inspectionRailcar = {};
+            inspectionRailcar.product = informations.Product;
+            inspectionRailcar.number = railcar.number;
+            inspectionRailcar.seal1 = informations.Seal1;
+            inspectionRailcar.seal2 = informations.Seal2;
+            inspectionRailcar.seal3 = informations.Seal3;
+            inspectionRailcar.billOfLading = informations.BillofLading;
+            inspectionRailcar.netVolBBL = railcar.netVolBBL;
+            inspectionRailcar.spot = railcar.spot;
+            inspectionRailcar.train = informations.TrainId;
+            inspectionRailcar.delivery = delivery.id;
+
+            InspectionReport.create(inspectionRailcar).done(function (err, doneRailcar) {
+              if (err) return res.json({ error: err });
+            });
+          });
+
+          return res.redirect('/delivery/reports/' + delivery.id);
+
+        });
+      });
+    });
+
+
+  },
+
+
+
+
+  inspectionIsComplete: function (req, res) {
+    var delivery = req.param('delivery');
+    InspectionReport.countByDelivery(delivery, function (err, count) {
+      if (err) return res.json({ error: err });
+      if (count < 1) return res.json({ isComplete: false });
+      return res.json({ isComplete: true });
+    });
+  },
+
+
+  //   ReportInspectionSheet.query('DELETE FROM ' + , function (err) {
+  //     if (err) return res.send(500, err);
+
+  //     Railcar.findByDelivery(delivery, function (err, railcars) {
+  //       if (err) return res.send(500, err);
+
+  //       _.each(railcars, function (railcar) {
+
+  //         var inspectionRailcar = {};
+  //         inspectionRailcar.id = railcar.id;
+  //         inspectionRailcar.product = railcar.product;
+  //         inspectionRailcar.number = railcar.number;
+  //         inspectionRailcar.seal1 = railcar.seal1;
+  //         inspectionRailcar.seal2 = railcar.seal2;
+  //         inspectionRailcar.seal3 = railcar.seal3;
+  //         inspectionRailcar.billOfLading = railcar.billOfLading;
+  //         inspectionRailcar.netVolBBL = railcar.netVolBBL;
+  //         inspectionRailcar.spot = railcar.spot;
+  //         inspectionRailcar.train = railcar.train;
+
+
+  //         ReportInspectionSheet.create(inspectionRailcar).done(function (err, inspection) {
+  //           if (err) return res.send(500, err);
+  //         });
+
+  //       });
+  //       return res.send(200, { message: 'done' });
+  //       // return res.redirect('http://parachemsrv07/Reports/Pages/Report.aspx?ItemPath=%2fInspectionSheets');
+
+  //     });
+
+  //   });
+
+  // },
+
+
   // mesure: function (req, res) {
   //   var delivery = req.param('id');
   //   Railcar.findByDelivery(delivery, function (err, railcars) {

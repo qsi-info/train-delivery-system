@@ -1,3 +1,120 @@
 {
+
+	"Menu.Manage" : "Manage deliveries",
+  "Menu.Create" : "New delivery",
+  "Menu.Archives" : "Archives",
+  "Menu.Print" : "Print",
+  "Menu.Pause" : "Spot",
+  "Menu.Delete" : "Delete",
+
+  "Modal.Admin.Title": "Formulaire d'ajout de train",
+  "Modal.Admin.Number.Label": "Numero de wagon",
+  "Modal.Admin.Number.Placeholder": "Entrez le numéro du train",
+  "Modal.Admin.Product.Label" : "Type de Produit",
+  "Modal.Admin.Product.Placeholder": "Entrez le type de produit",
+  "Modal.Admin.Train.Label": "Numéro de train",
+  "Modal.Admin.Train.Placeholder": "Entrez le numéro de train",
+  "Modal.Admin.BillOfLading.Label": "Bill of lading",
+  "Modal.Admin.BillOfLading.Placeholder": "Entrez le bill of lading",
+  "Modal.Admin.NetVolBBL.Label": "Volume net de barils",
+  "Modal.Admin.NetVolBBL.Placeholder": "Entrez le volume net de barils",
+
+  "Modal.Wagon.Number" : "Railcar Number",
+
+
+  "Menu.Delivery.Dropdown" : "Deliveries",
+  "Menu.Delivery.Dropdown.Actions.new" : "New delivery",
+  "Menu.Delivery.Dropdown.Actions.manage" : "Manage deliveries",
+
+  "Modal.Print.Title" : "Print options",
+  "Modal.Print.TransferSheet.Link" : "Transfer report sheet",
+  "Modal.Print.InspectionSheets.Link" : "Inspection report sheets",
+  "Modal.Wagon.Seals" : "Seals 1-2-3",
+  "Modal.Wagon.NetVolBBL" : "Net Vol BBL",
+  "Modal.Print.SealSheet.Link" : "Feuille des seals",
+  "Modal.Print.EndDay.Link" : "Rapport fin de transfert (Offload Data)",
+
+  "Menu.Archives.Dropdown" : "Archives",
+  "Menu.Archives.Dropdown.Actions.search" : "Faire une recherche",
+  "Menu.Archives.Dropdown.Actions.delivery" : "Consulter les livraisons",
+
+  "Delivery.Table.id" : "Id",
+  "Delivery.Table.createdAt" : "Created at",
+  "Delivery.Table.wagon_count" : "Number of railcar",
+  "Delivery.Table.baril_count" : "Number of baril",
+  "Delivery.Table.actions" : "Actions",
+  "Delivery.Table.caption" : "Delivery manager",
+
+  "Delivery.Dropdown.Actions" : "Actions",
+  "Delivery.Dropdown.Actions.Manage" : "Continue",
+  "Delivery.Dropdown.Actions.Archive" : "Archive",
+  "Delivery.Dropdown.Actions.Destroy" : "Supprimer",
+  "Delivery.Dropdown.Actions.Print.TransfertSheet" : "Imprimer: feuille de transfert",
+  "Delivery.Dropdown.Actions.Print.InspectionSheets" : "Imprimer: feuilles d'inspection",
+  "Delivery.Dropdown.Actions.Print.SealSheet" : "Imprimer: feuille des seals",
+  "Delivery.Dropdown.Actions.Print.EndDay" : "Imprimer: rapport fin de transfert (Offload Data)",
+  
+  "Delivery.FilterInput.placeholder" : "Enter the railcar number",
+
+  "Delivery.Stats.Caption" : "Delivery stats",
+
+  "Delivery.Stats.id" : "Identifiant",
+  "Delivery.Stats.createdAt" : "Created at",
+  "Delivery.Stats.wagon_count" : "Number of railcar",
+  "Delivery.Stats.baril_count" : "Number of baril",
+
+  "Delivery.Stats.Name" : "Statistic",
+  "Delivery.Stats.Value" : "Value",
+
+
+  "Delivery.Modal.Close" : "Close",
+  "Delivery.Modal.AddCar" : "Add this railcar",
+  "Delivery.Modal.RemoveCar" : "Remove this railcar",
+
+
+
+  "Modal.Wagon.Spot" : "Emplacement",
+  "Modal.Wagon.Train" : "Numéro de train",
+  "Modal.Wagon.Delivery" : "Numéro de livraison",
+  "Modal.Wagon.Product" : "Type de produit",
+  "Modal.Wagon.BillOfLading" : "Bill of lading",
+  
+
+  "Archives.Table.caption" : "Tables des archives",
+
+  "Archives.Wagon.Restore" : "Restaurer ce wagon.",
+
+  "Railcar" : "Railcar",
+
+  "Spot" : "Spot",
+  "Train.Number" : "Train number",
+  "Product.Type" : "Type of product",
+  "BillOfLading" : "Bill of lading",
+  "Seals" : "Seals",
+  "Railcar.Condition" : "Railcar is in good condition",
+  "NetVolBBL" : "Baril Volume (BBL)",
+
+  "Reports" : "Reports",
+  "Save" : "Save",
+
+
+  "Delivery.Empty" : "Empty delivery",
+  "Delivery.Active" : "Active delivery",
+  "Delivery.Full" : "Full delivery",
+
+
+
+  "Modal.Add.EnterNumber" : "Enter the number of the railcar you are looking for",
+
+
+
+
+
+
+
+
+
+
   "Welcome": "Welcome"
+
 }

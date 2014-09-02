@@ -15,6 +15,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     
       <ul class="nav navbar-nav navbar-right">
+        <!--
         <li>
           <a href="/">Acceuil</a>
         </li>
@@ -28,20 +29,35 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= __('Menu.Archives.Dropdown') %> <b class="caret"></b></a>
           <ul class="dropdown-menu">
-            <!-- <li><a href="/archives/search"><%= __('Menu.Archives.Dropdown.Actions.search') %></a></li> -->
+            <li><a href="/archives/search"><%= __('Menu.Archives.Dropdown.Actions.search') %></a></li>
             <li><a href="/archives/delivery"><%= __('Menu.Archives.Dropdown.Actions.delivery') %></a></li>
           </ul>
         </li>
         <li>
           <a href="/help">Aide</a>
         </li>
+       -->
         <li class="divider-vertical"></li>
         <li id="statusLi">
           <a href="javascript:;" id="statusContainer"><span id="status" class="connection-status"></span></a>
         </li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-globe"></span> <%= req.cookies[sails.config.i18n.cookie] || sails.config.i18n.defaultLocale %> <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <li>
+            <a href="/switchlang?lang=fr&url=<%= encodeURIComponent(req.originalUrl) %>">Français</a>
+          </li>    
+          <li>
+            <a href="/switchlang?lang=en&url=<%= encodeURIComponent(req.originalUrl) %>">English</a>
+          </li>
+        </ul>
+      </li>
+
+        <!--
         <li>
           <a href="javascript:;" id="adminLink">Admin</a>
         </li>
+        -->
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

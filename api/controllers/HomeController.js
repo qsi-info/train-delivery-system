@@ -61,6 +61,14 @@ module.exports = {
 		});
 	},
 
+  switchLang: function (req, res) {
+  	var lang = req.param('lang');
+  	var url = decodeURIComponent(req.param('url'));
+  	res.cookie(sails.config.i18n.cookie, lang);
+  	return res.redirect(url);
+  },
+
+
 
   /**
    * Overrides for the settings in `config/controllers.js`

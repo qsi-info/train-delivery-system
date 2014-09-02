@@ -9,10 +9,15 @@
 <input type="hidden" value="<%= delivery.id %>" id="DELIVERY_ID"/>
 
 <div class="container" id="deliveryStats">
+  <div class="row">
+    <h1><%= __('Delivery Station Manager') %></h1>
+  </div>
+
 	<div class="row">
 
 		<div class="col-md-6 col-xs-12">
-			<table class="table table-hover table-striped">
+			<table class="table table-striped">
+				<!--
 				<caption><%= __('Delivery.Stats.Caption') %></caption>
 				<thead>
 					<tr>
@@ -20,6 +25,7 @@
 						<th><%= __('Delivery.Stats.Value') %></th>
 					</tr>
 				</thead>
+					-->
 				<tbody>
 					<tr>
 						<td><%= __('Delivery.Stats.id') %></td><td><%= delivery.id %></td>
@@ -41,15 +47,21 @@
 			<div id="menu" class="square">
 				<ul>
 					<li>
+						<a href="/delivery">
+							<i class="fa fa-save"></i>
+							<h4><%= __('Save') %></h4>
+						</a>
+					</li>
+					<li>
 						<a href="/delivery/reports/<%= delivery.id %>">
 							<i class="fa fa-file-text-o print"></i>
 							<h4><%= __('Reports') %></h4>
 						</a>
 					</li>
 					<li>
-						<a href="/delivery">
-							<i class="fa fa-save"></i>
-							<h4><%= __('Save') %></h4>
+						<a href="/">
+							<i class="fa fa-home"></i>
+							<h4><%= __('Home') %></h4>
 						</a>
 					</li>
 				</ul>
@@ -105,6 +117,14 @@ window.addEventListener('load', function () {
 			}
 		});
 
+		bind_socket_message('railcarindelivery', 'update', function (railcar) {
+			console.log(railcar);
+			if (railcar.delivery && railcar.delivery == delivery) {
+				update_delivery_stats(delivery);
+				update_railcar_view(railcar);
+			}
+		});
+
 		bind_socket_message('railcarindelivery', 'destroy', function (railcar) {
 			update_delivery_stats(delivery);
 			remove_railcar_from_spot(railcar.id);
@@ -143,6 +163,9 @@ function disable_station () {
 function enable_station () {
 	$('body').removeClass('loading');
 	console.log('Station is ENABLE')
+	// var info = new WindowInfo();
+	// info.setMessage('Station is enable and ready to use.');
+	// info.show();
 }
 
 
@@ -246,6 +269,7 @@ function add_railcar_to_delivery (railcarNumber, spot, delivery, cb) {
 						alert.show();
 						return;						
 					}
+
 					if (results.isAvailable) {
 
 						var railcarToAdd = {
@@ -257,6 +281,19 @@ function add_railcar_to_delivery (railcarNumber, spot, delivery, cb) {
 							isDefective  : (results.railcar && results.railcar.isDefective) ? true : false,
 							informations : railcar,
 						};
+
+						if (results.isDefective && results.railcar) {
+							$('#ModalWagonAdd').modal('hide');
+							var confirm = new WindowConfirm();							
+							confirm.setMessage('The railcar <b>' + results.railcar.number + '</b> is already used in <a href="/delivery/station/' + results.railcar.delivery + '">another active delivery</a>, but it is mark as DEFECTIVE. Do you still want to add it to this delivery ? If this is not a mistake, do not remove the defective railcar from the other delivery.');
+							confirm.setConfirm(function () {
+								socket.post('/_api/railcarindelivery', railcarToAdd, function (results) {
+									cb(results);
+								});
+							});
+							confirm.show();
+							return;
+						}
 
 						// Add railcar to delivery
 						socket.post('/_api/railcarindelivery', railcarToAdd, function (results) {
@@ -283,6 +320,10 @@ function add_railcar_to_spot (railcar) {
 	$spot.attr('data-id', railcar.id);
 	$spot.find('.railcar').html(railcar.number);
 	$spot.addClass('occupy');
+	// console.log(railcar);
+	if (railcar.isDefective) {
+		$spot.addClass('defective');
+	}
 }
 
 
@@ -298,6 +339,7 @@ function remove_railcar_from_spot (railcar_id) {
 	$spot.attr('data-id', '');
 	$spot.find('.railcar').html('');
 	$spot.removeClass('occupy');
+	$spot.removeClass('defective');
 
 }
 
@@ -355,6 +397,48 @@ function remove_railcar_from_delivery (railcar_id, cb) {
 }
 
 
+
+/**
+ * update_railcar_netvolBBL
+ * 
+ * - This function update the railcar BBL
+ * @param railcar
+ * @param netVolBBL
+ */
+function update_railcar_netvolBBL (railcar, netVolBBL, cb) {
+	console.log(railcar);
+	console.log(netVolBBL);
+	socket.get('/_api/railcarindelivery/updatenetvolbbl', { id: railcar, netVolBBL: netVolBBL }, function (response) {
+		if (response.error) return console.log(response.error);
+		cb(response);
+	});
+
+};
+
+
+
+
+/**
+ * update_railcar_status
+ * 
+ * - This function update the railcar status
+ * @param railcar
+ * @param netVolBBL
+ */
+function update_railcar_status (railcar, status, cb) {
+	console.log(status);
+	socket.get('/_api/railcarindelivery/updatestatus', { railcar: railcar, status: status }, function (response) {
+		if (response.error) return console.log(response.error);
+		cb(response);
+	});
+
+};
+
+
+
+
+
+
 /**
  * initialize_event_handlers
  * 
@@ -396,10 +480,11 @@ function initialize_event_handlers (delivery, railcars) {
 				$modal.find('#removeRailcarSeal2').html(informations.Seal2);
 				$modal.find('#removeRailcarSeal3').html(informations.Seal3);
 				$modal.find('#myonoffswitch').prop('checked', !railcar.isDefective);
+				$modal.find('#myonoffswitch').attr('data-railcar', railcar.id);
 
 				$editNetVolBBLForm = $('#editNetVolBBLForm');
 				$editNetVolBBLForm.find('#editNetVolBBLRailcarId').val(railcar.id);
-				$editNetVolBBLForm.find('#editNetVolBBLInput').val(informations.NetVolBBL);
+				$editNetVolBBLForm.find('#editNetVolBBLInput').val(railcar.netVolBBL);
 
 				$modal.modal('show');
 			})	
@@ -425,9 +510,36 @@ function initialize_event_handlers (delivery, railcars) {
 		remove_railcar_from_delivery(railcar_id, function () {
 			$('#ModalWagonRemove').modal('hide');
 		})
-	})
+	});
+
+
+	$('#changeNetVolBBLButton').on('click', function (e) {
+		e.preventDefault();
+		var $editNetVolBBLForm = $('#editNetVolBBLForm');
+		var railcar = $editNetVolBBLForm.find('#editNetVolBBLRailcarId').val();
+		var netVolBBL = $editNetVolBBLForm.find('#editNetVolBBLInput').val();
+		update_railcar_netvolBBL(railcar, netVolBBL, function () {
+			$('#ModalWagonRemove').modal('hide');
+		})		
+	})	
+
+
+	$('#myonoffswitch').on('change', function (e) {
+		var railcar = $(this).attr('data-railcar');
+		var status = !$(this).prop('checked');
+
+		console.log(railcar);
+
+		update_railcar_status(railcar, status, function () {
+			$('#ModalWagonRemove').modal('toggle');
+		});
+
+	});
+
 
 }
+
+
 
 
 
@@ -513,10 +625,10 @@ function show_message_remove_railcar () {
 	{
 		icon: ' glyphicon glyphicon-exclamation-sign',
 		// title: ' Message: ',
-		message: '<span style="padding: 20px">Railcar remove to delivery</span>',
+		message: '<span style="padding: 20px">Railcar remove from delivery</span>',
 	},
 	{
-		type: 'danger',
+		type: 'warning',
 		offset: 80,
 		delay: 3000,
 	})
@@ -531,6 +643,7 @@ function show_message_remove_railcar () {
  * @param railcar
  */
 function show_wagon_count (delivery, cb) {
+	var cb = typeof cb !== 'undefined' ? cb : function () {};
 	socket.get('/_api/delivery/wagoncount', { delivery: delivery }, function (response) {
 		if (response.error) return console.log(response.error);
 		$('#wagonCount').html(response.count);
@@ -547,6 +660,7 @@ function show_wagon_count (delivery, cb) {
  * @param railcar
  */
 function show_baril_count (delivery, cb) {
+	var cb = typeof cb !== 'undefined' ? cb : function () {};
 	socket.get('/_api/delivery/barilcount', { delivery: delivery }, function (response) {
 		if (response.error) return console.log(response.error);
 		$('#barilCount').html(response.count);
@@ -555,7 +669,14 @@ function show_baril_count (delivery, cb) {
 };
 
 
+/**
+ * update_delivery_stats
+ * 
+ * - This function show the statistics of the current delivery
+ * @param railcar
+ */
 function update_delivery_stats (delivery, cb) {
+	var cb = typeof cb !== 'undefined' ? cb : function () {};
 	show_wagon_count(delivery, function () {
 		show_baril_count(delivery, cb);
 	});
@@ -564,4 +685,47 @@ function update_delivery_stats (delivery, cb) {
 
 
 
+
+
+function update_railcar_view (railcar) {
+	if (railcar.isDefective === 'undefined' || !railcar.spot) return;
+	var $spot = $('#'+railcar.spot);
+	if (railcar.isDefective) {
+		$spot.addClass('defective');
+	}
+	else {
+		$spot.removeClass('defective');		
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -35,7 +35,11 @@ module.exports.routes = {
   '/delivery/station/:delivery' : 'HomeController.station',
   '/delivery/reports/:delivery' : 'HomeController.reports',
 
-  '/delivery/reports/transfer/:delivery' : 'ReportController.transfer'
+  '/delivery/reports/transfer/:delivery' : 'ReportController.transfer',
+  '/delivery/reports/inspection/:delivery' : 'ReportController.inspection',
+
+
+  '/switchlang' : 'HomeController.switchLang',
 
   // '/delivery'
 

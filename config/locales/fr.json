@@ -84,6 +84,47 @@
 
   "Archives.Wagon.Restore" : "Restaurer ce wagon.",
 
+  "Railcar" : "Wagon",
+
+
+
+  "Spot" : "Emplacement",
+  "Train.Number" : "Numéro de train",
+  "Product.Type" : "Type de produit",
+  "BillOfLading" : "Billet de transfer",
+  "Seals" : "Joints",
+  "Railcar.Condition" : "Wagon en bonne condition",
+  "NetVolBBL" : "Volume net de barils (BBL)",
+
+  "Reports" : "Rapports",
+  "Save" : "Sauvegarder",
+
+  "Alert" : "Alerte",
+  "Confirmation" : "Confirmation",
+  "Confirm" : "Confirmer",
+  "Cancel" : "Annuler",
+
+  "Deliveries" : "Livraisons",
+
+  "Home" : "Acceuil",
+
+  "Delivery.Empty" : "Livraison vide",
+  "Delivery.Active" : "Livraison active",
+  "Delivery.Full" : "Livraison pleine",
+
+  "Continue" : "Continuer",
+
+
+
+  "Modal.Add.EnterNumber" : "Entrez le numéro de wagon que vous cherchez",
+
+
+
+
+
+
+
+
 
   "Welcome": "Bienvenue"
 

@@ -2,6 +2,12 @@ body {
   padding-top: 100px;
 }
 
+
+h1 {
+  text-align: center;
+  padding-bottom: 25px;
+}
+
 #deliveryContainer {
   margin: auto; 
   /*text-align: center;*/
@@ -207,7 +213,7 @@ body {
 .typeahead,
 .tt-query,
 .tt-hint {
-width: 396px;
+width: 500px;
 height: 50px;
 padding: 8px 12px;
 font-size: 24px;
@@ -247,6 +253,7 @@ border-radius: 8px;
 box-shadow: 0 5px 10px rgba(0,0,0,.2);
 max-height: 400px;
 overflow-y: auto;
+color: black !important;
 }
 .tt-suggestion {
 padding: 3px 20px;
@@ -300,7 +307,7 @@ opacity: 1;
 } 
 
 .parsley-errors-list > li {
-  color: #F44;
+  color: #F65444;
   font-size: 1.3em;
   padding: 5px;
 }
@@ -574,7 +581,7 @@ a:hover, .btn-link:hover {
 
 
 .blockUI {
-  z-index: 5000 !important;
+  z-index: 9999 !important;
 }
 
 
@@ -684,8 +691,8 @@ border-left-color: #111111;
 
 .window-message {
   font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,Sans-Serif;
-  top: 20%;
-  z-index: 9999;
+  top: 15%;
+  z-index: 8000;
 }
 
 .window-message .modal-dialog {
@@ -699,6 +706,9 @@ border-left-color: #111111;
   padding-bottom: 25px;
   border-radius: 0px;
   border: 0px;
+  /*min-height: 350px;*/
+  /*background: rgb(0,121,154);*/
+  /*color: white;*/
 }
 
 .window-message .modal-header, .window-message .modal-footer {
@@ -706,11 +716,15 @@ border-left-color: #111111;
   border: none;
 }
 
+.window-message .tt-dropdown-menu {
+  /*color: black;*/
+}
+
 
 
 .window-message .btn {
 
-  background-color: rgba(182, 182, 182, 0.7);
+  /*background-color: rgba(182, 182, 182, 0.7);*/
   background-image: none;
   background-repeat: no-repeat;
   border: 2px solid rgba(0, 0, 0, 0.2);
@@ -724,10 +738,18 @@ border-left-color: #111111;
 }
 
 
+.window-message .btn-default {
+ background-color: rgba(182, 182, 182, 0.7);
+ color: black;
+ 
+}
 
 .window-message .btn:hover, .window-message .btn:focus  {
-  background-color: #e6e6e6;
   color: black;
+}
+
+.window-message .btn-default:hover, .window-message .btn-default:focus  {
+  background-color: #e6e6e6;
 }
 
 
@@ -736,7 +758,7 @@ border-left-color: #111111;
   background-image: none;
   background-repeat: no-repeat;
   border-color: grey;
-  color: #fff;
+  /*color: #fff;*/
   filter: none;  
 }
 
@@ -777,9 +799,18 @@ border-left-color: #111111;
 
 
 
+.window-info .modal-content {
+  color: white;
+  background: rgb(0,121,154);
+  font-size: 20px;
+}
+
+
+
+
 
 .modal-backdrop.in {
-  opacity: 0.9 !important;
+  opacity: 0.95 !important;
 }
 
 
@@ -787,6 +818,57 @@ a[disabled] {
   pointer-events: none;
   color: light-grey;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+.growl-animated {
+  border-radius: 0px !important;
+  min-width: 200px;
+}
+
+.growl-animated.alert-success {
+  color: white;
+  background: rgb(0,121,154);
+}
+
+.growl-animated.alert-warning {
+  color: white;
+  background: rgb(230,69,21);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

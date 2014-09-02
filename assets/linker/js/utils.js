@@ -78,6 +78,24 @@ var WindowAlert = function () {
 
 
 
+var WindowInfo = function () {
+  var $modal = $('#info');
+  var $message = $modal.find('#infoMessage');
+
+  return {
+
+    setMessage: function (message) {
+      $message.html(message);
+    },
+
+    show: function () {
+      $modal.modal('show');
+    },
+
+  }
+};
+
+
 
 var WindowConfirm = function () {
   var $modal = $('#confirm');
