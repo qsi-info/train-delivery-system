@@ -113,6 +113,26 @@ window.addEventListener('load', function () {
 	});
 
 
+
+
+	$('#deliveries tr').each(function (i, tr) {
+		var $row = $(this);
+		var id = $(this).attr('id');
+		var $wagonCountElement = $(this).find('.delivery-wagon_count');
+		var $barilCountElement = $(this).find('.delivery-baril_count');
+		socket.get('/_api/delivery/wagoncount', { delivery: id }, function (response) {
+			$wagonCountElement.html(response.count);
+			switch(response.count) {
+				case 0  : $row.addClass('warning'); break;
+				case 60 : $row.addClass('success'); break;
+				default: $row.addClass('info'); break;
+			}
+		});
+
+	});
+
+
+
 })
 </script>
 

@@ -22,6 +22,15 @@ module.exports = {
 		return res.view();
 	},
 
+
+  createDelivery: function (req, res) {
+    Delivery.create({}).done(function (err, delivery) {
+      if (err) return res.json({ error: err });
+      return res.redirect('/delivery/station/' + delivery.id);
+    });
+  },
+
+
 	// Page de gestion des livraisons actives
 	delivery: function (req, res) {
 		Delivery.find({ status: 'active'}).sort('createdAt DESC').exec(function (err, deliveries) {

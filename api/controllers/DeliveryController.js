@@ -16,6 +16,16 @@
  */
 
 module.exports = {
+
+
+
+
+  count: function (req, res) {
+    Delivery.count(function (err, count) {
+      if (err) return res.json({ error: err });
+      return res.json({ count: count });
+    });
+  },
     
 
   checkSpot: function (req, res) {

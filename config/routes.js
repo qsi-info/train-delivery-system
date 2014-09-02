@@ -30,6 +30,7 @@ module.exports.routes = {
 
   '/' : 'HomeController.index',
   '/delivery' : 'HomeController.delivery',
+  '/delivery/create' : 'HomeController.createDelivery',
 
   '/delivery/station/:delivery' : 'HomeController.station',
   '/delivery/reports/:delivery' : 'HomeController.reports',

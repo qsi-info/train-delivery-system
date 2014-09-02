@@ -695,6 +695,8 @@ border-left-color: #111111;
 .window-message .modal-content {
   padding-left: 20%;
   padding-right: 20%;
+  padding-top: 25px;
+  padding-bottom: 25px;
   border-radius: 0px;
   border: 0px;
 }
@@ -718,6 +720,7 @@ border-left-color: #111111;
   filter: none;
   font-weight: bold;
   text-shadow: none;
+  min-width: 120px;
 }
 
 
@@ -743,6 +746,10 @@ border-left-color: #111111;
 }
 
 
+
+.window-message p {
+  font-size: 20px;
+}
 
 .window-alert .modal-content {
   color: white;
