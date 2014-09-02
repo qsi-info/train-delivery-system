@@ -6,6 +6,11 @@
 
  -->
  <div class="container">
+  <div class="row">
+    <h1>
+    	<a href="/"><%= __('Home') %></a>
+    </h1>
+  </div>
 
 	<div class="row">
 		<div class="col-md-12">
@@ -14,20 +19,20 @@
 				<ul>
 					<li>
 						<a href="/delivery/create">
-							<i class="glyphicon glyphicon-plus create"></i>
+							<i class="fa fa-plus-circle create"></i>
 							<h4><%= __('Menu.Create') %></h4>
 						</a>
 					</li>
 					<li>
 						<a href="/delivery">
-							<i class="glyphicon glyphicon-list-alt manage"></i>
+							<i class="fa fa-list manage"></i>
 							<span class="badge animated tada" id="deliveryCountNotification"></span>
 							<h4><%= __('Menu.Manage') %></h4>
 						</a>
 					</li>
 					<li>
 						<a href="/archives/delivery">
-							<i class="glyphicon glyphicon-book archive"></i>
+							<i class="fa fa-archive archive"></i>
 							<h4><%= __('Menu.Archives') %></h4>
 						</a>
 					</li>

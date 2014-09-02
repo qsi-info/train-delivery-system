@@ -14,7 +14,11 @@
 <div class="container" id="deliveryStats">
 
   <div class="row">
-    <h1><%= __('Delivery Report Manager') %></h1>
+    <h1>
+      <a href="/"><%= __('Home') %></a> / 
+      <a href="/delivery"><%= __('Deliveries') %></a> / 
+      <a href="/delivery/reports/<%= delivery.id %>"><%= __('Reports') %></a>
+    </h1>
   </div>
 
   <div class="row">

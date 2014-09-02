@@ -1,19 +1,20 @@
 body {
-  padding-top: 100px;
+  padding-top: 50px;
 }
 
 
 h1 {
-  text-align: center;
-  padding-bottom: 25px;
+  /*text-align: center;*/
+  padding-bottom: 60px;
+  font-size: 20px;
+  /*font-weight: bolder;*/
 }
 
 #deliveryContainer {
   margin: auto; 
-  /*text-align: center;*/
   padding: 25px;
-  /*margin: 10px;*/
-  /*max-width: 1740px !important;*/
+  margin-top: 30px;
+
 }
 
 #deliveryStats {
