@@ -54,7 +54,74 @@ function syntaxHighlight(json) {
         }
         return '<span class="' + cls + '">' + match + '</span>';
     });
-}
+};
+
+
+
+
+var WindowAlert = function () {
+  var $modal = $('#alert');
+  var $message = $modal.find('#alertMessage');
+
+  return {
+
+    setMessage: function (message) {
+      $message.html(message);
+    },
+
+    show: function () {
+      $modal.modal('show');
+    },
+
+  }
+};
+
+
+
+
+var WindowConfirm = function () {
+  var $modal = $('#confirm');
+  var $message = $('#confirmMessage');
+
+  $modal.on('hide.bs.modal', function () {
+    $('#confirmConfirmButton').off('click');
+    $('#confirmCloseButton').off('click');
+  })
+
+  return {
+
+    setMessage: function (message) {
+      $message.html(message);
+    },
+
+    setConfirm: function (cb) {
+      var cb = typeof cb !== 'undefined' ? cb : function () {};
+      $('#confirmConfirmButton').on('click', function (e) {
+        e.preventDefault();
+        cb(true);
+        $modal.modal('hide');
+      })
+    },
+
+    setClose: function (cb) {
+      var cb = typeof cb !== 'undefined' ? cb : function () {};
+      $('#confirmCloseButton').on('click', function (e) {
+        e.preventDefault();
+        cb(false);
+        $modal.modal('hide');
+      });
+    },
+
+    show: function () {
+      $modal.modal('show');
+    },
+
+  }
+
+
+};
+
+
 
 
 

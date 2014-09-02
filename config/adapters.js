@@ -25,6 +25,7 @@ module.exports.adapters = {
     database: 'QSI_TrainSystem',
     host: 'parachemsrv07',
     port: 1433,
+    schema: true,
   },
 
 };

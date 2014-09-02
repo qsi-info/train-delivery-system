@@ -9,51 +9,54 @@
 <input type="hidden" value="<%= delivery.id %>" id="DELIVERY_ID"/>
 
 <div class="container" id="deliveryStats">
-	<div class="col-md-6 col-xs-12">
-		<table class="table table-hover table-striped">
-			<caption><%= __('Delivery.Stats.Caption') %></caption>
-			<thead>
-				<tr>
-					<th><%= __('Delivery.Stats.Name') %></th>
-					<th><%= __('Delivery.Stats.Value') %></th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td><%= __('Delivery.Stats.id') %></td><td><%= delivery.id %></td>
-				</tr>
-				<tr>
-					<td><%= __('Delivery.Stats.createdAt') %></td><td><%= Utils.formatDate(delivery.createdAt) %></td>
-				</tr>
-				<tr>
-					<td><%= __('Delivery.Stats.wagon_count') %></td><td id="wagonCount"></td>
-				</tr>
-				<tr>
-					<td><%= __('Delivery.Stats.baril_count') %></td><td id="barilCount"></td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
+	<div class="row">
 
-	<div class="col-md-6 hidden-xs">
-		<div id="menu" class="square">
-			<ul>
-				<li>
-					<a href="#" data-toggle="modal" data-target="#printModal">
-						<i class="glyphicon glyphicon-print print"></i>
-						<h4><%= __('Menu.Print') %></h4>
-					</a>
-				</li>
-				<li>
-					<a href="/delivery">
-						<i class="glyphicon glyphicon-pause stop"></i>
-						<h4><%= __('Menu.Pause') %></h4>
-					</a>
-				</li>
-			</ul>
+		<div class="col-md-6 col-xs-12">
+			<table class="table table-hover table-striped">
+				<caption><%= __('Delivery.Stats.Caption') %></caption>
+				<thead>
+					<tr>
+						<th><%= __('Delivery.Stats.Name') %></th>
+						<th><%= __('Delivery.Stats.Value') %></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><%= __('Delivery.Stats.id') %></td><td><%= delivery.id %></td>
+					</tr>
+					<tr>
+						<td><%= __('Delivery.Stats.createdAt') %></td><td><%= Utils.formatDate(delivery.createdAt) %></td>
+					</tr>
+					<tr>
+						<td><%= __('Delivery.Stats.wagon_count') %></td><td id="wagonCount"></td>
+					</tr>
+					<tr>
+						<td><%= __('Delivery.Stats.baril_count') %></td><td id="barilCount"></td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
- </div>
 
+		<div class="col-md-6 hidden-xs">
+			<div id="menu" class="square">
+				<ul>
+					<li>
+						<a href="/delivery/reports/<%= delivery.id %>">
+							<i class="fa fa-file-text-o print"></i>
+							<h4><%= __('Reports') %></h4>
+						</a>
+					</li>
+					<li>
+						<a href="/delivery">
+							<i class="fa fa-save"></i>
+							<h4><%= __('Save') %></h4>
+						</a>
+					</li>
+				</ul>
+			</div>
+	 </div>
+
+	</div>
 
 </div>
 
@@ -90,8 +93,6 @@ window.addEventListener('load', function () {
 	disable_station();
 
 	var delivery = document.getElementById('DELIVERY_ID').value;
-
-
 
 	station_connect(delivery, function (railcars) {
 
@@ -213,20 +214,38 @@ function add_railcar_to_delivery (railcarNumber, spot, delivery, cb) {
 	// Check if spot is available
 	socket.get('/_api/delivery/checkspot', { delivery: delivery, spot: spot }, function (results) {
 		if (results.error) return console.log(results.error);
-		if (results.isTaken) return window.alert('Spot is already taken by railcar: ', results.railcar.number);
+		if (results.isTaken) {
+			$('#ModalWagonAdd').modal('hide');			
+			var alert = new WindowAlert();
+			alert.setMessage('Spot <b>' + spot + '</b> is already taken by railcar <b>' +  results.railcar.number + '</b>');
+			alert.show();
+			return;
+		}
 		if (results.isAvailable) {
 
 			// Check if CNRailcar exist
 			socket.get('/_api/cnrailcar/get', { number: railcarNumber }, function (results) {
 				if (results.error) return console.log(results.error);
-				if (results.isNotFound) return window.alert('CN Railcar not found');
+				if (results.isNotFound) { 
+					$('#ModalWagonAdd').modal('hide');			
+					var alert = new WindowAlert();
+					alert.setMessage('CN Railcar <b>' + railcarNumber + '</b> is not found');
+					alert.show();
+					return;
+				}
 
 				var railcar = results;
 
 				// Check if Railcar already used
 				socket.get('/_api/railcarindelivery/isalreadyused', { cn_id: railcar.id }, function (results) {
 					if (results.error) return console.log(results.error);
-					if (results.isAlreadyUsed) return window.alert('Railcar already used in delivery: <a href="/">test</a>' + results.railcar.delivery + ' at spot: ' + results.railcar.spot);
+					if (results.isAlreadyUsed) {
+						$('#ModalWagonAdd').modal('hide');
+						var alert = new WindowAlert();
+						alert.setMessage('Railcar <b>' + results.railcar.number + '</b> is already used in <a href="/delivery/station/' +results.railcar.delivery  + '">another active delivery</a> at spot <b>' + results.railcar.spot + '</b>');
+						alert.show();
+						return;						
+					}
 					if (results.isAvailable) {
 
 						var railcarToAdd = {
@@ -498,7 +517,7 @@ function show_message_remove_railcar () {
 	},
 	{
 		type: 'danger',
-		offset: 60,
+		offset: 80,
 		delay: 3000,
 	})
 }

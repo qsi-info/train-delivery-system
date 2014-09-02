@@ -36,6 +36,7 @@ module.exports = {
 		var delivery = req.param('delivery');
 		Delivery.findOneById(delivery, function (err, delivery) {
 			if (err) return res.json(err);
+			if (!delivery) return res.view('404');
 			return res.view({ delivery: delivery });
 		})
 	},
@@ -43,7 +44,12 @@ module.exports = {
 
 	// This page is for managing the reports link to a delivery
 	reports: function (req, res) {
-
+		var delivery = req.param('delivery');
+		Delivery.findOneById(delivery, function (err, delivery) {
+			if (err) return res.json({ error: err });
+			if (!delivery) return res.view('404');
+			return res.view({ delivery: delivery });
+		});
 	},
 
 

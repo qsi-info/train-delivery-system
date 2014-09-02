@@ -1,0 +1,18 @@
+<div class="modal window-message window-confirm fade" id="confirm" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <!-- <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button> -->
+        <h3 class="modal-title"><%= sails.config.appName %></h3>
+      </div>
+      <div class="modal-body">
+        <!-- <h4><%= __('Modal.Confirm.Important') %></h4> -->
+        <p id="confirmMessage">Content placeholder of the alert message</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" id="confirmCloseButton" data-dismiss="modal"><%= __('Cancel') %></button>
+        <button type="button" class="btn btn-primary" id="confirmConfirmButton"><%= __('Confirm') %></button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

@@ -678,3 +678,113 @@ border-left-color: #111111;
 
 
 
+
+
+
+
+.window-message {
+  font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,Sans-Serif;
+  top: 20%;
+  z-index: 9999;
+}
+
+.window-message .modal-dialog {
+  width: 100% !important;
+}
+
+.window-message .modal-content {
+  padding-left: 20%;
+  padding-right: 20%;
+  border-radius: 0px;
+  border: 0px;
+}
+
+.window-message .modal-header, .window-message .modal-footer {
+  background: none;
+  border: none;
+}
+
+
+
+.window-message .btn {
+
+  background-color: rgba(182, 182, 182, 0.7);
+  background-image: none;
+  background-repeat: no-repeat;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  border-radius: 0;
+  box-shadow: none;
+  color: white;
+  filter: none;
+  font-weight: bold;
+  text-shadow: none;
+}
+
+
+
+.window-message .btn:hover, .window-message .btn:focus  {
+  background-color: #e6e6e6;
+  color: black;
+}
+
+
+.window-message .btn-primary {
+  background-color: #59008c;
+  background-image: none;
+  background-repeat: no-repeat;
+  border-color: grey;
+  color: #fff;
+  filter: none;  
+}
+
+.window-message .btn-primary:hover {
+  background-color: #781096;
+  /*border-color: #781096;*/
+}
+
+
+
+.window-alert .modal-content {
+  color: white;
+  background: rgb(31,0,83);
+} 
+
+
+.window-alert a {
+  color: red !important;
+}
+
+.window-confirm .modal-content {
+  color: white;
+  background: rgb(10,14,88);  
+}
+
+.window-confirm .btn-primary {
+  background: rgb(3,89,160);
+}
+
+
+.window-confirm .btn-primary:hover {
+  background: rgb(3,89,198);
+}
+
+
+
+
+.modal-backdrop.in {
+  opacity: 0.9 !important;
+}
+
+
+a[disabled] {
+  pointer-events: none;
+  color: light-grey;
+}
+
+
+
+
+
+
+
+

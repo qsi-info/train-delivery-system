@@ -1,0 +1,85 @@
+<!-- 
+  
+  Home.Delivery.Reports
+
+  * This file is the page where the reports from a delivery are manage
+
+ -->
+
+<div class="container" id="deliveryStats">
+  <div class="row">
+
+    <div class="col-sm-6">
+      <table class="table table-hover table-striped">
+        <caption><%= __('Delivery.Stats.Caption') %></caption>
+        <thead>
+          <tr>
+            <th><%= __('Delivery.Stats.Name') %></th>
+            <th><%= __('Delivery.Stats.Value') %></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= __('Delivery.Stats.id') %></td><td><%= delivery.id %></td>
+          </tr>
+          <tr>
+            <td><%= __('Delivery.Stats.createdAt') %></td><td><%= Utils.formatDate(delivery.createdAt) %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-sm-6">
+
+      <div id="menu" class="square">
+        <ul>
+          <li>
+            <a href="/delivery/station/<%= delivery.id %>">
+              <i class="fa fa-bus"></i>
+              <h4><%= __('Station') %></h4>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+
+    </div>
+
+  </div>
+
+
+  <div class="row">
+
+
+
+
+
+    <div class="col-sm-12">
+
+      <div class="well" id="transferReport">
+        <dl class="dl-horizontal">
+          <dt><%= __('Report.Transfer.Title') %></dt>
+          <dd><a href="/delivery/reports/transfer/<%= delivery.id %>"><%= __('Report.Complete') %></a></dd>
+          <dd><a href="/delivery/reports/transfer/print/<%= delivery.id %>"><%= __('Report.Print') %></a></dd>
+        </dl>
+      </div>
+
+      <div class="well" id="inspectionReport">
+        <dl class="dl-horizontal">
+          <dt><%= __('Report.Inspection.Title') %></dt>
+          <dd><a href="/delivery/reports/complete/<%= delivery.id %>"><%= __('Report.Complete') %></a></dd>
+          <dd><a href="/delivery/reports/print/<%= delivery.id %>"><%= __('Report.Print') %></a></dd>
+        </dl>
+      </div>
+
+    </div>
+
+  </div>
+
+
+</div>
+
+
+
+
+
