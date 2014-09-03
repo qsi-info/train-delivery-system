@@ -10,7 +10,7 @@ CREATE TABLE dbo.TransferReport (
 	updatedAt datetime,
 	createdAt datetime,
 
-	delivery char(36) UNIQUE,
+	delivery int UNIQUE,
 	S55E01_Railcar	nvarchar(10),
 	S55E01_Product	nvarchar(10),
 	S55E02_Railcar	nvarchar(10),

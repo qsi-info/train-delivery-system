@@ -265,7 +265,7 @@ function add_railcar_to_delivery (railcarNumber, spot, delivery, cb) {
 					if (results.isAlreadyUsed) {
 						$('#ModalWagonAdd').modal('hide');
 						var alert = new WindowAlert();
-						alert.setMessage('Railcar <b>' + results.railcar.number + '</b> is already used in an <a href="/delivery/station/' +results.railcar.delivery  + '">active delivery</a> at spot <b>' + results.railcar.spot + '</b>');
+						alert.setMessage('Railcar <b>' + results.railcar.number + '</b> is already used in <a href="/delivery/station/' +results.railcar.delivery  + '">delivery ' + results.railcar.delivery + '</a> at spot <b>' + results.railcar.spot + '</b>');
 						alert.show();
 						return;						
 					}
@@ -285,7 +285,7 @@ function add_railcar_to_delivery (railcarNumber, spot, delivery, cb) {
 						if (results.isDefective && results.railcar) {
 							$('#ModalWagonAdd').modal('hide');
 							var confirm = new WindowConfirm();							
-							confirm.setMessage('The railcar <b>' + results.railcar.number + '</b> is already used in an <a href="/delivery/station/' + results.railcar.delivery + '">active delivery</a>, but it is mark as DEFECTIVE. Do you still want to add it to this delivery ? If this is not a mistake, do not remove the defective railcar from the other delivery.');
+							confirm.setMessage('The railcar <b>' + results.railcar.number + '</b> is already used in <a href="/delivery/station/' + results.railcar.delivery + '">delivery ' + results.railcar.delivery + ' </a>, but it is mark as DEFECTIVE. Do you still want to add it to this delivery ? If this is not a mistake, do not remove the defective railcar from the other delivery.');
 							confirm.setConfirm(function () {
 								socket.post('/_api/railcarindelivery', railcarToAdd, function (results) {
 									cb(results);
@@ -603,7 +603,7 @@ function show_message_add_railcar (railcar) {
 	{
 		icon: 'glyphicon glyphicon-ok-sign',
 		// title: ' Message: ',
-		message: '<span style="padding: 20px">Railcar added to delivery: ' + railcar.number + '</span>',
+		message: '<span style="padding: 20px">Railcar <b>' + railcar.number + '</b> added to delivery at spot <b>' +  railcar.spot + '</b></span>',
 	},
 	{
 		type: 'success',
@@ -629,7 +629,7 @@ function show_message_remove_railcar () {
 	},
 	{
 		type: 'warning',
-		offset: 80,
+		offset: 60,
 		delay: 3000,
 	})
 }

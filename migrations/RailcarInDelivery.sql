@@ -11,7 +11,7 @@ CREATE TABLE dbo.RailcarInDelivery (
 	createdAt datetime,
 
 	CNRailcarID char(36),
-	delivery char(36),
+	delivery int,
 	number char(10),
 	netVolBBL float,
 	spot nvarchar(10),

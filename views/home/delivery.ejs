@@ -47,7 +47,7 @@
 								<!-- <td class="delivery-baril_count"></td> -->
 								<td class="delivery-destroy">
 									<div class="btn-group">
-									  <button type="button" class="btn btn-link dropdown-toggle delivery-actions" data-toggle="dropdown">
+									  <button type="button" class="btn btn-default dropdown-toggle delivery-actions" data-toggle="dropdown">
 									    <%= __('Delivery.Dropdown.Actions') %> <span class="caret"></span>
 									  </button>
 									  <ul class="dropdown-menu" role="menu">
@@ -62,7 +62,8 @@
 						          <!-- <li><a href="/report/mesure/<%= delivery.id %>" class="report-mesure-link">Imprimer: feuille des mesures</a></li> -->
 									    
 									    <!-- <li class="divider"></li> -->
-									    <li><a href="/delivery/archive/<%= delivery.id %>" class="archive-link"><%= __('Delivery.Dropdown.Actions.Archive') %></a></li>
+									    
+									    <!-- <li><a href="/delivery/archive/<%= delivery.id %>" class="archive-link"><%= __('Delivery.Dropdown.Actions.Archive') %></a></li> -->
 									    <li class="destroy-link">
 									    	<a href="javascript:;" data-id="<%= delivery.id %>" class="delivery-delete-btn"><%= __('Delivery.Dropdown.Actions.Destroy') %></a>
 									    </li>

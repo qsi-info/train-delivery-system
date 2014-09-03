@@ -3,6 +3,10 @@ body {
 }
 
 
+input {
+  /*color: black !important;*/
+}
+
 h1 {
   /*text-align: center;*/
   padding-bottom: 60px;
@@ -45,6 +49,7 @@ h1 {
 
 .full, .occupy {
   background-color: #5cb85c !important;
+
 }
 
 
@@ -692,7 +697,7 @@ border-left-color: #111111;
 
 .window-message {
   font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,Sans-Serif;
-  top: 15%;
+  top: 12%;
   z-index: 8000;
 }
 
@@ -780,7 +785,7 @@ border-left-color: #111111;
 } 
 
 
-.window-alert a {
+.window-message a {
   color: red !important;
 }
 

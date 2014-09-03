@@ -10,7 +10,7 @@ CREATE TABLE dbo.InspectionReport (
 	updatedAt datetime,
 	createdAt datetime,
 
-	delivery char(36),
+	delivery int,
 	seal1 nvarchar(6),
 	seal2 nvarchar(6),
 	seal3 nvarchar(6),

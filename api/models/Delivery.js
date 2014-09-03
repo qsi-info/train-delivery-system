@@ -15,7 +15,7 @@ module.exports = {
   attributes: {
   	
     id: { 
-      type: 'string', 
+      type: 'int', 
       primaryKey: true 
     },
     
@@ -29,11 +29,11 @@ module.exports = {
   },
 
 
-  beforeCreate: function (attrs, done) {
-    var uuid = require('node-uuid');
-  	attrs.id = uuid.v1();
-  	done()
-  },
+  // beforeCreate: function (attrs, done) {
+  //   var uuid = require('node-uuid');
+  // 	attrs.id = uuid.v1();
+  // 	done()
+  // },
 
 
 };
