@@ -23,7 +23,7 @@ module.exports = {
     },
   	
     delivery: {
-  		type: 'string'
+  		type: 'integer'
   	},
 
     netVolBBL: { 

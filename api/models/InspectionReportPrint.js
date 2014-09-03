@@ -1,5 +1,5 @@
 /**
- * ArchiveRailcar
+ * InspectionReportPrint
  *
  * @module      :: Model
  * @description :: A short summary of how this model works and what it represents.
@@ -8,12 +8,12 @@
 
 module.exports = {
 
-	tableName	: 'ArchiveRailcar',
-	migrate		: 'safe',
-  
+	tableName: 'InspectionReportPrint',
+	migrate: 'safe',
+
   attributes: {
-  	id: { type: 'string' },
-    delivery: { type: 'string'},
+  	id: { type: 'integer', primaryKey: true },
+  	delivery: { type: 'integer' },
   	spot: { type: 'string' },
     number: { type: 'string' },
     train: { type: 'string' },

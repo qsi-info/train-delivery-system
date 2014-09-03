@@ -124,6 +124,36 @@ module.exports = {
   },
 
 
+
+  seal: function (req, res) {
+    var delivery = req.param('delivery');
+    var sealCounter = req.param('seal');
+
+    RailcarInDelivery.findByDelivery(delivery, function (err, railcars) {
+      if (err) return res.json({ error: err });
+
+      var sealSheet = {};
+
+      _.each(railcars, function (railcar) {
+        sealSheet[railcar.spot+'_'+'Railcar'] = railcar.number;
+      });
+
+      _.each(sails.config.k1.SEAL_POSITIONS, function (position) {
+        var references = position.split('-');
+        var track = references[0];
+        var spot = references[1];
+        var seal = references[2];
+
+        var spotString = 'S'+track+'E'+spot;
+
+        var railcar = findRailcarBySpot(railcars, spotString);
+
+        if (railcar) {
+          sealSheet[spotString+'_'+seal] = sealCounter++; 
+        }
+  },
+
+
   //   ReportInspectionSheet.query('DELETE FROM ' + , function (err) {
   //     if (err) return res.send(500, err);
 

@@ -6,7 +6,7 @@ IF OBJECT_ID('dbo.Delivery', 'U') IS NOT NULL
   DROP TABLE dbo.Delivery;
   
 CREATE TABLE dbo.Delivery (
-	id int PRIMARY KEY NOT NULL IDENTITY(1,1),
+	id int PRIMARY KEY NOT NULL IDENTITY(1000,1),
 	updatedAt datetime,
 	createdAt datetime,
 

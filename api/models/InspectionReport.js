@@ -12,8 +12,8 @@ module.exports = {
 	migrate: 'safe',
 
   attributes: {
-  	id: { type: 'int', primaryKey: true },
-  	delivery: { type: 'string' },
+  	id: { type: 'integer', primaryKey: true },
+  	delivery: { type: 'integer' },
   	spot: { type: 'string' },
     number: { type: 'string' },
     train: { type: 'string' },

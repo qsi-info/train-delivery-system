@@ -39,6 +39,10 @@ module.exports.routes = {
   '/delivery/reports/inspection/:delivery' : 'ReportController.inspection',
 
 
+  '/delivery/reports/print/transfer' : 'PrintController.transfer',
+  '/delivery/reports/print/inspection' : 'PrintController.inspection',
+
+
   '/switchlang' : 'HomeController.switchLang',
 
   // '/delivery'

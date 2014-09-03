@@ -13,7 +13,7 @@ module.exports = {
 
   attributes: {
 
-  	delivery: { type: 'string', unique: true, required: true },
+  	delivery: { type: 'integer', unique: true, required: true },
 
 		S55E01_Railcar: { type: 'string', defaultsTo: '' },
 		S55E01_Product: { type: 'string', defaultsTo: '' },

@@ -1,5 +1,5 @@
 /**
- * ReportTransferSheet
+ * TransferReportPrint
  *
  * @module      :: Model
  * @description :: A short summary of how this model works and what it represents.
@@ -8,11 +8,13 @@
 
 module.exports = {
 
-	tableName: 'ReportTransferSheet',
+	tableName: 'TransferReportPrint',
 	migrate: 'safe',
 
   attributes: {
-  	
+
+  	delivery: { type: 'integer', unique: true, required: true },
+
 		S55E01_Railcar: { type: 'string', defaultsTo: '' },
 		S55E01_Product: { type: 'string', defaultsTo: '' },
 		S55E02_Railcar: { type: 'string', defaultsTo: '' },
@@ -139,8 +141,7 @@ module.exports = {
 
 		wagon_count: 'INTEGER',
 		baril_count: 'FLOAT',
-		delivery_date: 'STRING',
-
+		delivery_date: 'string',
   }
 
 };
