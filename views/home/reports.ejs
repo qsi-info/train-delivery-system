@@ -118,6 +118,25 @@
               </div>
             </td>
           </tr>
+          <tr id="sealReportRow">
+            <td><%= __('Report.Seal') %></td>
+            <td id="sealReportStatus"></td>
+            <td>
+              <div class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                  <%= __('Actions') %> <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                  <li>
+                    <a  id="sealCompleteLink" data-report="seal"  href="/delivery/reports/seal/<%= delivery.id %>"><%= __('Complete') %></a>
+                  </li>
+                  <li>
+                    <a class="print-link" data-report="seal"  href="/delivery/reports/print/seal?delivery=<%= delivery.id %>"><%= __('Print') %></a>
+                  </li>
+                </ul>
+              </div>
+            </td>
+          </tr>
         </tbody>
       </table>
 
@@ -129,7 +148,7 @@
 
 </div>
 
-
+<%- partial('./partials/modal.report.seal.ejs') %>
 
 
 <script type="text/javascript">
@@ -163,6 +182,21 @@ window.addEventListener('load', function () {
       $('#inspectionReportStatus').html('incomplete');
     }
   });
+
+
+
+  // Seal Report
+  socket.get('/_api/report/sealiscomplete', { delivery: delivery }, function (response) {
+    if (response.error) return console.log(response.error);
+    if (response.isComplete) {
+      $('#sealReportRow').addClass('success');
+      $('#sealReportStatus').html('complete');
+    } else {
+      $('#sealReportRow').addClass('warning');
+      $('#sealReportStatus').html('incomplete');
+    }
+  });
+
 
 
   // Complete links
@@ -200,14 +234,62 @@ window.addEventListener('load', function () {
         alert.show();
       }
       else {
-        return Utils.popupWindow(href, 1200, 800);
+        socket.get(href, function (response) {
+          if (response.error) return console.log(response.error);
+          if (response.url) {
+            return Utils.popupWindow(response.url, 1200, 800);
+          }
+        })
       }
     });   
   });
 
 
 
+
+
+  $('#sealCompleteLink').on('click', function (e) {
+    e.preventDefault();
+    var report = $(this).attr('data-report');
+    var href = $(this).attr('href');
+    socket.get('/_api/report/' + report + 'iscomplete', { delivery: delivery }, function (response) {
+      if (response.error) return console.log(response.error);
+      if (response.isComplete) {
+        var confirm = new WindowConfirm();
+        confirm.setMessage('This report is already complete, are you sure you want to compile it again?');
+        confirm.setConfirm(function () {
+          show_seal_form(delivery, href);
+        });
+        confirm.show();
+      }
+      else {
+        show_seal_form(delivery, href);
+      }
+    });
+
+  });
+
+
+  $('#ModalSealReport').on('hide.bs.modal', function () {
+    $(this).find('#SealReportForm').parsley().reset();
+  })
+
+
+
 });
+
+
+
+
+function show_seal_form (delivery, href) {
+  $modal = $('#ModalSealReport');
+  $modal.find('#SealReportForm').attr('action', href);
+  $modal.find('#SealReportDelivery').attr('value', delivery);
+  $modal.modal('show'); 
+  window.setTimeout(function () {
+    $modal.find('#firstSeal').focus()
+  }, 700); 
+}
 </script>
 
 

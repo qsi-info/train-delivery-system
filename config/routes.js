@@ -37,10 +37,12 @@ module.exports.routes = {
 
   '/delivery/reports/transfer/:delivery' : 'ReportController.transfer',
   '/delivery/reports/inspection/:delivery' : 'ReportController.inspection',
+  '/delivery/reports/seal/:delivery' : 'ReportController.seal',
 
 
   '/delivery/reports/print/transfer' : 'PrintController.transfer',
   '/delivery/reports/print/inspection' : 'PrintController.inspection',
+  '/delivery/reports/print/seal' : 'PrintController.seal',
 
 
   '/switchlang' : 'HomeController.switchLang',

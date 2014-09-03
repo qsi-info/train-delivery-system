@@ -1,0 +1,95 @@
+#deliveryContainer {
+  margin: auto; 
+  padding: 25px;
+  margin-top: 30px;
+
+}
+
+#deliveryStats {
+  /*margin-bottom: 50px;*/
+}
+
+
+.wagon {
+  display: block; 
+  display: block;
+  /*margin: 5px;*/
+  /*background-color: #d9534f;*/
+  background-color: #808080;
+  height: 55px;
+  width: 100%;
+  position: relative;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.wagon-container {
+  padding: 5px !important;
+}
+
+.manual {
+  background-color:#4C9BFF !important;
+}
+
+.full, .occupy {
+  background-color: #5cb85c !important;
+
+}
+
+
+.incorrect {
+  background-color: orange !important;
+}
+
+.defective {
+  background-color: red !important;
+}
+
+.wagon.defective .railcar, .wagon.incorrect .railcar {
+  color: white !important;
+}
+
+.wagon:hover {
+  box-shadow: 1px 2px 5px #888888;
+}
+
+.wagon:hover .spot {
+  color: yellow;
+}
+
+.wagon .spot {
+  text-align: left;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  padding: 2px;
+  color: #FFF;
+  font-weight: bold;
+  border: 1px solid black;
+}
+
+.wagon .railcar {
+  position: absolute;
+  top: 25px;
+  left: 0px;
+  padding: 2px;
+  text-align: center;
+  width: 100%;
+  font-weight: bold;
+  color: #CC4629;
+}
+
+
+
+
+.wagon-legend {
+  background-color: #808080;
+
+}
+
+
+
+#deliveries tr {
+  cursor: pointer;
+}
+

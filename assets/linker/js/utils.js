@@ -116,8 +116,8 @@ var WindowConfirm = function () {
       var cb = typeof cb !== 'undefined' ? cb : function () {};
       $('#confirmConfirmButton').on('click', function (e) {
         e.preventDefault();
-        cb(true);
         $modal.modal('hide');
+        cb(true);
       })
     },
 

@@ -35,7 +35,8 @@ module.exports = {
 		  		if (err) return res.json({ error: err });
 
 		  		// return res.json({ status: 'ok' });
-		  		return res.redirect('http://parachemsrv07/Reports/Pages/Report.aspx?ItemPath=/TrainDeliverySystem/TransferReport');
+		  		return res.json({ url: 'http://parachemsrv07/Reports/Pages/Report.aspx?ItemPath=/TrainDeliverySystem/TransferReport' });
+		  		// return res.redirect('http://parachemsrv07/Reports/Pages/Report.aspx?ItemPath=/TrainDeliverySystem/TransferReport');
 
 	  		})
   		});
@@ -59,12 +60,36 @@ module.exports = {
 	 				});
 	 			});
 
-				return res.redirect('http://parachemsrv07/Reports/Pages/Report.aspx?ItemPath=/TrainDeliverySystem/InspectionReport');
+	 			return res.json({ url: 'http://parachemsrv07/Reports/Pages/Report.aspx?ItemPath=/TrainDeliverySystem/InspectionReport' });
+				// return res.redirect('http://parachemsrv07/Reports/Pages/Report.aspx?ItemPath=/TrainDeliverySystem/InspectionReport');
 
 			});		
   	});
   },
 
+
+
+  seal: function (req, res) {
+  	var delivery = req.param('delivery');
+  	SealReport.findOneByDelivery(delivery, function (err, report) {
+			if (err) return res.json({ error: err });
+			
+			SealReportPrint.query("DELETE FROM " + SealReportPrint._tableName + " WHERE id=1", function (err) {
+				if (err) return res.json({ error: err });
+
+				var sealPrint = report;
+				sealPrint.id = 1;
+
+				SealReportPrint.create(sealPrint).done(function (err, report) {
+					if (err) return res.json({ error: err });
+
+					return res.json({ url: 'http://parachemsrv07/Reports/Pages/Report.aspx?ItemPath=/TrainDeliverySystem/SealReport' });
+					// return res.redirect('http://parachemsrv07/Reports/Pages/Report.aspx?ItemPath=/TrainDeliverySystem/SealReport')
+
+				});
+			});
+  	});
+  },
 
   /**
    * Overrides for the settings in `config/controllers.js`

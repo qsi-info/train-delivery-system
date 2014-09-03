@@ -129,28 +129,66 @@ module.exports = {
     var delivery = req.param('delivery');
     var sealCounter = req.param('seal');
 
-    RailcarInDelivery.findByDelivery(delivery, function (err, railcars) {
+    SealReport.query("DELETE FROM " + SealReport._tableName + " WHERE delivery=" + delivery, function (err) {
       if (err) return res.json({ error: err });
 
-      var sealSheet = {};
 
-      _.each(railcars, function (railcar) {
-        sealSheet[railcar.spot+'_'+'Railcar'] = railcar.number;
+      RailcarInDelivery.findByDelivery(delivery, function (err, railcars) {
+        if (err) return res.json({ error: err });
+
+        var sealSheet = {};
+        sealSheet.delivery = delivery;
+
+        _.each(railcars, function (railcar) {
+          sealSheet[railcar.spot+'_'+'Railcar'] = railcar.number;
+        });
+
+        _.each(sails.config.TrainSystem.SEAL_POSITIONS, function (position) {
+          var references = position.split('-');
+          var track = references[0];
+          var spot = references[1];
+          var seal = references[2];
+
+          var spotString = 'S'+track+'E'+spot;
+
+          var railcar = findRailcarBySpot(railcars, spotString);
+
+          if (railcar) {
+            sealSheet[spotString+'_'+seal] = sealCounter++; 
+          }
+
+        });
+
+        SealReport.create(sealSheet).done(function (err, report) {
+          if (err) return res.json({ error: err });
+          return res.redirect('/delivery/reports/' + delivery);
+
+        });
+
       });
 
-      _.each(sails.config.k1.SEAL_POSITIONS, function (position) {
-        var references = position.split('-');
-        var track = references[0];
-        var spot = references[1];
-        var seal = references[2];
+    });
 
-        var spotString = 'S'+track+'E'+spot;
 
-        var railcar = findRailcarBySpot(railcars, spotString);
-
-        if (railcar) {
-          sealSheet[spotString+'_'+seal] = sealCounter++; 
+     var findRailcarBySpot = function (railcars, spot) {
+      for (var i=0, len=railcars.length; i < len; i++) {
+        if (railcars[i].spot == spot) {
+          return railcars[i];
         }
+      }
+      return false;
+    }  
+   
+  },
+
+
+  sealIsComplete: function (req, res) {
+    var delivery = req.param('delivery');
+    SealReport.findOneByDelivery(delivery, function (err, report) {
+      if (err) return res.json({ error: err });
+      if (!report) return res.json({ isComplete: false});
+      return res.json({ isComplete: true });            
+    });
   },
 
 

@@ -1,0 +1,115 @@
+.window-message {
+  font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,Sans-Serif;
+  top: 12%;
+  z-index: 8000;
+}
+
+.window-message .modal-dialog {
+  width: 100% !important;
+}
+
+.window-message .modal-content {
+  padding-left: 20%;
+  padding-right: 20%;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  border-radius: 0px;
+  border: 0px;
+  /*min-height: 350px;*/
+  /*background: rgb(0,121,154);*/
+  /*color: white;*/
+}
+
+.window-message .modal-header, .window-message .modal-footer {
+  background: none;
+  border: none;
+}
+
+.window-message .tt-dropdown-menu {
+  /*color: black;*/
+}
+
+
+
+.window-message .btn {
+
+  /*background-color: rgba(182, 182, 182, 0.7);*/
+  background-image: none;
+  background-repeat: no-repeat;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  border-radius: 0;
+  box-shadow: none;
+  color: white;
+  filter: none;
+  font-weight: bold;
+  text-shadow: none;
+  min-width: 120px;
+}
+
+
+.window-message .btn-default {
+ background-color: rgba(182, 182, 182, 0.7);
+ color: black;
+ 
+}
+
+.window-message .btn:hover, .window-message .btn:focus  {
+  color: black;
+}
+
+.window-message .btn-default:hover, .window-message .btn-default:focus  {
+  background-color: #e6e6e6;
+}
+
+
+.window-message .btn-primary {
+  background-color: #59008c;
+  background-image: none;
+  background-repeat: no-repeat;
+  border-color: grey;
+  /*color: #fff;*/
+  filter: none;  
+}
+
+.window-message .btn-primary:hover {
+  background-color: #781096;
+  /*border-color: #781096;*/
+}
+
+
+
+.window-message p {
+  font-size: 20px;
+}
+
+.window-alert .modal-content {
+  color: white;
+  background: rgb(31,0,83);
+} 
+
+
+.window-message a {
+  color: red !important;
+}
+
+.window-confirm .modal-content {
+  color: white;
+  background: rgb(10,14,88);  
+}
+
+.window-confirm .btn-primary {
+  background: rgb(3,89,160);
+}
+
+
+.window-confirm .btn-primary:hover {
+  background: rgb(3,89,198);
+}
+
+
+
+.window-info .modal-content {
+  color: white;
+  background: rgb(0,121,154);
+  font-size: 20px;
+}

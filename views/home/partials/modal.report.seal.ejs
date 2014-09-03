@@ -1,0 +1,27 @@
+<div class="modal fade window-message window-info" data-backdrop="static" data-keyboard="false" id="ModalSealReport">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title "><%= __('SealReport.CompleteForm') %></h4>
+      </div>
+      <form action="" method="get" data-parsley-validate="" id="SealReportForm" autocomplete="off">
+      	<input type="hidden" name="delivery" id="SealReportDelivery"/>
+	      <div class="modal-body">
+	      	<div class="row">
+	      		<div class="col-xs-4">
+						  <div class="form-group">
+						    <label for="firstSeal"><%= __('FirstSeal') %></label>
+						    <input type="text" name="seal" class="form-control" id="firstSeal" placeholder="<%= __('FirstSeal.Placeholder') %>" required="required"/>
+						  </div>
+
+	      		</div>
+	      	</div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal"><%= __('Close') %></button>
+	        <button type="submit"  class="btn btn-primary"><%= __('Complete') %></button>
+	      </div>
+	    </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+#statusContainer {
+  cursor: text;
+}
+
+.connection-status {
+  color: orange;
+  font-weight: bold;
+}
+
+
+.connection-status.connected {
+  color: green;
+}
+
+.connection-status.disconnect {
+  color: red;
+}
