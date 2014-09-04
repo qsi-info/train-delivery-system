@@ -65,8 +65,13 @@ var WindowAlert = function () {
 
   return {
 
-    setMessage: function (message) {
-      $message.html(message);
+    setMessage: function (selector, variables) {
+      var lang = $('html').attr('lang');
+      var variables = typeof variables !== 'undefined' ? variables : {};
+
+      var source = $(selector+'[lang="'+lang+'"]').html();
+      var template = Handlebars.compile(source);
+      $message.html(template(variables));
     },
 
     show: function () {
@@ -84,8 +89,13 @@ var WindowInfo = function () {
 
   return {
 
-    setMessage: function (message) {
-      $message.html(message);
+    setMessage: function (selector, variables) {
+      var lang = $('html').attr('lang');
+      var variables = typeof variables !== 'undefined' ? variables : {};
+
+      var source = $(selector+'[lang="'+lang+'"]').html();
+      var template = Handlebars.compile(source);
+      $message.html(template(variables));
     },
 
     show: function () {
@@ -108,8 +118,13 @@ var WindowConfirm = function () {
 
   return {
 
-    setMessage: function (message) {
-      $message.html(message);
+    setMessage: function (selector, variables) {
+      var lang = $('html').attr('lang');
+      var variables = typeof variables !== 'undefined' ? variables : {};
+
+      var source = $(selector+'[lang="'+lang+'"]').html();
+      var template = Handlebars.compile(source);
+      $message.html(template(variables));
     },
 
     setConfirm: function (cb) {
@@ -138,6 +153,32 @@ var WindowConfirm = function () {
 
 
 };
+
+
+
+var handlebar_message = function (selector, variables) {
+  var lang = $('html').attr('lang');
+  var variables = typeof variables !== 'undefined' ? variables : {};
+
+  var source = $(selector+'[lang="'+lang+'"]').html();
+  var template = Handlebars.compile(source);
+  return template(variables);
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

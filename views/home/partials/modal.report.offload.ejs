@@ -11,7 +11,13 @@
 	      		<div class="col-xs-4">
 						  <div class="form-group">
 						    <label for="operator"><%= __('Operator.Name') %></label>
-						    <input type="text" name="operator" class="form-control" id="operator" placeholder="<%= __('Operator.Placeholder') %>" required="required"/>
+									<select name="operator" class="form-control">
+									<% operators.forEach(function (operator, index) { %>
+										<option value="<%= operator.initials %>"><%= operator.name %></option>
+									<% }) %>
+									</select>
+
+						    <!-- <input type="text" name="operator" class="form-control" id="operator" placeholder="<%= __('Operator.Placeholder') %>" required="required"/> -->
 						  </div>
 
 	      		</div>

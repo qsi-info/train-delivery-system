@@ -286,7 +286,7 @@ window.addEventListener('load', function () {
       if (response.error) return console.log(response.error);
       if (response.isComplete) {
         var confirm = new WindowConfirm();
-        confirm.setMessage('This report is already complete, are you sure you want to compile it again?');
+        confirm.setMessage('.report-completed-message');
         confirm.setConfirm(function () {
           return window.location.href = href;
         });
@@ -308,7 +308,7 @@ window.addEventListener('load', function () {
       if (response.error) return console.log(response.error);
       if (!response.isComplete) {
         var alert = new WindowAlert();
-        alert.setMessage('You need to complete the report before you can print it!');
+        alert.setMessage('.report-print-incomlete');
         alert.show();
       }
       else {
@@ -334,7 +334,7 @@ window.addEventListener('load', function () {
       if (response.error) return console.log(response.error);
       if (response.isComplete) {
         var confirm = new WindowConfirm();
-        confirm.setMessage('This report is already complete, are you sure you want to compile it again?');
+        confirm.setMessage('.report-completed-message');
         confirm.setConfirm(function () {
           show_seal_form(delivery, href);
         });
@@ -370,7 +370,7 @@ window.addEventListener('load', function () {
       if (response.error) return console.log(response.error);
       if (response.isComplete) {
         var confirm = new WindowConfirm();
-        confirm.setMessage('This report is already complete, are you sure you want to compile it again?');
+        confirm.setMessage('.report-completed-message');
         confirm.setConfirm(function () {
           show_offload_form(delivery, href);
         });
@@ -392,7 +392,7 @@ window.addEventListener('load', function () {
       if (response.error) return console.log(response.error);
       if (response.isComplete) {
         var confirm = new WindowConfirm();
-        confirm.setMessage('This report is already complete, are you sure you want to compile it again?');
+        confirm.setMessage('.report-completed-message');
         confirm.setConfirm(function () {
           show_mesure_form(delivery, href);
         });

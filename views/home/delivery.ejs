@@ -104,12 +104,12 @@ window.addEventListener('load', function () {
 			if (response.error) return console.log(response.error);
 			if (response.count > 0) {
 				var alert = new WindowAlert();
-				alert.setMessage('Vous devez vider la livraison afin de pouvoir la supprimer!');
+				alert.setMessage('.empty-delivery-message');
 				alert.show();
 			}
 			else {
 				var confirm = new WindowConfirm();
-				confirm.setMessage('Etes-vous certain de vouloir supprimer cette livraison?');
+				confirm.setMessage('.confirm-delete-delivery-message');
 				confirm.setConfirm(function () {
 					socket.delete('/_api/delivery/' + delivery, function (delivery) {
 						$('#' + delivery.id).remove();

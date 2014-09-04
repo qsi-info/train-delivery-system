@@ -115,16 +115,18 @@ module.exports = {
 
   mesure: function (req, res) {
     var delivery = req.param('delivery');
-    MesureReport.findByDelivery(delivery, function (err, report) {
+    MesureReport.findOneByDelivery(delivery, function (err, report) {
       if (err) return res.json({ error: err });
       
       MesureReportPrint.query("DELETE FROM " + MesureReportPrint._tableName + " WHERE id=1", function (err) {
         if (err) return res.json({ error: err });
         
-        report.id = 1;
+        var printReport = report;
+        printReport.id = 1;
 
-        MesureReportPrint.create(report).done(function (err, report) {
+        MesureReportPrint.create(printReport).done(function (err, report) {
           if (err) return res.json({ error: err });
+          console.log(report);
           return res.json({ url: 'http://parachemsrv07/Reports/Pages/Report.aspx?ItemPath=/TrainDeliverySystem/MesureReport' })
         });
       });

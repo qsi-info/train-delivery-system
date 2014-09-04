@@ -121,6 +121,29 @@
 
 
 
+  "Report.Transfer" : "Rapport de fin de transfer",
+  "Report.Inspection" : "Rapport d'inspection",
+  "Report.Offload" : "Rapport de fin de journée",
+  "Report.Mesure" : "Rapport de confirmation des mesures",
+  "Report.Seal" : "Rapport des joints",
+
+
+  "Report.Name" : "Rapport",
+  "Report.Status" : "Status",
+
+
+
+
+  "OffloadReport.CompleteForm" : "Formulaire du rapport de fin de journée",
+  "SealReport.CompleteForm" : "Formulaire du rapport des joints",
+  "MesureReport.CompleteForm"   : "Formulaire du rapport de la confirmation des mesures",
+  "Operator.Name" : "Nom de l'opérateur responsable",
+  "FirstSeal" : "Numéro du premier joint",
+  "FirstSeal.Placeholder" : "Entrez le numéro du premier joint",
+
+
+
+
 
 
 

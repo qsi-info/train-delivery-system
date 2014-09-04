@@ -109,9 +109,26 @@
 
 
 
+  "Report.Transfer" : "Transfer report",
+  "Report.Inspection" : "Inspection report",
+  "Report.Offload" : "Offload data report",
+  "Report.Mesure" : "Mesure confirmation report",
+  "Report.Seal" : "Seal report",
 
 
 
+  "Report.Name" : "Report",
+  "Report.Status" : "Status",
+
+
+
+
+  "OffloadReport.CompleteForm" : "Offload data report form",
+  "SealReport.CompleteForm" : "Seal report form",
+  "MesureReport.CompleteForm"   : "Mesure report form",
+  "Operator.Name" : "Operator name",
+  "FirstSeal" : "First seal",
+  "FirstSeal.Placeholder" : "Enter the number of your first seal",
 
 
 

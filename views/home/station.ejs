@@ -17,15 +17,6 @@
 
 		<div class="col-md-6 col-xs-12">
 			<table class="table table-striped">
-				<!--
-				<caption><%= __('Delivery.Stats.Caption') %></caption>
-				<thead>
-					<tr>
-						<th><%= __('Delivery.Stats.Name') %></th>
-						<th><%= __('Delivery.Stats.Value') %></th>
-					</tr>
-				</thead>
-					-->
 				<tbody>
 					<tr>
 						<td><%= __('Delivery.Stats.id') %></td><td><%= delivery.id %></td>
@@ -240,7 +231,10 @@ function add_railcar_to_delivery (railcarNumber, spot, delivery, cb) {
 		if (results.isTaken) {
 			$('#ModalWagonAdd').modal('hide');			
 			var alert = new WindowAlert();
-			alert.setMessage('Spot <b>' + spot + '</b> is already taken by railcar <b>' +  results.railcar.number + '</b>');
+			alert.setMessage('.spot-taken-message', { 
+				spot : spot,
+				railcar : results.railcar.number,
+			})
 			alert.show();
 			return;
 		}
@@ -252,7 +246,9 @@ function add_railcar_to_delivery (railcarNumber, spot, delivery, cb) {
 				if (results.isNotFound) { 
 					$('#ModalWagonAdd').modal('hide');			
 					var alert = new WindowAlert();
-					alert.setMessage('CN Railcar <b>' + railcarNumber + '</b> is not found');
+					alert.setMessage('.railcar-not-found-message', {
+						railcar : railcarNumber,
+					});
 					alert.show();
 					return;
 				}
@@ -265,7 +261,11 @@ function add_railcar_to_delivery (railcarNumber, spot, delivery, cb) {
 					if (results.isAlreadyUsed) {
 						$('#ModalWagonAdd').modal('hide');
 						var alert = new WindowAlert();
-						alert.setMessage('Railcar <b>' + results.railcar.number + '</b> is already used in <a href="/delivery/station/' +results.railcar.delivery  + '">delivery ' + results.railcar.delivery + '</a> at spot <b>' + results.railcar.spot + '</b>');
+						alert.setMessage('.railcar-already-used-message', {
+							railcar: results.railcar.number,
+							delivery: results.railcar.delivery,
+							spot: results.railcar.spot,
+						});
 						alert.show();
 						return;						
 					}
@@ -285,7 +285,10 @@ function add_railcar_to_delivery (railcarNumber, spot, delivery, cb) {
 						if (results.isDefective && results.railcar) {
 							$('#ModalWagonAdd').modal('hide');
 							var confirm = new WindowConfirm();							
-							confirm.setMessage('The railcar <b>' + results.railcar.number + '</b> is already used in <a href="/delivery/station/' + results.railcar.delivery + '">delivery ' + results.railcar.delivery + ' </a>, but it is mark as DEFECTIVE. Do you still want to add it to this delivery ? If this is not a mistake, do not remove the defective railcar from the other delivery.');
+							confirm.setMessage('.defective-railcar-message', {
+								railcar: results.railcar.number,
+								delivery: results.railcar.delivery,
+							});
 							confirm.setConfirm(function () {
 								socket.post('/_api/railcarindelivery', railcarToAdd, function (results) {
 									cb(results);
@@ -602,8 +605,10 @@ function show_message_add_railcar (railcar) {
 	$.growl(
 	{
 		icon: 'glyphicon glyphicon-ok-sign',
-		// title: ' Message: ',
-		message: '<span style="padding: 20px">Railcar <b>' + railcar.number + '</b> added to delivery at spot <b>' +  railcar.spot + '</b></span>',
+		message: handlebar_message('.add-railcar-growl', {
+			railcar: railcar.number,
+			spot: railcar.spot,
+		})
 	},
 	{
 		type: 'success',
@@ -624,8 +629,7 @@ function show_message_remove_railcar () {
 	$.growl(
 	{
 		icon: ' glyphicon glyphicon-exclamation-sign',
-		// title: ' Message: ',
-		message: '<span style="padding: 20px">Railcar remove from delivery</span>',
+		message: handlebar_message('.remove-railcar-growl'),
 	},
 	{
 		type: 'warning',
