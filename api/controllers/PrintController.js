@@ -91,6 +91,48 @@ module.exports = {
   	});
   },
 
+
+
+  offload: function (req, res) {
+  	var delivery = req.param('delivery');
+  	OffloadReport.findByDelivery(delivery, function (err, railcars) {
+  		if (err) return res.json({ error: err });
+
+  		OffloadReportPrint.query("DELETE FROM " + OffloadReportPrint._tableName, function (err) {
+  			if (err) return res.json({ error: err });
+
+  			_.each(railcars, function (railcar) {
+  				OffloadReportPrint.create(railcar).done(function (err, car) {
+  					if (err) return res.json({ error: err });
+  				});
+  			});
+  			return res.json({ url: 'http://parachemsrv07/Reports/Pages/Report.aspx?ItemPath=/TrainDeliverySystem/OffloadReport' })
+  		})
+  	})
+  },
+
+
+
+  mesure: function (req, res) {
+    var delivery = req.param('delivery');
+    MesureReport.findByDelivery(delivery, function (err, report) {
+      if (err) return res.json({ error: err });
+      
+      MesureReportPrint.query("DELETE FROM " + MesureReportPrint._tableName + " WHERE id=1", function (err) {
+        if (err) return res.json({ error: err });
+        
+        report.id = 1;
+
+        MesureReportPrint.create(report).done(function (err, report) {
+          if (err) return res.json({ error: err });
+          return res.json({ url: 'http://parachemsrv07/Reports/Pages/Report.aspx?ItemPath=/TrainDeliverySystem/MesureReport' })
+        });
+      });
+    });
+  },
+
+
+
   /**
    * Overrides for the settings in `config/controllers.js`
    * (specific to PrintController)

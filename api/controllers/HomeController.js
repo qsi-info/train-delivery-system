@@ -57,7 +57,21 @@ module.exports = {
 		Delivery.findOneById(delivery, function (err, delivery) {
 			if (err) return res.json({ error: err });
 			if (!delivery) return res.view('404');
-			return res.view({ delivery: delivery });
+
+			RailcarInDelivery.findByDelivery(delivery.id, function (err, railcars) {
+				if (err) return res.json({ error: err });
+
+				Operator.find().exec(function (err, operators) {
+					if (err) return res.json({ error: err });
+		
+					return res.view({ 
+						delivery: delivery,
+						operators: operators,
+						railcars: railcars,
+					});
+
+				});
+			});	
 		});
 	},
 

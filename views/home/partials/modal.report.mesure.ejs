@@ -1,0 +1,53 @@
+
+<div class="modal fade window-message window-info" data-backdrop="static" data-keyboard="false" id="ModalMesureReport">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title "><%= __('MesureReport.CompleteForm') %></h4>
+      </div>
+      <form action="" method="post" id="MesureReportForm" autocomplete="off">
+      	<input type="hidden" name="delivery" id="MesureReportDelivery"/>
+	      <div class="modal-body">
+	      <div class="row" >
+					<% sails.config.TrainSystem.rails.forEach(function (rail, i) {  %>
+						<div class="col-sm-3">
+							<h4 style=""><%= rail[0].substring(0, 4) %></h4> 
+						<% for(var j = rail.length; j > 0; j--) { %>
+							<div class="row" style="border-bottom: 1px solid grey; ">
+								<div class="col-sm-1">
+									<%= j %>
+								</div>
+								<div class="col-sm-5">
+									<input type="text" name="<%= rail[j-1] %>_Railcar" class="form-control" value="<%= Utils.find_railcar_by_spot(railcars, rail[j-1]) %>" readonly="readonly"/>
+								</div>
+								<div class="col-sm-6">
+									<select name="<%= rail[j-1] %>_Operator" class="form-control">
+									<option value="" selected=""></option>
+									<% operators.forEach(function (operator, index) { %>
+										<option value="<%= operator.initials %>"><%= operator.name %></option>
+									<% }) %>
+									</select>
+								</div>
+							</div>
+						<% } %>							
+						</div>
+					<% }) %>
+					</div>	      
+
+
+
+				</div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal"><%= __('Close') %></button>
+	        <button type="submit"  class="btn btn-primary"><%= __('Complete') %></button>
+	      </div>
+	    </form>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+

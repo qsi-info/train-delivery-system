@@ -192,6 +192,107 @@ module.exports = {
   },
 
 
+
+
+
+  offload: function (req, res) {
+    var delivery = req.param('delivery');
+    var operator = req.param('operator');
+
+    OffloadReport.query("DELETE FROM " + OffloadReport._tableName + " WHERE delivery=" + delivery, function (err) {
+      if (err) return res.json({ error: err });
+      
+      RailcarInDelivery.findByDelivery(delivery, function (err, railcars) {
+        if (err) return res.json({ error: err });
+
+        _.each(railcars, function (railcar) {
+
+          var informations = Utils.JSONFixParse(railcar.informations);
+
+
+
+          var offloadRailcar = {
+            delivery         : railcar.delivery,
+            number           : railcar.number,
+            product          : informations.Product,
+            billOfLading     : informations.BillofLading,
+            netVolBBL        : railcar.netVolBBL,
+            currentETA       : informations.CurrentETA,
+            origin           : informations.RtOrigin,
+            netVolLTR        : informations.NetVolLtr,
+            destination      : informations.RtDestination,
+            destinationState : informations.DeSt,
+            originState      : informations.OrSt,
+            CLM              : informations.CLM,
+            CLMLocation      : informations.CLMLocation,
+            record           : railcar.id,
+            // adjustedVol      : 
+            // offloadSTPNetVol : 
+            // carrier          : 
+            // orderNo          : 
+            entryType        : 'ORIG',
+            offloadStatus    : railcar.isDefective ? 'Y' : 'N', 
+            operator         : operator,
+            // sourceFileData   : 
+            shipDate         : informations.ShipDate,
+          }
+
+
+          OffloadReport.create(offloadRailcar, function (err, entry) {
+            if (err) return res.json({ error: err });          
+          })
+        })
+        
+        return res.redirect('/delivery/reports/' + delivery);
+    
+      });
+    });
+  },
+
+
+
+  offloadIsComplete: function (req, res) {
+    var delivery = req.param('delivery');
+    OffloadReport.countByDelivery(delivery, function (err, count) {
+      if (err) return res.json({ error: err });
+      if (count < 1) return res.json({ isComplete: false });
+      return res.json({ isComplete: true });
+    });
+  },
+
+
+
+
+  mesure: function (req, res) {
+    var delivery = req.param('delivery');
+    MesureReport.query("DELETE FROM " + MesureReport._tableName + " WHERE delivery=" + delivery, function (err) {
+      if (err) return res.json({ error: err });
+
+      var report = req.body;
+
+      MesureReport.create(report).done(function (err, doneReport) {
+        if (err) return res.json({ error: err });
+        return res.redirect('/delivery/reports/' + delivery);
+      });
+    });
+  },
+
+
+
+
+  mesureIsComplete: function (req, res) {
+    var delivery = req.param('delivery');
+    MesureReport.findOneByDelivery(delivery, function (err, report) {
+      if (err) return res.json({ error: err });
+      if (!report) return res.json({ isComplete: false});
+      return res.json({ isComplete: true });            
+    });
+  },
+
+
+
+
+
   //   ReportInspectionSheet.query('DELETE FROM ' + , function (err) {
   //     if (err) return res.send(500, err);
 

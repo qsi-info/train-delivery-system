@@ -113,3 +113,11 @@
   background: rgb(0,121,154);
   font-size: 20px;
 }
+
+
+
+
+#ModalMesureReport .modal-content {
+  padding-left: 10%;
+  padding-right: 10%;
+}

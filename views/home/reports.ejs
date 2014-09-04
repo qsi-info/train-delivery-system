@@ -143,6 +143,44 @@
               </div>
             </td>
           </tr>
+          <tr id="offloadReportRow">
+            <td><%= __('Report.Offload') %></td>
+            <td id="offloadReportStatus"></td>
+            <td>
+              <div class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                  <%= __('Actions') %> <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                  <li>
+                    <a  id="offloadCompleteLink" data-report="offload"  href="/delivery/reports/offload/<%= delivery.id %>"><%= __('Complete') %></a>
+                  </li>
+                  <li>
+                    <a class="print-link" data-report="offload"  href="/delivery/reports/print/offload?delivery=<%= delivery.id %>"><%= __('Print') %></a>
+                  </li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+          <tr id="mesureReportRow">
+            <td><%= __('Report.Mesure') %></td>
+            <td id="mesureReportStatus"></td>
+            <td>
+              <div class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                  <%= __('Actions') %> <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                  <li>
+                    <a  id="mesureCompleteLink" data-report="mesure"  href="/delivery/reports/mesure/<%= delivery.id %>"><%= __('Complete') %></a>
+                  </li>
+                  <li>
+                    <a class="print-link" data-report="mesure"  href="/delivery/reports/print/mesure?delivery=<%= delivery.id %>"><%= __('Print') %></a>
+                  </li>
+                </ul>
+              </div>
+            </td>
+          </tr>
         </tbody>
       </table>
 
@@ -155,6 +193,8 @@
 </div>
 
 <%- partial('./partials/modal.report.seal.ejs') %>
+<%- partial('./partials/modal.report.offload.ejs') %>
+<%- partial('./partials/modal.report.mesure.ejs') %>
 
 
 <script type="text/javascript">
@@ -206,6 +246,32 @@ window.addEventListener('load', function () {
     } else {
       $('#sealReportRow').addClass('warning');
       $('#sealReportStatus').html('incomplete');
+    }
+  });
+
+
+  // Offload Report
+  socket.get('/_api/report/offloadiscomplete', { delivery: delivery }, function (response) {
+    if (response.error) return console.log(response.error);
+    if (response.isComplete) {
+      $('#offloadReportRow').addClass('success');
+      $('#offloadReportStatus').html('complete');
+    } else {
+      $('#offloadReportRow').addClass('warning');
+      $('#offloadReportStatus').html('incomplete');
+    }
+  });
+
+
+  // Mesure Report
+  socket.get('/_api/report/mesureiscomplete', { delivery: delivery }, function (response) {
+    if (response.error) return console.log(response.error);
+    if (response.isComplete) {
+      $('#mesureReportRow').addClass('success');
+      $('#mesureReportStatus').html('complete');
+    } else {
+      $('#mesureReportRow').addClass('warning');
+      $('#mesureReportStatus').html('incomplete');
     }
   });
 
@@ -285,14 +351,109 @@ window.addEventListener('load', function () {
   $('#ModalSealReport').on('hide.bs.modal', function () {
     $(this).find('#SealReportForm').parsley().reset();
   })
+  $('#ModalOffloadReport').on('hide.bs.modal', function () {
+    $(this).find('#OffloadReportForm').parsley().reset();
+  })
+  $('#ModalMesureReport').on('hide.bs.modal', function () {
+    $(this).find('#MesureReportForm').parsley().reset();
+  })
+
+
+
+
+
+  $('#offloadCompleteLink').on('click', function (e) {
+    e.preventDefault();
+    var report = $(this).attr('data-report');
+    var href = $(this).attr('href');
+    socket.get('/_api/report/' + report + 'iscomplete', { delivery: delivery }, function (response) {
+      if (response.error) return console.log(response.error);
+      if (response.isComplete) {
+        var confirm = new WindowConfirm();
+        confirm.setMessage('This report is already complete, are you sure you want to compile it again?');
+        confirm.setConfirm(function () {
+          show_offload_form(delivery, href);
+        });
+        confirm.show();
+      }
+      else {
+        show_offload_form(delivery, href);
+      }
+    });
+  })
+
+
+
+  $('#mesureCompleteLink').on('click', function (e) {
+    e.preventDefault();
+    var report = $(this).attr('data-report');
+    var href = $(this).attr('href');
+    socket.get('/_api/report/' + report + 'iscomplete', { delivery: delivery }, function (response) {
+      if (response.error) return console.log(response.error);
+      if (response.isComplete) {
+        var confirm = new WindowConfirm();
+        confirm.setMessage('This report is already complete, are you sure you want to compile it again?');
+        confirm.setConfirm(function () {
+          show_mesure_form(delivery, href);
+        });
+        confirm.show();
+      }
+      else {
+        show_mesure_form(delivery, href);
+      }
+    });
+  })
+
+
+
 
 
 
 });
 
 
+/**
+ * show_mesure_form
+ * 
+ * - This function show the mesure form
+ * @param delivery
+ * @param href
+ */
+function show_mesure_form (delivery, href) {
+  $modal = $('#ModalMesureReport');
+  $modal.find('#MesureReportForm').attr('action', href);
+  $modal.find('#MesureReportDelivery').attr('value', delivery);
+  $modal.modal('show'); 
+}
 
 
+
+/**
+ * show_offload_form
+ * 
+ * - This function show the offload form
+ * @param delivery
+ * @param href
+ */
+function show_offload_form (delivery, href) {
+  $modal = $('#ModalOffloadReport');
+  $modal.find('#OffloadReportForm').attr('action', href);
+  $modal.find('#OffloadReportDelivery').attr('value', delivery);
+  $modal.modal('show'); 
+  window.setTimeout(function () {
+    $modal.find('#operator').focus()
+  }, 700);   
+}
+
+
+
+/**
+ * show_seal_form
+ * 
+ * - This function show the seal form
+ * @param delivery
+ * @param href
+ */
 function show_seal_form (delivery, href) {
   $modal = $('#ModalSealReport');
   $modal.find('#SealReportForm').attr('action', href);

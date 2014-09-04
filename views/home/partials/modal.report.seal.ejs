@@ -4,14 +4,14 @@
       <div class="modal-header">
         <h4 class="modal-title "><%= __('SealReport.CompleteForm') %></h4>
       </div>
-      <form action="" method="get" data-parsley-validate="" id="SealReportForm" autocomplete="off">
+      <form action="" method="post" data-parsley-validate="" id="SealReportForm" autocomplete="off">
       	<input type="hidden" name="delivery" id="SealReportDelivery"/>
 	      <div class="modal-body">
 	      	<div class="row">
 	      		<div class="col-xs-4">
 						  <div class="form-group">
 						    <label for="firstSeal"><%= __('FirstSeal') %></label>
-						    <input type="text" name="seal" class="form-control" id="firstSeal" placeholder="<%= __('FirstSeal.Placeholder') %>" required="required"/>
+						    <input type="text" name="seal" class="form-control" id="firstSeal" placeholder="<%= __('FirstSeal.Placeholder') %>" data-parsley-type="integer" required="required"/>
 						  </div>
 
 	      		</div>
