@@ -34,6 +34,12 @@
           <tr>
             <td><%= __('Delivery.Stats.createdAt') %></td><td><%= Utils.formatDate(delivery.createdAt) %></td>
           </tr>
+          <tr>
+            <td><%= __('Delivery.Stats.wagon_count') %></td><td id="wagonCount"></td>
+          </tr>
+          <tr>
+            <td><%= __('Delivery.Stats.baril_count') %></td><td id="barilCount"></td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -155,6 +161,12 @@
 window.addEventListener('load', function () {
 
   var delivery = document.getElementById('DELIVERY_ID').value;
+
+  $('body').addClass('loading');
+
+  update_delivery_stats(delivery, function () {
+    $('body').removeClass('loading');
+  })
 
 
   // Transfer Report
@@ -290,6 +302,57 @@ function show_seal_form (delivery, href) {
     $modal.find('#firstSeal').focus()
   }, 700); 
 }
+
+
+
+/**
+ * show_wagon_count
+ * 
+ * - This function show the updated wagon count
+ * @param railcar
+ */
+function show_wagon_count (delivery, cb) {
+  var cb = typeof cb !== 'undefined' ? cb : function () {};
+  socket.get('/_api/delivery/wagoncount', { delivery: delivery }, function (response) {
+    if (response.error) return console.log(response.error);
+    $('#wagonCount').html(response.count);
+    cb()
+  });
+};
+
+
+
+/**
+ * show_baril_count
+ * 
+ * - This function show the updated baril count
+ * @param railcar
+ */
+function show_baril_count (delivery, cb) {
+  var cb = typeof cb !== 'undefined' ? cb : function () {};
+  socket.get('/_api/delivery/barilcount', { delivery: delivery }, function (response) {
+    if (response.error) return console.log(response.error);
+    $('#barilCount').html(response.count);
+    cb();
+  });
+};
+
+
+/**
+ * update_delivery_stats
+ * 
+ * - This function show the statistics of the current delivery
+ * @param railcar
+ */
+function update_delivery_stats (delivery, cb) {
+  var cb = typeof cb !== 'undefined' ? cb : function () {};
+  show_wagon_count(delivery, function () {
+    show_baril_count(delivery, cb);
+  });
+};
+
+
+
 </script>
 
 
