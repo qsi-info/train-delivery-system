@@ -7,11 +7,28 @@
  -->
 
 <input type="hidden" value="<%= delivery.id %>" id="DELIVERY_ID"/>
+<input type="hidden" value="<%= delivery.status %>" id="DELIVERY_STATUS"/>
+
+
+<% if (delivery.status == 'complete') { %>
+<h1 id="archiveTitle">ARCHIVE</h1>
+<% } %>
 
 <div class="container" id="deliveryStats">
   <div class="row">
-    <h1><a href="/"><%= __('Home') %></a> / <a href="/delivery"><%= __('Deliveries') %></a> / <a href="/delivery/station/<%= delivery.id %>"><%= __('Station') %></a></h1>
+    <h1>
+    	<a href="/"><%= __('Home') %></a> / 
+    	<% if (delivery.status == 'active') { %>
+    	<a href="/delivery"><%= __('Deliveries') %></a> / 
+    	<% } else { %>
+    	<a href="/archives"><%= __('Archives') %></a> / 
+    	<% } %>
+    	<a href="/delivery/station/<%= delivery.id %>"><%= __('Station') %></a>
+    </h1>
   </div>
+
+
+
 
 	<div class="row">
 
@@ -37,12 +54,21 @@
 		<div class="col-md-6 hidden-xs">
 			<div id="menu" class="square">
 				<ul>
+	    	<% if (delivery.status == 'active') { %>
 					<li>
 						<a href="/delivery">
 							<i class="fa fa-save"></i>
 							<h4><%= __('Save') %></h4>
 						</a>
 					</li>
+					<% } else { %>
+					<li>
+						<a href="/archives">
+							<i class="fa fa-archive"></i>
+							<h4><%= __('Archives') %></h4>
+						</a>
+					</li>
+					<% } %>					
 					<li>
 						<a href="/delivery/reports/<%= delivery.id %>">
 							<i class="fa fa-file-text-o print"></i>
@@ -96,6 +122,7 @@ window.addEventListener('load', function () {
 	disable_station();
 
 	var delivery = document.getElementById('DELIVERY_ID').value;
+	var status = document.getElementById('DELIVERY_STATUS').value;
 
 	station_connect(delivery, function (railcars) {
 
@@ -124,7 +151,7 @@ window.addEventListener('load', function () {
 
 		load_delivery_in_station(delivery, function () {
 			activate_typeahead_plugin(railcars);
-			initialize_event_handlers(delivery, railcars);
+			initialize_event_handlers(delivery, railcars, status);
 			enable_station();
 		});
 		
@@ -449,14 +476,14 @@ function update_railcar_status (railcar, status, cb) {
  * @param delivery
  * @param railcars
  */
-function initialize_event_handlers (delivery, railcars) {
+function initialize_event_handlers (delivery, railcars, status) {
 
 	// When click on a spot
 	$('.wagon').on('click', function (e) {
 		e.preventDefault();
 		var spot = $(this).attr('data-spot');
 		var railcar_id = $(this).attr('data-id');
-		if (railcar_id == '') {
+		if (railcar_id == '' && status != 'complete') {
 			reset_add_form();
 			$modal = $('#ModalWagonAdd');
 			$modal.find('.spot-title').html(spot);
@@ -473,6 +500,7 @@ function initialize_event_handlers (delivery, railcars) {
 
 				$modal = $('#ModalWagonRemove');
 				$modal.find("[name='id']").val(railcar.id);
+				$modal.find('#cnGlobalId').html(railcar.CNRailcarID);
 				$modal.find('#removeRailcarNumber').html(railcar.number);
 				$modal.find('#removeRailcarBillOfLading').html(informations.BillofLading);
 				$modal.find('#removeRailcarProduct').html(informations.Product);
@@ -484,6 +512,7 @@ function initialize_event_handlers (delivery, railcars) {
 				$modal.find('#removeRailcarSeal3').html(informations.Seal3);
 				$modal.find('#myonoffswitch').prop('checked', !railcar.isDefective);
 				$modal.find('#myonoffswitch').attr('data-railcar', railcar.id);
+				$modal.find('#editNetVolBBLInput').html(railcar.netVolBBL);
 
 				$editNetVolBBLForm = $('#editNetVolBBLForm');
 				$editNetVolBBLForm.find('#editNetVolBBLRailcarId').val(railcar.id);
@@ -526,6 +555,12 @@ function initialize_event_handlers (delivery, railcars) {
 		})		
 	})	
 
+
+	$('#myonoffswitch').on('click', function (e) {
+		if (status == 'complete') {
+			e.preventDefault();
+		}
+	})
 
 	$('#myonoffswitch').on('change', function (e) {
 		var railcar = $(this).attr('data-railcar');

@@ -68,10 +68,20 @@ module.exports = {
 						delivery: delivery,
 						operators: operators,
 						railcars: railcars,
+						// reports: sails.config.TrainSystem.reports,
 					});
 
 				});
 			});	
+		});
+	},
+
+
+
+	archives: function (req, res) {
+		Delivery.find({ status: 'complete'}).sort('createdAt DESC').exec(function (err, deliveries) {
+			if (err) return res.json(err);
+			return res.view({ deliveries: deliveries });
 		});
 	},
 

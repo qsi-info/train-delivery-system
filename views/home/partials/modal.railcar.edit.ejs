@@ -3,23 +3,31 @@
     <div class="modal-content">
       <div class="modal-header">
         <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> -->
-        <h4 class="modal-title"><%= __('Railcar') %> <strong id="removeRailcarNumber"></strong></h4>
+        <h3 class="modal-title"><%= __('') %> <strong id="removeRailcarNumber"></strong></h3>
       </div>
       <form action="" method="" id="RailcarFormRemove">
 	      <div class="modal-body">
 	      	<input type="hidden" name="id"/>
 					<table class="table">
-						<!-- <caption>Wagon</caption> -->
+						<!-- <caption>GUID: <span id="cnGlobalId"></span></caption> -->
 						<tbody>
+
+							
+<!-- 							<tr>
+								<td><%= __('CN Global ID') %></td><td id="cnGlobalId"></td>
+							</tr>
+ -->							
 							<tr>
 								<td><%= __('Spot') %></td><td id="removeRailcarSpot"></td>
 							</tr>
 							<tr>
 								<td><%= __('Train') %></td><td id="removeRailcarTrain"></td>
 							</tr>
-						<!-- 	<tr>
+							<!--
+							<tr>
 								<td><%= __('Modal.Wagon.Delivery') %></td><td id="removeRailcarDelivery"></td>
-							</tr> -->
+							</tr>
+							-->
 							<tr>
 								<td><%= __('Product.Type') %></td><td id="removeRailcarProduct"></td>
 							</tr>
@@ -28,6 +36,9 @@
 							</tr>
 							<tr>
 								<td><%= __('NetVolBBL') %></td>
+								<% if (delivery.status == 'complete') { %>
+								<td id="editNetVolBBLInput"></td>
+								<% } else { %>
 								<td id="removeRailcarNetVolBBL">
 									<div id="editNetVolBBLForm" class="form-inline">
 										<input type="hidden" id="editNetVolBBLRailcarId"/>
@@ -37,6 +48,7 @@
 										<button type="submit" id="changeNetVolBBLButton" class="btn btn-warning">Modifier</button>											
 									</div>
 								</td>
+								<% } %>
 							</tr>
 							<tr>
 								<td><%= __('Seals') %></td>
@@ -69,7 +81,9 @@
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal"><%= __('Delivery.Modal.Close') %></button>
+					<% if (delivery.status == 'active') { %>
 	        <button type="submit" id="removeCarBtn" class="btn btn-danger"><%= __('Delivery.Modal.RemoveCar') %></button>
+	        <% } %>
 	      </div>
 	    </form>
     </div>

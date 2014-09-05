@@ -1,11 +1,14 @@
 {
 
-	"Menu.Manage" : "Manage deliveries",
+	"Menu.Manage" : "Deliveries",
   "Menu.Create" : "New delivery",
   "Menu.Archives" : "Archives",
   "Menu.Print" : "Print",
   "Menu.Pause" : "Spot",
   "Menu.Delete" : "Delete",
+
+  "Delivery.Archive" : "Archive",
+
 
   "Modal.Admin.Title": "Formulaire d'ajout de train",
   "Modal.Admin.Number.Label": "Numero de wagon",
@@ -60,6 +63,7 @@
 
   "Delivery.Stats.id" : "Identifiant",
   "Delivery.Stats.createdAt" : "Created at",
+  "Delivery.Table.updatedAt" : "Archive date",  
   "Delivery.Stats.wagon_count" : "Number of railcar",
   "Delivery.Stats.baril_count" : "Number of baril",
 

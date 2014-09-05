@@ -20,6 +20,9 @@ module.exports.TrainSystem = {
 	},
 
 
+	reports: ['transfer', 'inspection', 'seal', 'offload', 'mesure'],
+
+
 	SEAL_POSITIONS:  [
 
 		// Seal1 track 55 and 56

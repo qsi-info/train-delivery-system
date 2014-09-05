@@ -21,7 +21,7 @@ module.exports = {
 
 
   count: function (req, res) {
-    Delivery.count(function (err, count) {
+    Delivery.count({ status: 'active' }, function (err, count) {
       if (err) return res.json({ error: err });
       return res.json({ count: count });
     });
@@ -58,6 +58,15 @@ module.exports = {
       if (baril_count == null) baril_count = 0;
       return res.json({ count: baril_count.toFixed(1) });
     });
+  },
+
+
+  archive: function (req, res) {
+    var delivery = req.param('delivery');
+    Delivery.update({ id: delivery }, { status: 'complete' }, function (err, del) {
+      if (err) return res.json({ error: err });
+      return res.json({ url: '/' });
+    })
   },
 
 

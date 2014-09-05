@@ -10,14 +10,14 @@ module.exports = {
 
 	tableName	: 'Delivery',
 	migrate		: 'safe',
-	autoPK		: false,
+	// autoPK		: false,
 
   attributes: {
   	
-    id: { 
-      type: 'integer', 
-      primaryKey: true 
-    },
+    // id: { 
+    //   type: 'integer', 
+    //   primaryKey: true 
+    // },
     
     status: { 
       type: 'string', 
@@ -28,6 +28,18 @@ module.exports = {
 
   },
 
+
+
+  beforeDestroy: function (attrs, done) {
+    var delivery = attrs.where.id;
+    RailcarInDelivery.query("DELETE FROM " + RailcarInDelivery._tableName + " WHERE delivery=" + delivery, function (err) {if (err) return console.log(err);});
+    TransferReport.query("DELETE FROM " + TransferReport._tableName + " WHERE delivery=" + delivery, function (err) {if (err) return console.log(err);});
+    InspectionReport.query("DELETE FROM " + InspectionReport._tableName + " WHERE delivery=" + delivery, function (err) {if (err) return console.log(err);});
+    SealReport.query("DELETE FROM " + SealReport._tableName + " WHERE delivery=" + delivery, function (err) {if (err) return console.log(err);});
+    OffloadReport.query("DELETE FROM " + OffloadReport._tableName + " WHERE delivery=" + delivery, function (err) {if (err) return console.log(err);});
+    MesureReport.query("DELETE FROM " + MesureReport._tableName + " WHERE delivery=" + delivery, function (err) {if (err) return console.log(err);});
+    done();
+  },
 
   // beforeCreate: function (attrs, done) {
   //   var uuid = require('node-uuid');

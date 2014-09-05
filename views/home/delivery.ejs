@@ -27,7 +27,8 @@
 		
 			<div class="table-responsive">
 				<table class="table table-hover table-striped" id="deliveriesTable">
-					<caption><%= __('Delivery.Table.caption') %></caption>
+					<caption style="position: relative;">
+					</caption>
 					<thead>
 						<tr>
 							<th><%= __('Delivery.Table.id') %></th>
@@ -55,15 +56,8 @@
 									    <li>
 									    	<a href="/delivery/reports/<%= delivery.id %>"><%= __('Reports') %></a>
 									    </li>
-									    <!-- <li><a href="/report/transfersheet/<%= delivery.id %>" class="report-transfersheet"><%= __('Delivery.Dropdown.Actions.Print.TransfertSheet') %></a></li> -->
-									    <!-- <li><a href="/report/inspectionsheet/<%= delivery.id %>" class="report-inspectionsheet"><%= __('Delivery.Dropdown.Actions.Print.InspectionSheets') %></a></li> -->
-									    <!-- <li><a href="/report/sealsheet/<%= delivery.id %>" class="report-sealsheet"><%= __('Delivery.Dropdown.Actions.Print.SealSheet') %></a></li> -->
-									    <!-- <li><a href="/report/offloaddata/<%= delivery.id %>" class="report-endday"><%= __('Delivery.Dropdown.Actions.Print.EndDay') %></a></li> -->
-						          <!-- <li><a href="/report/mesure/<%= delivery.id %>" class="report-mesure-link">Imprimer: feuille des mesures</a></li> -->
 									    
-									    <!-- <li class="divider"></li> -->
-									    
-									    <!-- <li><a href="/delivery/archive/<%= delivery.id %>" class="archive-link"><%= __('Delivery.Dropdown.Actions.Archive') %></a></li> -->
+									    <li><a href="javascript:;" data-id="<%= delivery.id %>" class="archive-link"><%= __('Delivery.Dropdown.Actions.Archive') %></a></li>
 									    <li class="destroy-link">
 									    	<a href="javascript:;" data-id="<%= delivery.id %>" class="delivery-delete-btn"><%= __('Delivery.Dropdown.Actions.Destroy') %></a>
 									    </li>
@@ -141,7 +135,74 @@ window.addEventListener('load', function () {
 
 
 
+	$('.archive-link').on('click', function (e) {
+		e.preventDefault();
+		var delivery = $(this).attr('data-id');
+
+		var reports = {};
+
+		get_report_status('transfer', delivery, function (status) {
+			reports['transfer'] = status;
+			get_report_status('inspection', delivery, function (status) {
+				reports['inspection'] = status;
+				get_report_status('seal', delivery, function (status) {
+					reports['seal'] = status;
+					get_report_status('offload', delivery, function (status) {
+						reports['offload'] = status;
+						get_report_status('mesure', delivery, function (status) {
+							reports['mesure'] = status;
+
+							var incompleteReports = [];
+
+
+							$.each(reports, function (report, status) {
+								if (status == 'incomplete') {
+									incompleteReports.push(report);
+								}
+							});
+							// console.log(incompleteReports.length);
+
+							if (incompleteReports.length < 1) {
+					      var confirm = new WindowConfirm();
+					      confirm.setMessage('.confirm-archive-delivery-message');
+					      confirm.setConfirm(function () {
+					        socket.post('/_api/delivery/archive', { delivery: delivery }, function (response) {
+					          if (response.error) return console.log(response.error);
+					          if (response.url) return window.location.href = response.url;
+					        })
+					      });
+					      confirm.show();
+							}
+							else {
+					      reports.delivery = delivery;
+					      var alert = new WindowAlert();
+					      alert.setMessage('.cannot-archive-message', reports);
+					      alert.show();
+					      con
+							}
+						});
+					});
+				});
+			});
+		});
+	});
+
+
+
+
+
 })
+
+
+
+function get_report_status (report, delivery, cb) {
+	socket.get('/_api/report/' + report + 'iscomplete', { delivery: delivery }, function (response) {
+    if (response.error) return console.log(response.error);
+    return response.isComplete ? cb('complete') : cb('incomplete');
+	})
+}
+
+
 </script>
 
 

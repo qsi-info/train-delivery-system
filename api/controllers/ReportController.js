@@ -231,7 +231,7 @@ module.exports = {
             // carrier          : 
             // orderNo          : 
             entryType        : 'ORIG',
-            offloadStatus    : railcar.isDefective ? 'Y' : 'N', 
+            offloadStatus    : railcar.isDefective ? 'N' : 'Y', 
             operator         : operator,
             // sourceFileData   : 
             shipDate         : informations.ShipDate,

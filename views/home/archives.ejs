@@ -1,0 +1,129 @@
+<!-- 
+	
+	Home.Delivery
+
+	* This file is the manage table for the active deliveries
+
+ -->
+
+<div class="container">
+  <div class="row">
+    <h1>
+    	<a href="/"><%= __('Home') %></a> / 
+    	<a href="/archives"><%= __('Archives') %></a>
+    </h1>
+  </div>
+
+	<div class="row">
+		<div class="col-md-12 col-xs-12">
+		
+			<div class="table-responsive">
+				<table class="table table-hover table-striped" id="deliveriesTable">
+					<caption>
+					</caption>
+					<thead>
+						<tr>
+							<th><%= __('Delivery.Table.id') %></th>
+							<th><%= __('Delivery.Table.createdAt') %></th>
+							<th><%= __('Delivery.Table.updatedAt') %></th>
+							<th><%= __('Delivery.Table.wagon_count') %></th>
+							<!-- <th><%= __('Delivery.Table.baril_count') %></th> -->
+							<!-- <th><%= __('Delivery.Table.actions') %></th> -->
+							<th>&nbsp;</th>
+						</tr>
+					</thead>
+					<tbody id="deliveries">
+						<% deliveries.forEach(function (delivery) { %>
+							<tr class="" data-id="<%= delivery.id %>" id="<%= delivery.id %>">
+								<td class="delivery-id"><%= delivery.id %></td>
+								<td class="delivery-id"><%= Utils.formatDate(delivery.createdAt) %></td>
+								<td class="delivery-id"><%= Utils.formatDate(delivery.updatedAt) %></td>
+								<td class="delivery-wagon_count"></td>
+								<td class="delivery-destroy">
+									<div class="btn-group">
+									  <button type="button" class="btn btn-default dropdown-toggle delivery-actions" data-toggle="dropdown">
+									    <%= __('Delivery.Dropdown.Actions') %> <span class="caret"></span>
+									  </button>
+									  <ul class="dropdown-menu" role="menu">
+									  	<li><a href="/delivery/station/<%= delivery.id %>"><%= __('See') %></a></li>
+									    <li>
+									    	<a href="/delivery/reports/<%= delivery.id %>"><%= __('Reports') %></a>
+									    </li>									    
+									    <li class="destroy-link">
+									    	<a href="javascript:;" data-id="<%= delivery.id %>" class="delivery-delete-btn"><%= __('Delivery.Dropdown.Actions.Destroy') %></a>
+									    </li>
+									  </ul>
+									</div>
+								</td>
+							</tr>
+						<% }) %>
+					</tbody>
+				</table>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+<script type="text/javascript">
+window.addEventListener('load', function () {
+
+
+	$('#deliveries tr').on('click', function (e) {
+		if (e.target.nodeName == 'TD') {
+			e.preventDefault();
+			var id = $(this).find('.delivery-id').html();
+			window.location='/delivery/station/' + id;
+			return;		
+		}
+	});
+
+
+
+
+	$('#deliveries tr').each(function (i, tr) {
+		var $row = $(this);
+		var id = $(this).attr('data-id');
+		var $wagonCountElement = $(this).find('.delivery-wagon_count');
+		var $barilCountElement = $(this).find('.delivery-baril_count');
+		socket.get('/_api/delivery/wagoncount', { delivery: id }, function (response) {
+			$wagonCountElement.html(response.count);
+		});
+
+	});
+
+
+
+
+	$('.delivery-delete-btn').on('click', function (e) {
+		e.preventDefault();
+		var delivery = $(this).attr('data-id');
+
+		var confirm = new WindowConfirm();
+		confirm.setMessage('.confirm-delete-delivery-message');
+		confirm.setConfirm(function () {
+			socket.delete('/_api/delivery/' + delivery, function (delivery) {
+				console.log(delivery);
+				$('#' + delivery.id).remove();
+			});
+		});
+		confirm.show();
+	});
+
+
+
+
+
+
+})
+
+
+
+
+</script>
+

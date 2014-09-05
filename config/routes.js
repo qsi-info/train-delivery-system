@@ -35,6 +35,8 @@ module.exports.routes = {
   '/delivery/station/:delivery' : 'HomeController.station',
   '/delivery/reports/:delivery' : 'HomeController.reports',
 
+  'post /delivery/archive' : 'DeliveryController.archive',
+
   '/delivery/reports/transfer/:delivery' : 'ReportController.transfer',
   '/delivery/reports/inspection/:delivery' : 'ReportController.inspection',
   'post /delivery/reports/seal/:delivery' : 'ReportController.seal',
@@ -48,6 +50,8 @@ module.exports.routes = {
   '/delivery/reports/print/offload' : 'PrintController.offload',
   '/delivery/reports/print/mesure' : 'PrintController.mesure',
 
+
+  '/archives' : 'HomeController.archives',
 
   '/switchlang' : 'HomeController.switchLang',
 

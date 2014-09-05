@@ -1,11 +1,16 @@
 {
 
-	"Menu.Manage" : "Gestion des livraisons",
+	"Menu.Manage" : "Livraisons",
   "Menu.Create" : "Nouvelle livraison",
-  "Menu.Archives" : "Consulter les archives",
+  "Menu.Archives" : "Archives",
   "Menu.Print" : "Imprimer",
   "Menu.Pause" : "Arrêter",
   "Menu.Delete" : "Supprimer",
+
+  "Help" : "Aide",
+  "About" : "À propos",
+
+  "Delivery.Archive" : "Archiver",
 
   "Modal.Admin.Title": "Formulaire d'ajout de train",
   "Modal.Admin.Number.Label": "Numero de wagon",
@@ -60,6 +65,7 @@
 
   "Delivery.Stats.id" : "Identifiant",
   "Delivery.Stats.createdAt" : "Date de création",
+  "Delivery.Table.updatedAt" : "Date d'archivage",
   "Delivery.Stats.wagon_count" : "Nombre de wagons",
   "Delivery.Stats.baril_count" : "Nombre de barils",
 
