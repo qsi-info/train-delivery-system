@@ -6,6 +6,10 @@
 
  -->
 
+
+ <h1 id="archiveTitle">ARCHIVES</h1>
+
+
 <div class="container">
   <div class="row">
     <h1>
@@ -105,7 +109,7 @@ window.addEventListener('load', function () {
 		var delivery = $(this).attr('data-id');
 
 		var confirm = new WindowConfirm();
-		confirm.setMessage('.confirm-delete-delivery-message');
+		confirm.setMessage('.confirm-archives-delete-delivery-message');
 		confirm.setConfirm(function () {
 			socket.delete('/_api/delivery/' + delivery, function (delivery) {
 				console.log(delivery);

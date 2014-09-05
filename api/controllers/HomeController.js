@@ -22,6 +22,10 @@ module.exports = {
 		return res.view();
 	},
 
+	help: function (req, res) {
+		return res.view();
+	},
+
 
   createDelivery: function (req, res) {
     Delivery.create({}).done(function (err, delivery) {

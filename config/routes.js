@@ -53,6 +53,8 @@ module.exports.routes = {
 
   '/archives' : 'HomeController.archives',
 
+  '/help' : 'HomeController.help',
+
   '/switchlang' : 'HomeController.switchLang',
 
   // '/delivery'
