@@ -31,7 +31,7 @@ module.exports = {
 
   railcarsFromDelivery: function (req, res) {
     var delivery = req.param('delivery');
-    RailcarInDelivery.query("SELECT number, spot, id, isDefective FROM " + RailcarInDelivery._tableName + " WHERE delivery='" + delivery + "'", function (err, railcars) {
+    RailcarInDelivery.query("SELECT number, spot, id, isDefective, netVolBBL FROM " + RailcarInDelivery._tableName + " WHERE delivery='" + delivery + "'", function (err, railcars) {
       if (err) return res.json({ error: err });
       return res.json(railcars);
     });
@@ -45,7 +45,7 @@ module.exports = {
       if (err) return res.json({ error: err });
       if (updatedRailcars.length < 1) return res.json({ error: 'not found' });
       var updatedRailcar = updatedRailcars[0];
-      RailcarInDelivery.publishUpdate(updatedRailcar.id, { netVolBBL: netVolBBL, delivery: updatedRailcar.delivery }); 
+      RailcarInDelivery.publishUpdate(updatedRailcar.id, { netVolBBL: netVolBBL, delivery: updatedRailcar.delivery, spot: updatedRailcar.spot }); 
       return res.json({ status: 'OK'});
 
     });

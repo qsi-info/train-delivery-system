@@ -45,6 +45,10 @@
   background-color: red !important;
 }
 
+.defective.incorrect {
+  background-color: red !important;
+}
+
 .wagon.defective .railcar, .wagon.incorrect .railcar {
   color: white !important;
 }

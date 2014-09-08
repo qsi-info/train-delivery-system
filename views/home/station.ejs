@@ -136,7 +136,6 @@ window.addEventListener('load', function () {
 		});
 
 		bind_socket_message('railcarindelivery', 'update', function (railcar) {
-			console.log(railcar);
 			if (railcar.delivery && railcar.delivery == delivery) {
 				update_delivery_stats(delivery);
 				update_railcar_view(railcar);
@@ -197,9 +196,7 @@ function enable_station () {
  */
 function station_connect (delivery, cb) {
 	socket.get('/_api/subscribe/delivery/', { delivery: delivery }, function (response) {
-		console.log(response);
 		socket.get('/_api/subscribe/railcar', { delivery: delivery }, function (response) { 
-			console.log(response); 
 			get_close_railcars(cb);
 		});
 	});
@@ -232,7 +229,6 @@ function get_close_railcars (cb) {
  */
 function bind_socket_message (model, verb, cb) {
 	socket.on('message', function (message) {
-		console.log(message);
 		if (message.model && message.model == model) {
 			if (message.verb && message.verb == verb) {
 				return (message.data) ? cb(message.data) : cb(message);
@@ -388,9 +384,11 @@ function add_railcar_to_spot (railcar) {
 	$spot.attr('data-id', railcar.id);
 	$spot.find('.railcar').html(railcar.number);
 	$spot.addClass('occupy');
-	// console.log(railcar);
 	if (railcar.isDefective) {
 		$spot.addClass('defective');
+	}
+	if (railcar.netVolBBL < 500 || railcar.netVolBBL > 800) {
+		$spot.addClass('incorrect');
 	}
 }
 
@@ -408,7 +406,7 @@ function remove_railcar_from_spot (railcar_id) {
 	$spot.find('.railcar').html('');
 	$spot.removeClass('occupy');
 	$spot.removeClass('defective');
-
+	$spot.removeClass('incorrect');
 }
 
 
@@ -491,8 +489,6 @@ function remove_railcar_from_delivery (railcar_id, cb) {
  * @param netVolBBL
  */
 function update_railcar_netvolBBL (railcar, netVolBBL, cb) {
-	console.log(railcar);
-	console.log(netVolBBL);
 	socket.get('/_api/railcarindelivery/updatenetvolbbl', { id: railcar, netVolBBL: netVolBBL }, function (response) {
 		if (response.error) return console.log(response.error);
 		cb(response);
@@ -511,7 +507,6 @@ function update_railcar_netvolBBL (railcar, netVolBBL, cb) {
  * @param netVolBBL
  */
 function update_railcar_status (railcar, status, cb) {
-	console.log(status);
 	socket.get('/_api/railcarindelivery/updatestatus', { railcar: railcar, status: status }, function (response) {
 		if (response.error) return console.log(response.error);
 		cb(response);
@@ -550,8 +545,6 @@ function initialize_event_handlers (delivery, railcars, status) {
 			get_railcar_from_delivery(railcar_id, function (railcar) {
 
 				var informations = $.parseJSON(railcar.informations);
-
-				console.log(informations);
 
 				$modal = $('#ModalWagonRemove');
 				$modal.find("[name='id']").val(railcar.id);
@@ -605,7 +598,7 @@ function initialize_event_handlers (delivery, railcars, status) {
 		var $editNetVolBBLForm = $('#editNetVolBBLForm');
 		var railcar = $editNetVolBBLForm.find('#editNetVolBBLRailcarId').val();
 		var netVolBBL = $editNetVolBBLForm.find('#editNetVolBBLInput').val();
-		update_railcar_netvolBBL(railcar, netVolBBL, function () {
+		update_railcar_netvolBBL(railcar, netVolBBL, function (updatedRailcar) {
 			$('#ModalWagonRemove').modal('hide');
 		})		
 	})	
@@ -620,8 +613,6 @@ function initialize_event_handlers (delivery, railcars, status) {
 	$('#myonoffswitch').on('change', function (e) {
 		var railcar = $(this).attr('data-railcar');
 		var status = !$(this).prop('checked');
-
-		console.log(railcar);
 
 		update_railcar_status(railcar, status, function () {
 			$('#ModalWagonRemove').modal('toggle');
@@ -782,14 +773,28 @@ function update_delivery_stats (delivery, cb) {
 
 
 function update_railcar_view (railcar) {
-	if (railcar.isDefective === 'undefined' || !railcar.spot) return;
+	console.log('updated railcar: ', railcar);
+	if (!railcar.spot) return;
+
 	var $spot = $('#'+railcar.spot);
-	if (railcar.isDefective) {
-		$spot.addClass('defective');
+
+	if (railcar.isDefective !== 'undefined') {
+		if (railcar.isDefective) {
+			$spot.addClass('defective');
+		}
+		else {
+			$spot.removeClass('defective');		
+		}		
 	}
-	else {
-		$spot.removeClass('defective');		
+	if (railcar.netVolBBL) {
+		if (window.parseInt(railcar.netVolBBL) < 500 || window.parseInt(railcar.netVolBBL) > 800) {
+		$spot.addClass('incorrect');
+		}
+		else {
+			$spot.removeClass('incorrect');
+		}
 	}
+
 }
 
 
