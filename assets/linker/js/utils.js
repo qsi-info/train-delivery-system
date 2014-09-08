@@ -156,6 +156,62 @@ var WindowConfirm = function () {
 
 
 
+
+
+
+
+
+var WindowPrompt = function () {
+  var $modal = $('#prompt');
+  var $message = $('#promptMessage');
+
+  $modal.on('hide.bs.modal', function () {
+    $('#promptConfirmButton').off('click');
+    $('#promptCloseButton').off('click');
+  })
+
+  return {
+
+    setMessage: function (selector, variables) {
+      var lang = $('html').attr('lang');
+      var variables = typeof variables !== 'undefined' ? variables : {};
+
+      var source = $(selector+'[lang="'+lang+'"]').html();
+      var template = Handlebars.compile(source);
+      $message.html(template(variables));
+    },
+
+    setConfirm: function (cb) {
+      var cb = typeof cb !== 'undefined' ? cb : function () {};
+      $('#confirmConfirmButton').on('click', function (e) {
+        e.preventDefault();
+        $modal.modal('hide');
+        cb(true);
+      })
+    },
+
+    setClose: function (cb) {
+      var cb = typeof cb !== 'undefined' ? cb : function () {};
+      $('#confirmCloseButton').on('click', function (e) {
+        e.preventDefault();
+        cb(false);
+        $modal.modal('hide');
+      });
+    },
+
+    show: function () {
+      $modal.modal('show');
+    },
+
+  }
+
+
+};
+
+
+
+
+
 var handlebar_message = function (selector, variables) {
   var lang = $('html').attr('lang');
   var variables = typeof variables !== 'undefined' ? variables : {};

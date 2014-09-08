@@ -6,6 +6,11 @@
   "Menu.Print" : "Imprimer",
   "Menu.Pause" : "Arrêter",
   "Menu.Delete" : "Supprimer",
+  "Menu.Search" : "Rechercher",
+"Menu.Admin" : "Administrateur",
+
+
+  "Railcar.Search" : "Recherche un wagon dans une livraison",
 
   "Help" : "Aide",
   "About" : "À propos",

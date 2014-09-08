@@ -6,6 +6,12 @@
   "Menu.Print" : "Print",
   "Menu.Pause" : "Spot",
   "Menu.Delete" : "Delete",
+  "Menu.Search" : "Search",
+  "Menu.Admin" : "Admin",
+
+
+  "Railcar.Search" : "Search in railcar in delivery",
+
 
   "Delivery.Archive" : "Archive",
 

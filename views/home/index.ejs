@@ -36,6 +36,18 @@
 							<h4><%= __('Menu.Archives') %></h4>
 						</a>
 					</li>
+					<li>
+						<a href="/search">
+							<i class="fa fa-search"></i>
+							<h4><%= __('Menu.Search') %></h4>
+						</a>
+					</li>
+					<li>
+						<a href="/admin" id="adminLink">
+							<i class="fa fa-lock"></i>
+							<h4><%= __('Menu.Admin') %></h4>
+						</a>
+					</li>
 					<!--
 					<li>
 						<a href="/help">
@@ -71,6 +83,27 @@ window.addEventListener('load', function () {
 			$('#deliveryCountNotification').html(response.count);
 		}
 	});
+
+
+  $('#adminLink').on('click', function (e) {
+    e.preventDefault();
+    var $adminModal = $('#adminModal')
+    $adminModal.modal('show');
+  });
+
+
+  $('#adminLoginForm').on('submit', function (e) {
+    e.preventDefault();
+    var password = document.getElementById('password_admin').value;
+    $.post('/admin/login', { password: password }, function (response) {
+      if (response.status == 200) {
+        window.location.href = "/admin";
+      }
+      else {
+        window.alert('ACCESS DENIED !');
+      }
+    })
+  })
 
 
 })

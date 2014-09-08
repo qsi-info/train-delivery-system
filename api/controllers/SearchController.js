@@ -1,5 +1,5 @@
 /**
- * AdminController
+ * SearchController
  *
  * @module      :: Controller
  * @description	:: A set of functions called `actions`.
@@ -17,19 +17,19 @@
 
 module.exports = {
     
-  	
-  query: function (req, res) {
-  	var query = req.param('query');
-  	Delivery.query(query, function (err, results) {
-  		if (err) return res.json({ error: err});
-  		return res.json(results);
-  	});
-  },
+  
+	railcar: function (req, res) {
+		var number = req.param('number');
+		RailcarInDelivery.query("SELECT delivery, status, number, spot FROM railcarindelivery INNER JOIN delivery ON delivery.id = railcarindelivery.delivery WHERE railcarindelivery.number LIKE'%" + number + "%' ORDER BY delivery.status ASC", function (err, results) {
+			if (err) return res.json(err);
+			return res.json(results);
+		})
+	},
 
 
   /**
    * Overrides for the settings in `config/controllers.js`
-   * (specific to AdminController)
+   * (specific to SearchController)
    */
   _config: {}
 

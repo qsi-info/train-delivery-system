@@ -20,6 +20,8 @@ module.exports.TrainSystem = {
 	},
 
 
+	ADMIN_PASSWORD: 'alex',
+
 	reports: ['transfer', 'inspection', 'seal', 'offload', 'mesure'],
 
 

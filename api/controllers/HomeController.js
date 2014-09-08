@@ -26,6 +26,26 @@ module.exports = {
 		return res.view();
 	},
 
+	admin: function (req, res) {
+		return res.view();
+	},
+
+	search: function (req, res) {
+		return res.view();
+	},
+
+  adminLogin: function (req, res) {
+    var password = req.param('password');
+    if (password == sails.config.TrainSystem.ADMIN_PASSWORD) {
+      return res.send({ status: 200 });
+    }
+    else {
+      return res.send({ status: 403 });
+    }
+  },
+
+
+
 
   createDelivery: function (req, res) {
     Delivery.create({}).done(function (err, delivery) {

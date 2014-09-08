@@ -286,15 +286,49 @@ function add_railcar_to_delivery (railcarNumber, spot, delivery, cb) {
 				socket.get('/_api/railcarindelivery/isalreadyused', { cn_id: railcar.id }, function (results) {
 					if (results.error) return console.log(results.error);
 					if (results.isAlreadyUsed) {
-						$('#ModalWagonAdd').modal('hide');
-						var alert = new WindowAlert();
-						alert.setMessage('.railcar-already-used-message', {
-							railcar: results.railcar.number,
-							delivery: results.railcar.delivery,
-							spot: results.railcar.spot,
-						});
-						alert.show();
-						return;						
+						// Check if the delivery is complete
+						get_delivery_informations(results.railcar.delivery, function (railcarDelivery) {
+							if (railcarDelivery.status == 'complete') {
+								$('#ModalWagonAdd').modal('hide');								
+								var confirm = new WindowConfirm();
+								confirm.setMessage('.archive-railcar-already-used', {
+									railcar: results.railcar.number,
+									delivery: results.railcar.delivery,
+									spot: results.railcar.spot,
+									billOfLading: $.parseJSON(results.railcar.informations.replace(/'/ig, '"')).BillofLading,
+								});
+								confirm.setConfirm(function () {
+
+									var railcarToAdd = {
+										delivery     : delivery,
+										spot         : spot,
+										CNRailcarID  : railcar.id,
+										number       : railcar.Railcar,
+										netVolBBL    : railcar.NetVolBBL,
+										isDefective  : (results.railcar && results.railcar.isDefective) ? true : false,
+										informations : railcar,
+									};
+
+									socket.post('/_api/railcarindelivery', railcarToAdd, function (results) {
+										cb(results);
+									});
+
+								})
+								confirm.show();
+								return;
+							} 
+							else {
+								$('#ModalWagonAdd').modal('hide');
+								var alert = new WindowAlert();
+								alert.setMessage('.railcar-already-used-message', {
+									railcar: results.railcar.number,
+									delivery: results.railcar.delivery,
+									spot: results.railcar.spot,
+								});
+								alert.show();
+								return;				
+							}
+						})
 					}
 
 					if (results.isAvailable) {
@@ -335,6 +369,10 @@ function add_railcar_to_delivery (railcarNumber, spot, delivery, cb) {
 		}
 	});
 }
+
+
+
+
 
 
 
@@ -407,6 +445,23 @@ function get_railcar_from_delivery (railcar_id, cb) {
 			response.informations = response.informations.replace(/'/ig, '"');
 		}
 		cb(response);
+	});
+}
+
+
+
+
+/**
+ * get_delivery_informations
+ * 
+ * - This function get the railcar in delivery with all the informations related
+ * @param railcar_id
+ * @param cb
+ */
+function get_delivery_informations (delivery, cb) {
+	socket.get('/_api/delivery/' + delivery, function (response) {
+		if (response.status && response.status == 404) return window.alert('Delivery not found, id: ' + delivery);
+		return cb(response);
 	});
 }
 

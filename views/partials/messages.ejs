@@ -44,20 +44,29 @@
 
 
 <script class="railcar-already-used-message" type="text/x-handlebars-template" lang="en">
-	<p>Railcar <b>{{railcar}}</b> is already used in <a href="/delivery/station/{{delivery}}">delivery {{delivery}}</a> at spot <b>{{spot}}</b></p>
+	<p>Railcar <b>{{railcar}}</b> is already used in an <a href="/delivery/station/{{delivery}}">active delivery {{delivery}}</a> at spot <b>{{spot}}</b></p>
 </script>
 
 <script class="railcar-already-used-message" type="text/x-handlebars-template" lang="fr">
-	<p>Le wagon <b>{{railcar}}</b> est déjà utilisé dans la <a href="/delivery/station/{{delivery}}">livraison {{delivery}}</a> à l&apos;emplacement <b>{{spot}}</b></p>
+	<p>Le wagon <b>{{railcar}}</b> est déjà utilisé dans la <a href="/delivery/station/{{delivery}}">livraison active {{delivery}}</a> à l&apos;emplacement <b>{{spot}}</b></p>
 </script>
 
+
+
+<script class="archive-railcar-already-used" type="text/x-handlebars-template" lang="en">
+	<p>Railcar <b>{{railcar}}</b> is already used in an <a href="/delivery/station/{{delivery}}"> archvive delivery {{delivery}}</a> at spot <b>{{spot}}</b>. Verify that the Bill Of Lading <b>{{billOfLading}}</b> is the same. If yes, you can add the railcar in this delivery.</p>
+</script>
+
+<script class="archive-railcar-already-used" type="text/x-handlebars-template" lang="fr">
+	<p>Le wagon <b>{{railcar}}</b> est déjà utilisé dans la <a href="/delivery/station/{{delivery}}">livraison archvivée {{delivery}}</a> à l&apos;emplacement <b>{{spot}}</b>. Vérifier que le Billet de Transfer <b>{{billOfLading}}</b> est bien le même afin. Si oui, vous pouvez ajouter le wagon dans cette livraison.</p>
+</script>
 
 
 
 
 
 <script class="defective-railcar-message" type="text/x-handlebars-template" lang="en">
-	<p>The railcar <b>{{railcar}}</b> is already used in  <a href="/delivery/station/{{delivery}}">delivery {{delivery}}</a>, but it is mark as DEFECTIVE. Do you still want to add it to this delivery ? If this is not a mistake, do not remove the defective railcar from the other delivery.</p>
+	<p>The railcar <b>{{railcar}}</b> is already used in <a href="/delivery/station/{{delivery}}">delivery {{delivery}}</a>, but it is mark as DEFECTIVE. Do you still want to add it to this delivery ? If this is not a mistake, do not remove the defective railcar from the other delivery.</p>
 	</script>
 
 <script class="defective-railcar-message" type="text/x-handlebars-template" lang="fr">
@@ -194,6 +203,16 @@
 
 <script class="confirm-archives-delete-delivery-message" type="text/x-handlebars-template" lang="fr">
 	<p>Êtes-vous certain de vouloir archiver cette livraison? Tous les rapports reliés à cette livraison seront aussi supprimés.</p>
+</script>
+
+
+
+<script class="admin-query-confirm" type="text/x-handlebars-template" lang="en">
+	<p>Are you sure you want to <b>{{query}}</b>?
+</script>
+
+<script class="admin-query-confirm" type="text/x-handlebars-template" lang="fr">
+	<p>Êtes-vous certain de vouloir <b>{{query}}</b>?
 </script>
 
 

@@ -55,7 +55,16 @@ module.exports.routes = {
 
   '/help' : 'HomeController.help',
 
+  '/admin' : 'HomeController.admin',
+
+  '/search' : 'HomeController.search',
+
+  'post /admin/query' : 'AdminController.query',
+
   '/switchlang' : 'HomeController.switchLang',
+
+
+  'post /admin/login' : 'HomeController.adminLogin',
 
   // '/delivery'
 

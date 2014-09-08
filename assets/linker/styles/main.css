@@ -205,11 +205,78 @@ a[disabled] {
 
 
 
+#filterInput {
+  margin-top: 15px;
+}
+
+
+
+
+#deliveryList {
+  margin: 25px;
+  font-size: 20px;
+
+  /*background-color: rgba(182, 182, 182, 0.7);*/
+}
+
+
+#deliveryList a.active {
+  color: green !important;
+}
+
+#deliveryList a.active:hover {
+  color: #e51400 !important
+
+}
 
 
 
 
 
+ .btn {
+
+  /*background-color: rgba(182, 182, 182, 0.7);*/
+  background-image: none;
+  background-repeat: no-repeat;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  border-radius: 0;
+  box-shadow: none;
+  color: white;
+  filter: none;
+  font-weight: bold;
+  text-shadow: none;
+  min-width: 120px;
+}
+
+ .btn-default {
+ background-color: rgba(182, 182, 182, 0.7);
+ color: black;
+ 
+}
+ .btn:hover, .btn:focus  {
+  color: black;
+}
+ .btn-default:hover, .btn-default:focus  {
+  background-color: #e6e6e6;
+}
+
+
+
+
+
+.btn-primary {
+  background-color: #59008c;
+  background-image: none;
+  background-repeat: no-repeat;
+  border-color: grey;
+  /*color: #fff;*/
+  filter: none;  
+}
+
+.btn-primary:hover {
+  background-color: #781096;
+  /*border-color: #781096;*/
+}
 
 
 
