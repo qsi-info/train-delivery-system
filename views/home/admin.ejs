@@ -44,6 +44,7 @@ window.addEventListener('load', function () {
 		e.preventDefault();
 		var query = $('#query').val();
 
+		$('body').addClass('loading');
 		var confirm = new WindowConfirm();
 		confirm.setMessage('.admin-query-confirm', {
 			query: query,
@@ -57,6 +58,7 @@ window.addEventListener('load', function () {
 					return $log.html('query executed');
 				}
 				$log.html(syntaxHighlight(message));
+				$('body').removeClass('loading');
 			});	
 		});
 		return confirm.show();
