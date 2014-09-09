@@ -606,17 +606,14 @@ function initialize_event_handlers (delivery, railcars, status) {
 
 	$('#myonoffswitch').on('click', function (e) {
 		if (status == 'complete') {
-			e.stopImmediatePropagation();
+			e.preventDefault();
 			return false;
 		}
 	})
 
 	$('#myonoffswitch').on('change', function (e) {
-		if (status == 'complete') {
-			e.stopImmediatePropagation();
-			return false;
-		}
-		else {
+		console.log(status);
+		if (status == 'active') {
 			var railcar = $(this).attr('data-railcar');
 			var status = !$(this).prop('checked');
 
