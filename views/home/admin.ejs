@@ -51,6 +51,7 @@ window.addEventListener('load', function () {
 		})
 		confirm.setConfirm(function () {
 			socket.post('/admin/query', { query: query }, function (message) {
+				$('body').removeClass('loading');
 				if (message !== null && message.code) {
 					return $log.html(syntaxHighlight(message));
 				}
@@ -58,7 +59,6 @@ window.addEventListener('load', function () {
 					return $log.html('query executed');
 				}
 				$log.html(syntaxHighlight(message));
-				$('body').removeClass('loading');
 			});	
 		});
 		return confirm.show();
