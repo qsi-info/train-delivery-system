@@ -606,21 +606,24 @@ function initialize_event_handlers (delivery, railcars, status) {
 
 	$('#myonoffswitch').on('click', function (e) {
 		if (status == 'complete') {
-			e.preventDefault();
+			e.stopImmediatePropagation();
+			return false;
 		}
 	})
 
 	$('#myonoffswitch').on('change', function (e) {
 		if (status == 'complete') {
-			e.preventDefault();
-			return
+			e.stopImmediatePropagation();
+			return false;
 		}
-		var railcar = $(this).attr('data-railcar');
-		var status = !$(this).prop('checked');
+		else {
+			var railcar = $(this).attr('data-railcar');
+			var status = !$(this).prop('checked');
 
-		update_railcar_status(railcar, status, function () {
-			$('#ModalWagonRemove').modal('toggle');
-		});
+			update_railcar_status(railcar, status, function () {
+				$('#ModalWagonRemove').modal('toggle');
+			});		
+		}
 
 	});
 
