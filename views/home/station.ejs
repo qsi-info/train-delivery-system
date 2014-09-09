@@ -612,11 +612,12 @@ function initialize_event_handlers (delivery, railcars, status) {
 	})
 
 	$('#myonoffswitch').on('change', function (e) {
+		window.alert(status);
 		if (status != 'complete') {
 			var railcar = $(this).attr('data-railcar');
-			var status = !$(this).prop('checked');
+			var railcarStatus = !$(this).prop('checked');
 
-			update_railcar_status(railcar, status, function () {
+			update_railcar_status(railcar, railcarStatus, function () {
 				$('#ModalWagonRemove').modal('toggle');
 			});		
 		}
