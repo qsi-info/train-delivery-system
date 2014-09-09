@@ -612,7 +612,7 @@ function initialize_event_handlers (delivery, railcars, status) {
 	})
 
 	$('#myonoffswitch').on('change', function (e) {
-		if (status == 'active' || !status) {
+		if (status != 'complete') {
 			var railcar = $(this).attr('data-railcar');
 			var status = !$(this).prop('checked');
 
