@@ -1,0 +1,27 @@
+<div class="modal fade window-message window-info" data-backdrop="static" data-keyboard="false" id="ModalOperatorAdd">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title spot-title"></h4>
+      </div>
+      <form action="/_api/operator/create" method="post" data-parsley-validate="" id="OperatorAddForm" autocomplete="off">
+	      <div class="modal-body">
+					<div class="form-group">
+						<label><%= __('Operator.Name') %></label>
+		      	<input type="text" name="name" class="form-control" placeholder="<%= __('Operator.Name') %>"/>
+					</div>	      	
+
+					<div class="form-group">
+						<label><%= __('Operator initials') %></label>
+		      	<input type="text" name="initials" class="form-control" placeholder="<%= __('Operator initials') %>"/>
+					</div>	      	
+
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal"><%= __('Close') %></button>
+	        <button type="submit" id="addOperatorButton" class="btn btn-primary"><%= __('Create') %></button>
+	      </div>
+	    </form>
+    </div>
+  </div>
+</div>

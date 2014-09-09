@@ -27,7 +27,10 @@ module.exports = {
 	},
 
 	admin: function (req, res) {
-		return res.view();
+		Operator.find().exec(function (err, operators) {
+			if (err) return res.json({ error: err });
+			return res.view({ operators: operators });
+		})
 	},
 
 	search: function (req, res) {

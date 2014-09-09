@@ -1,5 +1,6 @@
 <div class="container" id="deliveryStats">
 
+
   <div class="row">
     <h1>
     	<a href="/"><%= __('Home') %></a> / 
@@ -8,29 +9,98 @@
   </div>
 
 
-	<div class="row">
-		<div class="col-md-6">
-			<form id="queryForm" class="form">
-				<div class="form-group">
-					<label for="query">Custom query</label>
-					<textarea class="form-control" rows="5" id="query"></textarea>
-				</div>
-				<button type="submit" class="btn btn-primary">Submit</button>
+<!-- Nav tabs -->
+<ul class="nav nav-tabs" role="tablist">
+  <li class="active"><a href="#operators" role="tab" data-toggle="tab"><%= __('Operators') %></a></li>
+  <li><a href="#query" role="tab" data-toggle="tab"><%= __('Database') %></a></li>
+</ul>
 
-			</form>
+<!-- Tab panes -->
+<div class="tab-content">
+
+  <div class="tab-pane active" id="operators">
+  	<div class="row">
+  		<div class="col-sm-6">
+		  	<table class="table">
+		  		<thead>
+		  			<tr>
+		  				<th><%= __('Name') %></th>
+		  				<th><%= __('Initials') %></th>
+		  			</tr>
+		  		</thead>
+		  		<tbody>
+			  	<% operators.forEach(function (operator) { %> 
+			  		<tr>
+			  			<td><%= operator.name %></td>
+			  			<td><%= operator.initials %></td>
+							<td class="">
+								<div class="btn-group">
+								  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+								    <%= __('Actions') %> 
+								    <span class="caret"></span>
+								  </button>
+								  <ul class="dropdown-menu" role="menu">
+								  	<!--
+								  	<li>
+								  		<a class="edit-operator" data-id="<%= operator.id %>" href="javascript:;"><%= __('Edit') %></a>
+								  	</li>
+								  		-->
+								    <li>
+								    	<a class="delete-operator" data-id="<%= operator.id %>" href="javascript:;"><%= __('Delete') %></a>
+								    </li>						    
+								  </ul>
+								</div>
+							</td>
+			  		</tr>
+			  	<%}) %>
+		  		</tbody>
+		  	</table>
+
+  			<button id="newOperatorButton" class="btn btn-primary"><%= __('New Operator') %></button>
+
+
+  		</div>
+  	</div>
+  </div>
+
+
+  <div class="tab-pane" id="query">
+		<div class="row">
+			<div class="col-md-6">
+				<form id="queryForm" class="form">
+					<div class="form-group">
+						<label for="query">Custom query</label>
+						<textarea class="form-control" rows="5" id="query"></textarea>
+					</div>
+					<button type="submit" class="btn btn-primary">Submit</button>
+
+				</form>
+			</div>
 		</div>
-	</div>
 
 
-	<div class="row">
-		<div class="col-sm-12">
-			<br/>
-			<pre id="log"></pre>
+		<div class="row">
+			<div class="col-sm-12">
+				<br/>
+				<pre id="log"></pre>
+			</div>
 		</div>
-	</div>
+  </div>
+
+
 
 </div>
 
+
+
+
+
+
+
+</div>
+
+
+<%- partial('./partials/modal.operator.add.ejs') %>
 
 <script type="text/javascript">
 window.addEventListener('load', function () {
@@ -64,6 +134,34 @@ window.addEventListener('load', function () {
 		return confirm.show();
 	})
 
+
+
+
+
+	$('#newOperatorButton').on('click', function (e) {
+		e.preventDefault();
+		$('#ModalOperatorAdd').modal('show');
+	})
+
+
+	$('#OperatorAddForm').on('submit', function (e) {
+		e.preventDefault();
+		var name = $(this).find('[name="name"]').val();
+		var initials = $(this).find('[name="initials"]').val();
+		socket.post('/_api/operator', { name: name, initials: initials }, function (response) {
+			return window.location.reload();
+		})
+	})
+
+
+
+	$('.delete-operator').on('click', function (e) {
+		e.preventDefault();
+		var id = $(this).attr('data-id');
+		socket.delete('/_api/operator/' + id, function (response) {
+			return window.location.reload();			
+		});
+	});
 
 
 
