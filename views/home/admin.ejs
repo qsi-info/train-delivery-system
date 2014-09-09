@@ -12,7 +12,7 @@
 <!-- Nav tabs -->
 <ul class="nav nav-tabs" role="tablist">
   <li class="active"><a href="#operators" role="tab" data-toggle="tab"><%= __('Operators') %></a></li>
-  <li><a href="#query" role="tab" data-toggle="tab"><%= __('Database') %></a></li>
+  <li><a href="#queryTab" role="tab" data-toggle="tab"><%= __('Database') %></a></li>
 </ul>
 
 <!-- Tab panes -->
@@ -64,7 +64,7 @@
   </div>
 
 
-  <div class="tab-pane" id="query">
+  <div class="tab-pane" id="queryTab">
 		<div class="row">
 			<div class="col-md-6">
 				<form id="queryForm" class="form">
@@ -131,6 +131,9 @@ window.addEventListener('load', function () {
 				$log.html(syntaxHighlight(message));
 			});	
 		});
+		confirm.setClose(function () {
+			$('body').removeClass('loading');			
+		})
 		return confirm.show();
 	})
 
