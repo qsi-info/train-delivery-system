@@ -102,7 +102,7 @@
             <td id="transferReportStatus"></td>
             <td>
               <% if (delivery.status == 'complete') { %>
-                <a class="print-link btn btn-default" data-report="transfer" href="/delivery/reports/print/transfer?delivery=<%= delivery.id %>"><%= __('Print') %></a>
+                <a class="print-link btn btn-default" data-report="Transfer" href="/delivery/reports/print/transfer?delivery=<%= delivery.id %>"><%= __('Print') %></a>
               <% } else { %>
               <div class="btn-group">
                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
@@ -110,10 +110,10 @@
                 </button>
                 <ul class="dropdown-menu" role="menu">
                   <li>
-                    <a class="complete-link" data-report="transfer" id="tranferCompleteLink" href="/delivery/reports/transfer/<%= delivery.id %>"><%= __('Complete') %></a>
+                    <a class="complete-link" data-report="Transfer" id="tranferCompleteLink" href="/delivery/reports/transfer/<%= delivery.id %>"><%= __('Complete') %></a>
                   </li>
                   <li>
-                    <a class="print-link" data-report="transfer" href="/delivery/reports/print/transfer?delivery=<%= delivery.id %>"><%= __('Print') %></a>
+                    <a class="print-link" data-report="Transfer" href="/delivery/reports/print/transfer?delivery=<%= delivery.id %>"><%= __('Print') %></a>
                   </li>
                 </ul>
               </div>
@@ -125,7 +125,7 @@
             <td id="inspectionReportStatus"></td>
             <td>
               <% if (delivery.status == 'complete') { %>
-                <a class="print-link btn btn-default" data-report="inspection"  href="/delivery/reports/print/inspection?delivery=<%= delivery.id %>"><%= __('Print') %></a>
+                <a class="print-link btn btn-default" data-report="Inspection"  href="/delivery/reports/print/inspection?delivery=<%= delivery.id %>"><%= __('Print') %></a>
               <% } else { %>
               <div class="btn-group">
                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
@@ -133,10 +133,10 @@
                 </button>
                 <ul class="dropdown-menu" role="menu">
                   <li>
-                    <a class="complete-link" data-report="inspection" id="inspectionCompleteLink"  href="/delivery/reports/inspection/<%= delivery.id %>"><%= __('Complete') %></a>
+                    <a class="complete-link" data-report="Inspection" id="inspectionCompleteLink"  href="/delivery/reports/inspection/<%= delivery.id %>"><%= __('Complete') %></a>
                   </li>
                   <li>
-                    <a class="print-link" data-report="inspection"  href="/delivery/reports/print/inspection?delivery=<%= delivery.id %>"><%= __('Print') %></a>
+                    <a class="print-link" data-report="Inspection"  href="/delivery/reports/print/inspection?delivery=<%= delivery.id %>"><%= __('Print') %></a>
                   </li>
                 </ul>
               </div>
@@ -148,7 +148,7 @@
             <td id="sealReportStatus"></td>
             <td>
               <% if (delivery.status == 'complete') { %>
-                <a class="print-link btn btn-default" data-report="seal"  href="/delivery/reports/print/seal?delivery=<%= delivery.id %>"><%= __('Print') %></a>
+                <a class="print-link btn btn-default" data-report="Seal"  href="/delivery/reports/print/seal?delivery=<%= delivery.id %>"><%= __('Print') %></a>
               <% } else { %>
               <div class="btn-group">
                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
@@ -156,10 +156,10 @@
                 </button>
                 <ul class="dropdown-menu" role="menu">
                   <li>
-                    <a  id="sealCompleteLink" data-report="seal"  href="/delivery/reports/seal/<%= delivery.id %>"><%= __('Complete') %></a>
+                    <a  id="sealCompleteLink" data-report="Seal"  href="/delivery/reports/seal/<%= delivery.id %>"><%= __('Complete') %></a>
                   </li>
                   <li>
-                    <a class="print-link" data-report="seal"  href="/delivery/reports/print/seal?delivery=<%= delivery.id %>"><%= __('Print') %></a>
+                    <a class="print-link" data-report="Seal"  href="/delivery/reports/print/seal?delivery=<%= delivery.id %>"><%= __('Print') %></a>
                   </li>
                 </ul>
               </div>
@@ -171,7 +171,7 @@
             <td id="offloadReportStatus"></td>
             <td>
               <% if (delivery.status == 'complete') { %>
-                <a class="print-link btn btn-default" data-report="offload"  href="/delivery/reports/print/offload?delivery=<%= delivery.id %>"><%= __('Print') %></a>
+                <a class="print-link btn btn-default" data-report="Offload"  href="/delivery/reports/print/offload?delivery=<%= delivery.id %>"><%= __('Print') %></a>
               <% } else { %>
               <div class="btn-group">
                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
@@ -179,10 +179,10 @@
                 </button>
                 <ul class="dropdown-menu" role="menu">
                   <li>
-                    <a  id="offloadCompleteLink" data-report="offload"  href="/delivery/reports/offload/<%= delivery.id %>"><%= __('Complete') %></a>
+                    <a  id="offloadCompleteLink" data-report="Offload"  href="/delivery/reports/offload/<%= delivery.id %>"><%= __('Complete') %></a>
                   </li>
                   <li>
-                    <a class="print-link" data-report="offload"  href="/delivery/reports/print/offload?delivery=<%= delivery.id %>"><%= __('Print') %></a>
+                    <a class="print-link" data-report="Offload"  href="/delivery/reports/print/offload?delivery=<%= delivery.id %>"><%= __('Print') %></a>
                   </li>
                 </ul>
               </div>
@@ -194,7 +194,7 @@
             <td id="mesureReportStatus"></td>
             <td>
               <% if (delivery.status == 'complete') { %>
-                <a class="print-link btn btn-default" data-report="mesure"  href="/delivery/reports/print/mesure?delivery=<%= delivery.id %>"><%= __('Print') %></a>
+                <a class="print-link btn btn-default" data-report="Mesure"  href="/delivery/reports/print/mesure?delivery=<%= delivery.id %>"><%= __('Print') %></a>
               <% } else { %>
               <div class="btn-group">
                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
@@ -202,10 +202,10 @@
                 </button>
                 <ul class="dropdown-menu" role="menu">
                   <li>
-                    <a  id="mesureCompleteLink" data-report="mesure"  href="/delivery/reports/mesure/<%= delivery.id %>"><%= __('Complete') %></a>
+                    <a  id="mesureCompleteLink" data-report="Mesure"  href="/delivery/reports/mesure/<%= delivery.id %>"><%= __('Complete') %></a>
                   </li>
                   <li>
-                    <a class="print-link" data-report="mesure"  href="/delivery/reports/print/mesure?delivery=<%= delivery.id %>"><%= __('Print') %></a>
+                    <a class="print-link" data-report="Mesure"  href="/delivery/reports/print/mesure?delivery=<%= delivery.id %>"><%= __('Print') %></a>
                   </li>
                 </ul>
               </div>
@@ -238,6 +238,9 @@ window.addEventListener('load', function () {
   update_delivery_stats(delivery, function () {
     $('body').removeClass('loading');
   })
+
+
+
 
 
   // Transfer Report
@@ -343,12 +346,13 @@ window.addEventListener('load', function () {
         alert.show();
       }
       else {
-        socket.get(href, function (response) {
-          if (response.error) return console.log(response.error);
-          if (response.url) {
-            return Utils.popupWindow(response.url, 1200, 800);
-          }
-        })
+        return Utils.popupWindow('http://parachemsrv07/ReportServer?/TrainDeliverySystem/' + report + '&delivery=' + delivery, 1200, 800);
+        // socket.get(href, function (response) {
+        //   if (response.error) return console.log(response.error);
+        //   if (response.url) {
+        //     return Utils.popupWindow(response.url, 1200, 800);
+        //   }
+        // })
       }
     });   
   });
@@ -477,7 +481,6 @@ window.addEventListener('load', function () {
     }
 
   })
-
 
 
 

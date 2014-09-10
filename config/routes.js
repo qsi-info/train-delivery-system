@@ -63,6 +63,8 @@ module.exports.routes = {
 
   '/switchlang' : 'HomeController.switchLang',
 
+  '/test' : 'HomeController.test',
+
 
   'post /admin/login' : 'HomeController.adminLogin',
 
