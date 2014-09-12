@@ -34,10 +34,12 @@
 
 <script class="railcar-not-found-message" type="text/x-handlebars-template" lang="en">
 	<p>CN Railcar <b>{{railcar}}</b> is not found.</p>
+	<p>If you are convince that this is the right railcar, <a href="javascript:;" data-spot="{{spot}}" data-number="{{railcar}}" id="AdminLink">click here.</a>
 </script>
 
 <script class="railcar-not-found-message" type="text/x-handlebars-template" lang="fr">
 	<p>Le wagon du CN <b>{{railcar}}</b> est introuvable.</p>
+	<p>Si vous êtes convaincu qu&apos;il s&apos;agit bien du bon wagon, <a href="javascript:;" data-spot="{{spot}}" data-number="{{railcar}}" id="AdminLink">cliquer ici.</a>
 </script>
 
 
@@ -138,7 +140,7 @@
 
 
 <script class="cannot-archive-message" type="text/x-handlebars-template" lang="en">
-	<p>All <a href="/delivery/reports/{{delivery}}">reports</a> need to be completed is you want to archive the delivery</p>
+	<p>All <a href="/delivery/tasks/{{delivery}}">tasks</a> need to be completed is you want to archive the delivery</p>
 	<table class="table">
 		<tr>
 			<td>Transfer</td>
@@ -164,7 +166,7 @@
 </script>
 
 <script class="cannot-archive-message" type="text/x-handlebars-template" lang="fr">
-	<p>Vous devez completer tout les <a href="/delivery/reports/{{delivery}}">rapports</a> avant de pouvoir archiver la livraison.</p>
+	<p>Vous devez completer tout les <a href="/delivery/tasks/{{delivery}}">tâches</a> avant de pouvoir archiver la livraison.</p>
 	<table class="table">
 		<tr>
 			<td>Transfer</td>

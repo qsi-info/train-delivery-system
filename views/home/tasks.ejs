@@ -1,6 +1,6 @@
 <!-- 
   
-  Home.Delivery.Reports
+  Home.Delivery.Tasks
 
   * This file is the page where the reports from a delivery are manage
 
@@ -57,14 +57,14 @@
 
       <div id="menu" class="square">
         <ul>
-          <% if (delivery.status == 'active') { %> 
+          <!---
           <li>
             <a href="javascript:;" id="archiveLink">
               <i class="fa fa-file-archive-o"></i>
               <h4><%= __('Delivery.Archive') %></h4>
             </a>
           </li>
-          <% } %>
+          -->
           <li>
             <a href="/delivery/station/<%= delivery.id %>">
               <i class="fa fa-bus"></i>
@@ -95,14 +95,10 @@
           <!-- TRANSFER TASK -->
           <tr id="transferReportRow">
             <td><%= __('Transfer') %></td>
-            <td id="transferReportStatus"></td>
             <td>
-              <% if (delivery.status == 'complete') { %>
-                <a class="btn btn-default print-link" data-report="Transfer" href="javascript:;"><%= __('Print') %></a>
-              <% } else { %>
-                <a class="btn btn-default" id="tranferCompleteLink" href="javascript:;"><%= __('Complete.Print') %></a>
-              <% } %>              
+              <a class="btn btn-default" id="tranferCompleteLink" href="javascript:;"><%= __('Complete.Print') %></a>
             </td>
+            <td id="transferReportStatus"></td>
           </tr>
           <!-- END TRANSFER TASK -->
 
@@ -110,14 +106,10 @@
           <!-- INSPECTION TASK -->
           <tr id="inspectionReportRow">
             <td><%= __('Inspection') %></td>
-            <td id="inspectionReportStatus"></td>
             <td>
-              <% if (delivery.status == 'complete') { %>
-                <a class="btn btn-default print-link" data-report="Inspection" href="javascript:;"><%= __('Print') %></a>
-              <% } else { %>
-                <a class="btn btn-default" id="inspectionCompleteLink" href="javascript:;"><%= __('Complete.Print') %></a>
-              <% } %>              
+              <a class="btn btn-default" id="inspectionCompleteLink" href="javascript:;"><%= __('Complete.Print') %></a>
             </td>
+            <td id="inspectionReportStatus"></td>
           </tr>
           <!-- END INSPECTION TASK -->
 
@@ -125,26 +117,11 @@
           <!-- SEAL TASK -->
           <tr id="sealReportRow">
             <td><%= __('Seal') %></td>
-            <td id="sealReportStatus"></td>
             <td>
-              <% if (delivery.status == 'complete') { %>
-                <a class="btn btn-default print-link" data-report="Seal" href="javascript:;"><%= __('Print') %></a>
-              <% } else { %>
-              <div class="btn-group">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                  <%= __('Actions') %> <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu">
-                  <li>
-                    <a  id="sealCompleteLink" data-report="Seal"  href="javascript:;"><%= __('Complete') %></a>
-                  </li>
-                  <li>
-                    <a class="print-link" data-report="Seal"  href="javascript:;"><%= __('Print') %></a>
-                  </li>
-                </ul>
-              </div>
-              <% } %>              
+              <a class="btn btn-default"  id="sealCompleteLink" data-report="Seal"  href="javascript:;"><%= __('Complete') %></a>
+              <a class="btn btn-default print-link" data-report="Seal" href="javascript:;"><%= __('Print') %></a>
             </td>
+            <td id="sealReportStatus"></td>
           </tr>
           <!-- END SEAL TASK -->
 
@@ -152,26 +129,11 @@
           <!-- OFFLOAD TASK -->
           <tr id="offloadReportRow">
             <td><%= __('Offload') %></td>
-            <td id="offloadReportStatus"></td>
             <td>
-              <% if (delivery.status == 'complete') { %>
-                <a class="btn btn-default print-link" data-report="Offload" href="javascript:;"><%= __('Print') %></a>
-              <% } else { %>
-              <div class="btn-group">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                  <%= __('Actions') %> <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu">
-                  <li>
-                    <a  id="offloadCompleteLink" data-report="Offload"  href="javascript:;"><%= __('Complete') %></a>
-                  </li>
-                  <li>
-                    <a class="print-link" data-report="Offload"  href="javascript:;"><%= __('Print') %></a>
-                  </li>
-                </ul>
-              </div>
-              <% } %>              
+              <a class="btn btn-default" id="offloadCompleteLink" data-report="Offload"  href="javascript:;"><%= __('Complete') %></a>
+              <a class="btn btn-default print-link" data-report="Offload" href="javascript:;"><%= __('Print') %></a>
             </td>
+            <td id="offloadReportStatus"></td>
           </tr>
           <!-- END OFFLOAD TASK -->
 
@@ -180,31 +142,25 @@
           <!-- MESURE TASK -->
           <tr id="mesureReportRow">
             <td><%= __('Mesure') %></td>
-            <td id="mesureReportStatus"></td>
             <td>
-              <% if (delivery.status == 'complete') { %>
-                <a class="btn btn-default print-link" data-report="Mesure" href="javascript:;"><%= __('Print') %></a>
-              <% } else { %>
-              <div class="btn-group">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                  <%= __('Actions') %> <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu">
-                  <li>
-                    <a  id="mesureCompleteLink" data-report="Mesure"  href="javascript:;"><%= __('Complete') %></a>
-                  </li>
-                  <li>
-                    <a class="print-link" data-report="Mesure"  href="javascript:;"><%= __('Print') %></a>
-                  </li>
-                </ul>
-              </div>
-              <% } %>              
+              <a class="btn btn-default" id="mesureCompleteLink" data-report="Mesure"  href="javascript:;"><%= __('Complete') %></a>
+              <a class="btn btn-default print-link" data-report="Mesure" href="javascript:;"><%= __('Print') %></a>
             </td>
+            <td id="mesureReportStatus"></td>
           </tr>
           <!-- END MESURE TASK -->
 
+
+
         </tbody>
       </table>
+
+      <div class="row">
+        <div class="col-sm-3 col-sm-offset-9">
+          <a class="btn btn-success btn-block" id="archiveLink" href="javascript:;"><%= __('Archive') %></a>
+        </div>
+      </div>
+
     
 
 
@@ -382,7 +338,18 @@ window.addEventListener('load', function () {
   $('.print-link').on('click', function (e) {
     e.preventDefault();
     var report = $(this).attr('data-report');
-    show_report(report, delivery);
+    socket.get('/delivery/tasks/' + report + '/iscomplete', { delivery: delivery }, function (response) {
+      if (response.error) return console.log(response.error);
+      if (!response.isComplete) {
+        var alert = new WindowAlert();
+        alert.setMessage('.report-print-incomlete');
+        alert.show();
+      }
+      else {
+        show_report(report, delivery);
+      }
+    });
+
   });
 
 
@@ -463,9 +430,9 @@ function complete_inspection_task (delivery) {
   socket.post('/delivery/tasks/inspection/complete', { delivery: delivery }, function (response) {
     if (response.error) return console.log(response.error);
     if (response.done) {
-      $('#transferReportRow').removeClass('warning');
-      $('#transferReportRow').addClass('success');
-      $('#transferReportStatus').html('complete');
+      $('#inspectionReportRow').removeClass('warning');
+      $('#inspectionReportRow').addClass('success');
+      $('#inspectionReportStatus').html('complete');
       show_report('Inspection', delivery);
     }
   });

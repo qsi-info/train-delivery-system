@@ -178,7 +178,6 @@ window.addEventListener('load', function () {
 					      var alert = new WindowAlert();
 					      alert.setMessage('.cannot-archive-message', reports);
 					      alert.show();
-					      con
 							}
 						});
 					});
@@ -196,7 +195,7 @@ window.addEventListener('load', function () {
 
 
 function get_report_status (report, delivery, cb) {
-	socket.get('/_api/report/' + report + 'iscomplete', { delivery: delivery }, function (response) {
+	socket.get('/delivery/tasks/' + report + '/iscomplete', { delivery: delivery }, function (response) {
     if (response.error) return console.log(response.error);
     return response.isComplete ? cb('complete') : cb('incomplete');
 	})

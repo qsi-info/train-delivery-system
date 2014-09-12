@@ -120,7 +120,7 @@
 
 <%- partial('./partials/modal.railcar.add.ejs') %>
 <%- partial('./partials/modal.railcar.edit.ejs') %>
-
+<%- partial('./partials/modal.railcar.admin.ejs') %>
 
 <script type="text/javascript">
 window.addEventListener('load', function () {
@@ -277,6 +277,7 @@ function add_railcar_to_delivery (railcarNumber, spot, delivery, cb) {
 					var alert = new WindowAlert();
 					alert.setMessage('.railcar-not-found-message', {
 						railcar : railcarNumber,
+						spot: spot,
 					});
 					alert.show();
 					return;
@@ -406,7 +407,6 @@ function add_railcar_to_spot (railcar) {
  * @param railcar_id
  */
 function remove_railcar_from_spot (railcar_id) {
-
 	var $spot = $('[data-id="' + railcar_id + '"]');
 	$spot.attr('data-id', '');
 	$spot.find('.railcar').html('');
@@ -585,7 +585,7 @@ function initialize_event_handlers (delivery, railcars, status) {
 		var spot = $(this).find("[name='spot']").val();
 		add_railcar_to_delivery(number, spot, delivery, function (railcar) {
 			reset_add_form();
-		})
+		});
 	});
 
 
@@ -627,8 +627,42 @@ function initialize_event_handlers (delivery, railcars, status) {
 				$('#ModalWagonRemove').modal('toggle');
 			});		
 		}
-
 	});
+
+
+	$('body').on('click', '#AdminLink', function (e) {
+		e.preventDefault();
+		$('#alert').modal('hide');
+
+		var spot = $(this).attr('data-spot');
+		var number = $(this).attr('data-number');
+
+		$modal = $('#ModalAdminAddRailcar');
+		$modal.find('#railcar_spot').val(spot);
+		$modal.find('#railcar_number').val(number);
+
+		$modal.modal('show');
+	});
+
+
+	$('#AdminAddRailcarForm').on('submit', function (e) {
+		e.preventDefault();
+		var railcarToAdd = {
+			delivery     : delivery,
+			spot         : $(this).find('#railcar_spot').val(),
+			number       : $(this).find('#railcar_number').val(),
+			netVolBBL    : $(this).find('#railcar_netVolBBL').val(),
+			isDefective  : false,
+			informations : {
+				Product: $(this).find('#railcar_product').val(),
+				TrainId: $(this).find('#railcar_train').val(),
+				BillofLading: $(this).find('#railcar_billOfLading').val(),
+			}
+		};
+		socket.post('/_api/railcarindelivery', railcarToAdd, function (results) {
+			$('#ModalAdminAddRailcar').modal('hide');
+		});		
+	})
 
 
 }
@@ -663,6 +697,9 @@ function activate_typeahead_plugin (railcars) {
 		}
 	}
 }
+
+
+
 
 
 
