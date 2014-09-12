@@ -108,6 +108,31 @@ module.exports = {
 	},
 
 
+	tasks: function (req, res) {
+		var delivery = req.param('delivery');
+		Delivery.findOneById(delivery, function (err, delivery) {
+			if (err) return res.json({ error: err });
+			if (!delivery) return res.view('404');
+
+			RailcarInDelivery.findByDelivery(delivery.id, function (err, railcars) {
+				if (err) return res.json({ error: err });
+
+				Operator.find().exec(function (err, operators) {
+					if (err) return res.json({ error: err });
+		
+					return res.view({ 
+						delivery: delivery,
+						operators: operators,
+						railcars: railcars,
+						// reports: sails.config.TrainSystem.reports,
+					});
+
+				});
+			});	
+		});		
+	},
+
+
 
 	archives: function (req, res) {
 		Delivery.find({ status: 'complete'}).sort('createdAt DESC').exec(function (err, deliveries) {

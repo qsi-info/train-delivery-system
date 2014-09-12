@@ -10,6 +10,14 @@
 "Menu.Admin" : "Administrateur",
 
 
+  "Tasks.To.Complete" : "Tâches à compléter",
+
+  "Complete.Print" : "Compléter et imprimer",
+
+  "Complete" : "Compléter",
+  "Print" : "Imprimer",
+  "Tasks" : "Tâches",
+
   "Railcar.Search" : "Recherche un wagon dans une livraison",
 
   "Help" : "Aide",

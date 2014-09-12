@@ -285,6 +285,16 @@ a[disabled] {
 
 
 
+#ModalMesureReport select {
+  color: black !important;
+}
+
+#ModalMesureReport .mesure-row {
+  border-bottom: 1px solid grey;  
+  min-height: 35px;
+  max-height: 35px;
+}
+
 
 
 

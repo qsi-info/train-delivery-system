@@ -61,6 +61,12 @@
 							<h4><%= __('Save') %></h4>
 						</a>
 					</li>
+					<li>
+						<a href="/delivery/tasks/<%= delivery.id %>">
+							<i class="fa fa-check-square-o print"></i>
+							<h4><%= __('Tasks') %></h4>
+						</a>
+					</li>
 					<% } else { %>
 					<li>
 						<a href="/archives">
@@ -68,13 +74,13 @@
 							<h4><%= __('Archives') %></h4>
 						</a>
 					</li>
-					<% } %>					
 					<li>
 						<a href="/delivery/reports/<%= delivery.id %>">
 							<i class="fa fa-file-text-o print"></i>
 							<h4><%= __('Reports') %></h4>
 						</a>
 					</li>
+					<% } %>					
 					<li>
 						<a href="/">
 							<i class="fa fa-home"></i>

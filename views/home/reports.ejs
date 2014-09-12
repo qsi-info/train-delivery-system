@@ -26,7 +26,7 @@
       <% } else { %>
       <a href="/archives"><%= __('Archives') %></a> / 
       <% } %>
-      <a href="/delivery/reports/<%= delivery.id %>"><%= __('Reports') %></a>
+      <a href="/delivery/reports/<%= delivery.id %>"><%= __('Tasks') %></a>
     </h1>
   </div>
 
@@ -88,128 +88,44 @@
 
   <div class="row">
     <div class="col-sm-12">
+
+
       <table class="table table-hover table-striped">
         <thead>
           <tr>
             <th><%= __('Report.Name') %></th>
-            <th><%= __('Report.Status') %></th>
             <th>&nbsp;</th>
           </tr>
         </thead>
         <tbody>
           <tr id="transferReportRow">
             <td><%= __('Transfer') %></td>
-            <td id="transferReportStatus"></td>
             <td>
-              <% if (delivery.status == 'complete') { %>
-                <a class="print-link btn btn-default" data-report="Transfer" href="/delivery/reports/print/transfer?delivery=<%= delivery.id %>"><%= __('Print') %></a>
-              <% } else { %>
-              <div class="btn-group">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                  <%= __('Actions') %> <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu">
-                  <li>
-                    <a class="complete-link" data-report="Transfer" id="tranferCompleteLink" href="/delivery/reports/transfer/<%= delivery.id %>"><%= __('Complete') %></a>
-                  </li>
-                  <li>
-                    <a class="print-link" data-report="Transfer" href="/delivery/reports/print/transfer?delivery=<%= delivery.id %>"><%= __('Print') %></a>
-                  </li>
-                </ul>
-              </div>
-              <% } %>
+              <a class="print-link btn btn-default" data-report="Transfer" href="/delivery/reports/print/transfer?delivery=<%= delivery.id %>"><%= __('Print') %></a>
             </td>
           </tr>
           <tr id="inspectionReportRow">
             <td><%= __('Inspection') %></td>
-            <td id="inspectionReportStatus"></td>
             <td>
-              <% if (delivery.status == 'complete') { %>
-                <a class="print-link btn btn-default" data-report="Inspection"  href="/delivery/reports/print/inspection?delivery=<%= delivery.id %>"><%= __('Print') %></a>
-              <% } else { %>
-              <div class="btn-group">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                  <%= __('Actions') %> <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu">
-                  <li>
-                    <a class="complete-link" data-report="Inspection" id="inspectionCompleteLink"  href="/delivery/reports/inspection/<%= delivery.id %>"><%= __('Complete') %></a>
-                  </li>
-                  <li>
-                    <a class="print-link" data-report="Inspection"  href="/delivery/reports/print/inspection?delivery=<%= delivery.id %>"><%= __('Print') %></a>
-                  </li>
-                </ul>
-              </div>
-              <% } %>
+              <a class="print-link btn btn-default" data-report="Inspection"  href="/delivery/reports/print/inspection?delivery=<%= delivery.id %>"><%= __('Print') %></a>
             </td>
           </tr>
           <tr id="sealReportRow">
             <td><%= __('Seal') %></td>
-            <td id="sealReportStatus"></td>
             <td>
-              <% if (delivery.status == 'complete') { %>
-                <a class="print-link btn btn-default" data-report="Seal"  href="/delivery/reports/print/seal?delivery=<%= delivery.id %>"><%= __('Print') %></a>
-              <% } else { %>
-              <div class="btn-group">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                  <%= __('Actions') %> <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu">
-                  <li>
-                    <a  id="sealCompleteLink" data-report="Seal"  href="/delivery/reports/seal/<%= delivery.id %>"><%= __('Complete') %></a>
-                  </li>
-                  <li>
-                    <a class="print-link" data-report="Seal"  href="/delivery/reports/print/seal?delivery=<%= delivery.id %>"><%= __('Print') %></a>
-                  </li>
-                </ul>
-              </div>
-              <% } %>
+              <a class="print-link btn btn-default" data-report="Seal"  href="/delivery/reports/print/seal?delivery=<%= delivery.id %>"><%= __('Print') %></a>
             </td>
           </tr>
           <tr id="offloadReportRow">
             <td><%= __('Offload') %></td>
-            <td id="offloadReportStatus"></td>
             <td>
-              <% if (delivery.status == 'complete') { %>
-                <a class="print-link btn btn-default" data-report="Offload"  href="/delivery/reports/print/offload?delivery=<%= delivery.id %>"><%= __('Print') %></a>
-              <% } else { %>
-              <div class="btn-group">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                  <%= __('Actions') %> <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu">
-                  <li>
-                    <a  id="offloadCompleteLink" data-report="Offload"  href="/delivery/reports/offload/<%= delivery.id %>"><%= __('Complete') %></a>
-                  </li>
-                  <li>
-                    <a class="print-link" data-report="Offload"  href="/delivery/reports/print/offload?delivery=<%= delivery.id %>"><%= __('Print') %></a>
-                  </li>
-                </ul>
-              </div>
-              <% } %>
+              <a class="print-link btn btn-default" data-report="Offload"  href="/delivery/reports/print/offload?delivery=<%= delivery.id %>"><%= __('Print') %></a>
             </td>
           </tr>
           <tr id="mesureReportRow">
             <td><%= __('Mesure') %></td>
-            <td id="mesureReportStatus"></td>
             <td>
-              <% if (delivery.status == 'complete') { %>
-                <a class="print-link btn btn-default" data-report="Mesure"  href="/delivery/reports/print/mesure?delivery=<%= delivery.id %>"><%= __('Print') %></a>
-              <% } else { %>
-              <div class="btn-group">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                  <%= __('Actions') %> <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu">
-                  <li>
-                    <a  id="mesureCompleteLink" data-report="Mesure"  href="/delivery/reports/mesure/<%= delivery.id %>"><%= __('Complete') %></a>
-                  </li>
-                  <li>
-                    <a class="print-link" data-report="Mesure"  href="/delivery/reports/print/mesure?delivery=<%= delivery.id %>"><%= __('Print') %></a>
-                  </li>
-                </ul>
-              </div>
-              <% } %>
+              <a class="print-link btn btn-default" data-report="Mesure"  href="/delivery/reports/print/mesure?delivery=<%= delivery.id %>"><%= __('Print') %></a>
             </td>
           </tr>
         </tbody>
@@ -223,9 +139,6 @@
 
 </div>
 
-<%- partial('./partials/modal.report.seal.ejs') %>
-<%- partial('./partials/modal.report.offload.ejs') %>
-<%- partial('./partials/modal.report.mesure.ejs') %>
 
 
 <script type="text/javascript">
@@ -243,94 +156,100 @@ window.addEventListener('load', function () {
 
 
 
-  // Transfer Report
-  socket.get('/_api/report/transferiscomplete', { delivery: delivery }, function (response) {
-    if (response.error) return console.log(response.error);
-    if (response.isComplete) {
-      $('#transferReportRow').addClass('success');
-      $('#transferReportStatus').html('complete');
-    } else {
-      $('#transferReportRow').addClass('warning');
-      $('#transferReportStatus').html('incomplete');
-    }
-  });
+  // // Transfer Report
+  // socket.get('/_api/report/transferiscomplete', { delivery: delivery }, function (response) {
+  //   if (response.error) return console.log(response.error);
+  //   if (response.isComplete) {
+  //     $('#transferReportRow').addClass('success');
+  //     $('#transferReportStatus').html('complete');
+  //   } else {
+  //     $('#transferReportRow').addClass('warning');
+  //     $('#transferReportStatus').html('incomplete');
+  //   }
+  // });
 
 
 
-  // Inspection Report
-  socket.get('/_api/report/inspectioniscomplete', { delivery: delivery }, function (response) {
-    if (response.error) return console.log(response.error);
-    if (response.isComplete) {
-      $('#inspectionReportRow').addClass('success');
-      $('#inspectionReportStatus').html('complete');
-    } else {
-      $('#inspectionReportRow').addClass('warning');
-      $('#inspectionReportStatus').html('incomplete');
-    }
-  });
+  // // Inspection Report
+  // socket.get('/_api/report/inspectioniscomplete', { delivery: delivery }, function (response) {
+  //   if (response.error) return console.log(response.error);
+  //   if (response.isComplete) {
+  //     $('#inspectionReportRow').addClass('success');
+  //     $('#inspectionReportStatus').html('complete');
+  //   } else {
+  //     $('#inspectionReportRow').addClass('warning');
+  //     $('#inspectionReportStatus').html('incomplete');
+  //   }
+  // });
 
 
 
-  // Seal Report
-  socket.get('/_api/report/sealiscomplete', { delivery: delivery }, function (response) {
-    if (response.error) return console.log(response.error);
-    if (response.isComplete) {
-      $('#sealReportRow').addClass('success');
-      $('#sealReportStatus').html('complete');
-    } else {
-      $('#sealReportRow').addClass('warning');
-      $('#sealReportStatus').html('incomplete');
-    }
-  });
+  // // Seal Report
+  // socket.get('/_api/report/sealiscomplete', { delivery: delivery }, function (response) {
+  //   if (response.error) return console.log(response.error);
+  //   if (response.isComplete) {
+  //     $('#sealReportRow').addClass('success');
+  //     $('#sealReportStatus').html('complete');
+  //   } else {
+  //     $('#sealReportRow').addClass('warning');
+  //     $('#sealReportStatus').html('incomplete');
+  //   }
+  // });
 
 
-  // Offload Report
-  socket.get('/_api/report/offloadiscomplete', { delivery: delivery }, function (response) {
-    if (response.error) return console.log(response.error);
-    if (response.isComplete) {
-      $('#offloadReportRow').addClass('success');
-      $('#offloadReportStatus').html('complete');
-    } else {
-      $('#offloadReportRow').addClass('warning');
-      $('#offloadReportStatus').html('incomplete');
-    }
-  });
+  // // Offload Report
+  // socket.get('/_api/report/offloadiscomplete', { delivery: delivery }, function (response) {
+  //   if (response.error) return console.log(response.error);
+  //   if (response.isComplete) {
+  //     $('#offloadReportRow').addClass('success');
+  //     $('#offloadReportStatus').html('complete');
+  //   } else {
+  //     $('#offloadReportRow').addClass('warning');
+  //     $('#offloadReportStatus').html('incomplete');
+  //   }
+  // });
 
 
-  // Mesure Report
-  socket.get('/_api/report/mesureiscomplete', { delivery: delivery }, function (response) {
-    if (response.error) return console.log(response.error);
-    if (response.isComplete) {
-      $('#mesureReportRow').addClass('success');
-      $('#mesureReportStatus').html('complete');
-    } else {
-      $('#mesureReportRow').addClass('warning');
-      $('#mesureReportStatus').html('incomplete');
-    }
-  });
+  // // Mesure Report
+  // socket.get('/_api/report/mesureiscomplete', { delivery: delivery }, function (response) {
+  //   if (response.error) return console.log(response.error);
+  //   if (response.isComplete) {
+  //     $('#mesureReportRow').addClass('success');
+  //     $('#mesureReportStatus').html('complete');
+  //   } else {
+  //     $('#mesureReportRow').addClass('warning');
+  //     $('#mesureReportStatus').html('incomplete');
+  //   }
+  // });
+
+
+
+
 
 
 
   // Complete links
-  $('.complete-link').on('click', function (e) {
-    e.preventDefault();
-    var report = $(this).attr('data-report');
-    var href = $(this).attr('href');
-    socket.get('/_api/report/' + report + 'iscomplete', { delivery: delivery }, function (response) {
-      if (response.error) return console.log(response.error);
-      if (response.isComplete) {
-        var confirm = new WindowConfirm();
-        confirm.setMessage('.report-completed-message');
-        confirm.setConfirm(function () {
-          return window.location.href = href;
-        });
-        confirm.show();
-      }
-      else {
-        return window.location.href = href;        
-      }
-    });
-  });
+  
+  // $('.complete-link').on('click', function (e) {
+  //   e.preventDefault();
+  //   var report = $(this).attr('data-report');
+  //   var href = $(this).attr('href');
+  //   socket.get('/_api/report/' + report + 'iscomplete', { delivery: delivery }, function (response) {
+  //     if (response.error) return console.log(response.error);
+  //     if (response.isComplete) {
+  //       var confirm = new WindowConfirm();
+  //       confirm.setMessage('.report-completed-message');
+  //       confirm.setConfirm(function () {
+  //         return window.location.href = href;
+  //       });
+  //       confirm.show();
+  //     }
+  //     else {
+  //       return window.location.href = href;        
+  //     }
+  //   });
+  // });
+
 
 
   // Print links
@@ -347,12 +266,6 @@ window.addEventListener('load', function () {
       }
       else {
         return Utils.popupWindow('http://parachemsrv07/ReportServer?/TrainDeliverySystem/' + report + '&delivery=' + delivery, 1200, 800);
-        // socket.get(href, function (response) {
-        //   if (response.error) return console.log(response.error);
-        //   if (response.url) {
-        //     return Utils.popupWindow(response.url, 1200, 800);
-        //   }
-        // })
       }
     });   
   });
@@ -361,184 +274,133 @@ window.addEventListener('load', function () {
 
 
 
-  $('#sealCompleteLink').on('click', function (e) {
-    e.preventDefault();
-    var report = $(this).attr('data-report');
-    var href = $(this).attr('href');
-    socket.get('/_api/report/' + report + 'iscomplete', { delivery: delivery }, function (response) {
-      if (response.error) return console.log(response.error);
-      if (response.isComplete) {
-        var confirm = new WindowConfirm();
-        confirm.setMessage('.report-completed-message');
-        confirm.setConfirm(function () {
-          show_seal_form(delivery, href);
-        });
-        confirm.show();
-      }
-      else {
-        show_seal_form(delivery, href);
-      }
-    });
+  // // $('#sealCompleteLink').on('click', function (e) {
+  // //   e.preventDefault();
+  // //   var report = $(this).attr('data-report');
+  // //   var href = $(this).attr('href');
+  // //   socket.get('/_api/report/' + report + 'iscomplete', { delivery: delivery }, function (response) {
+  // //     if (response.error) return console.log(response.error);
+  // //     if (response.isComplete) {
+  // //       var confirm = new WindowConfirm();
+  // //       confirm.setMessage('.report-completed-message');
+  // //       confirm.setConfirm(function () {
+  // //         show_seal_form(delivery, href);
+  // //       });
+  // //       confirm.show();
+  // //     }
+  // //     else {
+  // //       show_seal_form(delivery, href);
+  // //     }
+  // //   });
 
-  });
-
-
-  $('#ModalSealReport').on('hide.bs.modal', function () {
-    $(this).find('#SealReportForm').parsley().reset();
-  })
-  $('#ModalOffloadReport').on('hide.bs.modal', function () {
-    $(this).find('#OffloadReportForm').parsley().reset();
-  })
-  $('#ModalMesureReport').on('hide.bs.modal', function () {
-    $(this).find('#MesureReportForm').parsley().reset();
-  })
+  // // });
 
 
-
-
-
-  $('#offloadCompleteLink').on('click', function (e) {
-    e.preventDefault();
-    var report = $(this).attr('data-report');
-    var href = $(this).attr('href');
-    socket.get('/_api/report/' + report + 'iscomplete', { delivery: delivery }, function (response) {
-      if (response.error) return console.log(response.error);
-      if (response.isComplete) {
-        var confirm = new WindowConfirm();
-        confirm.setMessage('.report-completed-message');
-        confirm.setConfirm(function () {
-          show_offload_form(delivery, href);
-        });
-        confirm.show();
-      }
-      else {
-        show_offload_form(delivery, href);
-      }
-    });
-  })
-
-
-
-  $('#mesureCompleteLink').on('click', function (e) {
-    e.preventDefault();
-    var report = $(this).attr('data-report');
-    var href = $(this).attr('href');
-    socket.get('/_api/report/' + report + 'iscomplete', { delivery: delivery }, function (response) {
-      if (response.error) return console.log(response.error);
-      if (response.isComplete) {
-        var confirm = new WindowConfirm();
-        confirm.setMessage('.report-completed-message');
-        confirm.setConfirm(function () {
-          show_mesure_form(delivery, href);
-        });
-        confirm.show();
-      }
-      else {
-        show_mesure_form(delivery, href);
-      }
-    });
-  })
+  // // $('#ModalSealReport').on('hide.bs.modal', function () {
+  // //   $(this).find('#SealReportForm').parsley().reset();
+  // // })
+  // // $('#ModalOffloadReport').on('hide.bs.modal', function () {
+  // //   $(this).find('#OffloadReportForm').parsley().reset();
+  // // })
+  // // $('#ModalMesureReport').on('hide.bs.modal', function () {
+  // //   $(this).find('#MesureReportForm').parsley().reset();
+  // // })
 
 
 
 
-  $('#archiveLink').on('click', function (e) {
-    e.preventDefault();
+
+  // $('#offloadCompleteLink').on('click', function (e) {
+  //   e.preventDefault();
+  //   var report = $(this).attr('data-report');
+  //   var href = $(this).attr('href');
+  //   socket.get('/_api/report/' + report + 'iscomplete', { delivery: delivery }, function (response) {
+  //     if (response.error) return console.log(response.error);
+  //     if (response.isComplete) {
+  //       var confirm = new WindowConfirm();
+  //       confirm.setMessage('.report-completed-message');
+  //       confirm.setConfirm(function () {
+  //         show_offload_form(delivery, href);
+  //       });
+  //       confirm.show();
+  //     }
+  //     else {
+  //       show_offload_form(delivery, href);
+  //     }
+  //   });
+  // })
+
+
+
+  // $('#mesureCompleteLink').on('click', function (e) {
+  //   e.preventDefault();
+  //   var report = $(this).attr('data-report');
+  //   var href = $(this).attr('href');
+  //   socket.get('/_api/report/' + report + 'iscomplete', { delivery: delivery }, function (response) {
+  //     if (response.error) return console.log(response.error);
+  //     if (response.isComplete) {
+  //       var confirm = new WindowConfirm();
+  //       confirm.setMessage('.report-completed-message');
+  //       confirm.setConfirm(function () {
+  //         show_mesure_form(delivery, href);
+  //       });
+  //       confirm.show();
+  //     }
+  //     else {
+  //       show_mesure_form(delivery, href);
+  //     }
+  //   });
+  // })
+
+
+
+
+  // $('#archiveLink').on('click', function (e) {
+  //   e.preventDefault();
     
-    var reports = {
-     transfer   :  $('#transferReportStatus').html(),
-     inspection :  $('#inspectionReportStatus').html(),
-     seal       :  $('#sealReportStatus').html(),
-     offload    :  $('#offloadReportStatus').html(),
-     mesure     :  $('#mesureReportStatus').html(),
-    };
+  //   var reports = {
+  //    transfer   :  $('#transferReportStatus').html(),
+  //    inspection :  $('#inspectionReportStatus').html(),
+  //    seal       :  $('#sealReportStatus').html(),
+  //    offload    :  $('#offloadReportStatus').html(),
+  //    mesure     :  $('#mesureReportStatus').html(),
+  //   };
 
-    var incompleteReports = [];
+  //   var incompleteReports = [];
 
-    $.each(reports, function (report, status) {
-      if (status == 'incomplete') {
-        incompleteReports.push(report);
-      };
-    });
+  //   $.each(reports, function (report, status) {
+  //     if (status == 'incomplete') {
+  //       incompleteReports.push(report);
+  //     };
+  //   });
 
-    if (incompleteReports.length < 1) {
-      var confirm = new WindowConfirm();
-      confirm.setMessage('.confirm-archive-delivery-message');
-      confirm.setConfirm(function () {
-        socket.post('/_api/delivery/archive', { delivery: delivery }, function (response) {
-          if (response.error) return console.log(response.error);
-          if (response.url) return window.location.href = response.url;
-        })
-      });
-      confirm.show();
-    }
+  //   if (incompleteReports.length < 1) {
+  //     var confirm = new WindowConfirm();
+  //     confirm.setMessage('.confirm-archive-delivery-message');
+  //     confirm.setConfirm(function () {
+  //       socket.post('/_api/delivery/archive', { delivery: delivery }, function (response) {
+  //         if (response.error) return console.log(response.error);
+  //         if (response.url) return window.location.href = response.url;
+  //       })
+  //     });
+  //     confirm.show();
+  //   }
 
-    else {
-      reports.delivery = delivery;
-      var alert = new WindowAlert();
-      alert.setMessage('.cannot-archive-message', reports);
-      alert.show();
-    }
+  //   else {
+  //     reports.delivery = delivery;
+  //     var alert = new WindowAlert();
+  //     alert.setMessage('.cannot-archive-message', reports);
+  //     alert.show();
+  //   }
 
-  })
+  // })
+  
 
 
 
 
 });
 
-
-/**
- * show_mesure_form
- * 
- * - This function show the mesure form
- * @param delivery
- * @param href
- */
-function show_mesure_form (delivery, href) {
-  $modal = $('#ModalMesureReport');
-  $modal.find('#MesureReportForm').attr('action', href);
-  $modal.find('#MesureReportDelivery').attr('value', delivery);
-  $modal.modal('show'); 
-}
-
-
-
-/**
- * show_offload_form
- * 
- * - This function show the offload form
- * @param delivery
- * @param href
- */
-function show_offload_form (delivery, href) {
-  $modal = $('#ModalOffloadReport');
-  $modal.find('#OffloadReportForm').attr('action', href);
-  $modal.find('#OffloadReportDelivery').attr('value', delivery);
-  $modal.modal('show'); 
-  window.setTimeout(function () {
-    $modal.find('#operator').focus()
-  }, 700);   
-}
-
-
-
-/**
- * show_seal_form
- * 
- * - This function show the seal form
- * @param delivery
- * @param href
- */
-function show_seal_form (delivery, href) {
-  $modal = $('#ModalSealReport');
-  $modal.find('#SealReportForm').attr('action', href);
-  $modal.find('#SealReportDelivery').attr('value', delivery);
-  $modal.modal('show'); 
-  window.setTimeout(function () {
-    $modal.find('#firstSeal').focus()
-  }, 700); 
-}
 
 
 

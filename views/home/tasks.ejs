@@ -1,0 +1,683 @@
+<!-- 
+  
+  Home.Delivery.Reports
+
+  * This file is the page where the reports from a delivery are manage
+
+ -->
+
+<div class="hidden">
+  <input type="hidden" value="<%= delivery.id %>" id="DELIVERY_ID"/>
+</div>
+
+
+<% if (delivery.status == 'complete') { %>
+<h1 id="archiveTitle">ARCHIVES</h1>
+<% } %>
+
+
+<div class="container" id="deliveryStats">
+
+  <div class="row">
+    <h1>
+      <a href="/"><%= __('Home') %></a> / 
+      <% if (delivery.status == 'active') { %>
+      <a href="/delivery"><%= __('Deliveries') %></a> / 
+      <% } else { %>
+      <a href="/archives"><%= __('Archives') %></a> / 
+      <% } %>
+      <a href="/delivery/reports/<%= delivery.id %>"><%= __('Tasks') %></a>
+    </h1>
+  </div>
+
+  <div class="row">
+
+
+
+    <div class="col-sm-6">
+      <table class="table table-striped">
+        <tbody>
+          <tr>
+            <td><%= __('Delivery.Stats.id') %></td><td><%= delivery.id %></td>
+          </tr>
+          <tr>
+            <td><%= __('Delivery.Stats.createdAt') %></td><td><%= Utils.formatDate(delivery.createdAt) %></td>
+          </tr>
+          <tr>
+            <td><%= __('Delivery.Stats.wagon_count') %></td><td id="wagonCount"></td>
+          </tr>
+          <tr>
+            <td><%= __('Delivery.Stats.baril_count') %></td><td id="barilCount"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-sm-6">
+
+      <div id="menu" class="square">
+        <ul>
+          <% if (delivery.status == 'active') { %> 
+          <li>
+            <a href="javascript:;" id="archiveLink">
+              <i class="fa fa-file-archive-o"></i>
+              <h4><%= __('Delivery.Archive') %></h4>
+            </a>
+          </li>
+          <% } %>
+          <li>
+            <a href="/delivery/station/<%= delivery.id %>">
+              <i class="fa fa-bus"></i>
+              <h4><%= __('Station') %></h4>
+            </a>
+          </li>
+          <li>
+            <a href="/">
+              <i class="fa fa-home"></i>
+              <h4><%= __('Home') %></h4>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+
+    </div>
+
+  </div>
+
+
+  <div class="row">
+    <div class="col-sm-12">
+
+      <table class="table">
+        <caption><h2><%= __('Tasks.To.Complete') %></h2></caption>
+        <tbody>
+          <!-- TRANSFER TASK -->
+          <tr id="transferReportRow">
+            <td><%= __('Transfer') %></td>
+            <td id="transferReportStatus"></td>
+            <td>
+              <% if (delivery.status == 'complete') { %>
+                <a class="btn btn-default print-link" data-report="Transfer" href="javascript:;"><%= __('Print') %></a>
+              <% } else { %>
+                <a class="btn btn-default" id="tranferCompleteLink" href="javascript:;"><%= __('Complete.Print') %></a>
+              <% } %>              
+            </td>
+          </tr>
+          <!-- END TRANSFER TASK -->
+
+
+          <!-- INSPECTION TASK -->
+          <tr id="inspectionReportRow">
+            <td><%= __('Inspection') %></td>
+            <td id="inspectionReportStatus"></td>
+            <td>
+              <% if (delivery.status == 'complete') { %>
+                <a class="btn btn-default print-link" data-report="Inspection" href="javascript:;"><%= __('Print') %></a>
+              <% } else { %>
+                <a class="btn btn-default" id="inspectionCompleteLink" href="javascript:;"><%= __('Complete.Print') %></a>
+              <% } %>              
+            </td>
+          </tr>
+          <!-- END INSPECTION TASK -->
+
+
+          <!-- SEAL TASK -->
+          <tr id="sealReportRow">
+            <td><%= __('Seal') %></td>
+            <td id="sealReportStatus"></td>
+            <td>
+              <% if (delivery.status == 'complete') { %>
+                <a class="btn btn-default print-link" data-report="Seal" href="javascript:;"><%= __('Print') %></a>
+              <% } else { %>
+              <div class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                  <%= __('Actions') %> <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                  <li>
+                    <a  id="sealCompleteLink" data-report="Seal"  href="javascript:;"><%= __('Complete') %></a>
+                  </li>
+                  <li>
+                    <a class="print-link" data-report="Seal"  href="javascript:;"><%= __('Print') %></a>
+                  </li>
+                </ul>
+              </div>
+              <% } %>              
+            </td>
+          </tr>
+          <!-- END SEAL TASK -->
+
+
+          <!-- OFFLOAD TASK -->
+          <tr id="offloadReportRow">
+            <td><%= __('Offload') %></td>
+            <td id="offloadReportStatus"></td>
+            <td>
+              <% if (delivery.status == 'complete') { %>
+                <a class="btn btn-default print-link" data-report="Offload" href="javascript:;"><%= __('Print') %></a>
+              <% } else { %>
+              <div class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                  <%= __('Actions') %> <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                  <li>
+                    <a  id="offloadCompleteLink" data-report="Offload"  href="javascript:;"><%= __('Complete') %></a>
+                  </li>
+                  <li>
+                    <a class="print-link" data-report="Offload"  href="javascript:;"><%= __('Print') %></a>
+                  </li>
+                </ul>
+              </div>
+              <% } %>              
+            </td>
+          </tr>
+          <!-- END OFFLOAD TASK -->
+
+
+
+          <!-- MESURE TASK -->
+          <tr id="mesureReportRow">
+            <td><%= __('Mesure') %></td>
+            <td id="mesureReportStatus"></td>
+            <td>
+              <% if (delivery.status == 'complete') { %>
+                <a class="btn btn-default print-link" data-report="Mesure" href="javascript:;"><%= __('Print') %></a>
+              <% } else { %>
+              <div class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                  <%= __('Actions') %> <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                  <li>
+                    <a  id="mesureCompleteLink" data-report="Mesure"  href="javascript:;"><%= __('Complete') %></a>
+                  </li>
+                  <li>
+                    <a class="print-link" data-report="Mesure"  href="javascript:;"><%= __('Print') %></a>
+                  </li>
+                </ul>
+              </div>
+              <% } %>              
+            </td>
+          </tr>
+          <!-- END MESURE TASK -->
+
+        </tbody>
+      </table>
+    
+
+
+    </div>
+
+  </div>
+
+
+</div>
+
+<%- partial('./partials/modal.report.seal.ejs') %>
+<%- partial('./partials/modal.report.offload.ejs') %>
+<%- partial('./partials/modal.report.mesure.ejs') %>
+
+
+<script type="text/javascript">
+window.addEventListener('load', function () {
+
+  var delivery = document.getElementById('DELIVERY_ID').value;
+
+
+  $('body').addClass('loading');
+
+  update_delivery_stats(delivery, function () {
+
+
+    check_task_is_completed('transfer', delivery, function () {
+      check_task_is_completed('inspection', delivery, function () {
+        check_task_is_completed('seal', delivery, function () {
+          check_task_is_completed('offload', delivery, function () {
+            check_task_is_completed('mesure', delivery, function () {
+              $('body').removeClass('loading');
+            })
+          });
+        });
+      });
+    });
+
+
+  });
+
+
+
+  // TRANSFER TASK
+  $('#tranferCompleteLink').on('click', function (e) {
+    e.preventDefault();
+    socket.get('/delivery/tasks/transfer/iscomplete', { delivery: delivery }, function (response) {
+      if (response.error) return console.log(response.error);
+      if (response.isComplete) {
+        var confirm = new WindowConfirm();
+        confirm.setMessage('.report-completed-message');
+        confirm.setConfirm(function () {
+          complete_transfer_task(delivery);
+        });
+        confirm.show();
+      } else {
+        complete_transfer_task(delivery);
+      }
+    })
+  })
+
+  // END TRANSFER TASK
+
+
+
+
+
+
+
+  // INSPECTION TASK
+  $('#inspectionCompleteLink').on('click', function (e) {
+    e.preventDefault();
+    socket.get('/delivery/tasks/inspection/iscomplete', { delivery: delivery }, function (response) {
+      if (response.error) return console.log(response.error);
+      if (response.isComplete) {
+        var confirm = new WindowConfirm();
+        confirm.setMessage('.report-completed-message');
+        confirm.setConfirm(function () {
+          complete_inspection_task(delivery);
+        });
+        confirm.show();
+      } else {
+        complete_inspection_task(delivery);
+      }
+    });
+  });
+  // END INSPECTION TASK
+
+
+
+
+
+
+
+
+
+
+  // SEAL TASK
+  $('#sealCompleteLink').on('click', function (e) {
+    e.preventDefault();
+    socket.get('/delivery/tasks/seal/iscomplete', { delivery: delivery }, function (response) {
+      if (response.error) return console.log(response.error);
+      if (response.isComplete) {
+        var confirm = new WindowConfirm();
+        confirm.setMessage('.report-completed-message');
+        confirm.setConfirm(function () {
+          show_seal_form(delivery, '/delivery/tasks/seal/complete', true);
+        });
+        confirm.show();
+      } else {
+        show_seal_form(delivery, '/delivery/tasks/seal/complete', false);
+      }
+    });
+  });
+  // END SEAL TASK
+
+
+
+
+
+
+
+  // OFFLOAD TASK
+  $('#offloadCompleteLink').on('click', function (e) {
+    e.preventDefault();
+    socket.get('/delivery/tasks/offload/iscomplete', { delivery: delivery }, function (response) {
+      if (response.error) return console.log(response.error);
+      if (response.isComplete) {
+        var confirm = new WindowConfirm();
+        confirm.setMessage('.report-completed-message');
+        confirm.setConfirm(function () {
+          show_offload_form(delivery, '/delivery/tasks/offload/complete', true);
+        });
+        confirm.show();
+      } else {
+        show_offload_form(delivery, '/delivery/tasks/offload/complete', false);
+      }
+    });
+  });
+  // END OFFLOAD TASK
+
+
+
+
+
+  // MESURE TASK
+  $('#mesureCompleteLink').on('click', function (e) {
+    e.preventDefault();
+    socket.get('/delivery/tasks/mesure/iscomplete', { delivery: delivery }, function (response) {
+      if (response.error) return console.log(response.error);
+      if (response.isComplete) {
+        var confirm = new WindowConfirm();
+        confirm.setMessage('.report-completed-message');
+        confirm.setConfirm(function () {
+          show_mesure_form(delivery, '/delivery/tasks/mesure/complete', true);
+        });
+        confirm.show();
+      } else {
+        show_mesure_form(delivery, '/delivery/tasks/mesure/complete', false);
+      }
+    });
+  });
+  // END MESURE TASK
+
+
+
+
+
+
+
+
+
+
+  // Print links
+  $('.print-link').on('click', function (e) {
+    e.preventDefault();
+    var report = $(this).attr('data-report');
+    show_report(report, delivery);
+  });
+
+
+
+
+
+  $('#ModalSealReport').on('hide.bs.modal', function () {
+    $(this).find('#SealReportForm').parsley().reset();
+  })
+  $('#ModalOffloadReport').on('hide.bs.modal', function () {
+    $(this).find('#OffloadReportForm').parsley().reset();
+  })
+  $('#ModalMesureReport').on('hide.bs.modal', function () {
+    $(this).find('#MesureReportForm').parsley().reset();
+  })
+
+
+
+
+
+
+
+
+
+
+
+
+  $('#archiveLink').on('click', function (e) {
+    e.preventDefault();
+    
+    var reports = {
+     transfer   :  $('#transferReportStatus').html(),
+     inspection :  $('#inspectionReportStatus').html(),
+     seal       :  $('#sealReportStatus').html(),
+     offload    :  $('#offloadReportStatus').html(),
+     mesure     :  $('#mesureReportStatus').html(),
+    };
+
+    var incompleteReports = [];
+
+    $.each(reports, function (report, status) {
+      if (status == 'incomplete') {
+        incompleteReports.push(report);
+      };
+    });
+
+    if (incompleteReports.length < 1) {
+      var confirm = new WindowConfirm();
+      confirm.setMessage('.confirm-archive-delivery-message');
+      confirm.setConfirm(function () {
+        socket.post('/_api/delivery/archive', { delivery: delivery }, function (response) {
+          if (response.error) return console.log(response.error);
+          if (response.url) return window.location.href = response.url;
+        })
+      });
+      confirm.show();
+    }
+
+    else {
+      reports.delivery = delivery;
+      var alert = new WindowAlert();
+      alert.setMessage('.cannot-archive-message', reports);
+      alert.show();
+    }
+
+  })
+  
+
+
+
+
+});
+
+
+
+
+function complete_inspection_task (delivery) {
+  socket.post('/delivery/tasks/inspection/complete', { delivery: delivery }, function (response) {
+    if (response.error) return console.log(response.error);
+    if (response.done) {
+      $('#transferReportRow').removeClass('warning');
+      $('#transferReportRow').addClass('success');
+      $('#transferReportStatus').html('complete');
+      show_report('Inspection', delivery);
+    }
+  });
+}
+
+
+
+function complete_transfer_task (delivery) {
+  socket.post('/delivery/tasks/transfer/complete', { delivery: delivery }, function (response) {
+    if (response.error) return console.log(response.error);
+    if (response.done) {
+      $('#transferReportRow').removeClass('warning');
+      $('#transferReportRow').addClass('success');
+      $('#transferReportStatus').html('complete');
+      show_report('Transfer', delivery);
+    }
+  });
+};
+
+
+/**
+ * show_report
+ * 
+ * - This function show the report in a popup window
+ * @param report
+ * @param delivery
+ */
+
+function show_report (report, delivery) {
+  var url = 'http://parachemsrv07/ReportServer?/TrainDeliverySystem/' + report + '&' + 'delivery=' + delivery;
+  return Utils.popupWindow(url, 1200, 800);
+}
+
+
+
+function check_task_is_completed (task, delivery, cb) {
+  socket.get('/delivery/tasks/' + task + '/iscomplete', { delivery: delivery }, function (response) {
+    if (response.error) return console.log(response.error);
+    if (response.isComplete) {
+      $('#' + task + 'ReportRow').removeClass('warning');
+      $('#' + task + 'ReportRow').addClass('success');
+      $('#' + task + 'ReportStatus').html('complete');
+    } else {
+      $('#' + task + 'ReportRow').removeClass('success');
+      $('#' + task + 'ReportRow').addClass('warning');
+      $('#' + task + 'ReportStatus').html('incomplete');
+    }
+    cb();
+  });  
+}
+
+
+
+/**
+ * show_mesure_form
+ * 
+ * - This function show the mesure form
+ * @param delivery
+ * @param href
+ */
+function show_mesure_form (delivery, href, alreadyCompile) {
+  var alreadyCompile = typeof alreadyCompile !== 'undefined' ? alreadyCompile : false;
+  if (alreadyCompile) {
+    socket.get('/_api/mesurereport', { delivery: delivery }, function (reports) {
+      var report = reports[0];
+      $.each(report, function (prop, value) {
+        $('#ModalMesureReport').find('select[name="' + prop + '"]').val(value);
+      })
+      $modal = $('#ModalMesureReport');
+      $modal.find('#MesureReportForm').attr('action', href);
+      $modal.find('#MesureReportDelivery').attr('value', delivery);
+      $modal.modal('show'); 
+
+    });
+  }
+  else {
+    $modal = $('#ModalMesureReport');
+    $modal.find('#MesureReportForm').attr('action', href);
+    $modal.find('#MesureReportDelivery').attr('value', delivery);
+    $modal.modal('show'); 
+
+  }
+}
+
+
+
+/**
+ * show_offload_form
+ * 
+ * - This function show the offload form
+ * @param delivery
+ * @param href
+ */
+function show_offload_form (delivery, href) {
+  $modal = $('#ModalOffloadReport');
+  $modal.find('#OffloadReportForm').attr('action', href);
+  $modal.find('#OffloadReportDelivery').attr('value', delivery);
+  $modal.modal('show'); 
+  window.setTimeout(function () {
+    $modal.find('#operator').focus()
+  }, 700);   
+}
+
+
+
+/**
+ * show_seal_form
+ * 
+ * - This function show the seal form
+ * @param delivery
+ * @param href
+ */
+function show_seal_form (delivery, href) {
+  $modal = $('#ModalSealReport');
+  $modal.find('#SealReportForm').attr('action', href);
+  $modal.find('#SealReportDelivery').attr('value', delivery);
+  $modal.modal('show'); 
+  window.setTimeout(function () {
+    $modal.find('#firstSeal').focus()
+  }, 700); 
+}
+
+
+
+/**
+ * show_wagon_count
+ * 
+ * - This function show the updated wagon count
+ * @param railcar
+ */
+function show_wagon_count (delivery, cb) {
+  var cb = typeof cb !== 'undefined' ? cb : function () {};
+  socket.get('/_api/delivery/wagoncount', { delivery: delivery }, function (response) {
+    if (response.error) return console.log(response.error);
+    $('#wagonCount').html(response.count);
+    cb()
+  });
+};
+
+
+
+/**
+ * show_baril_count
+ * 
+ * - This function show the updated baril count
+ * @param railcar
+ */
+function show_baril_count (delivery, cb) {
+  var cb = typeof cb !== 'undefined' ? cb : function () {};
+  socket.get('/_api/delivery/barilcount', { delivery: delivery }, function (response) {
+    if (response.error) return console.log(response.error);
+    $('#barilCount').html(response.count);
+    cb();
+  });
+};
+
+
+/**
+ * update_delivery_stats
+ * 
+ * - This function show the statistics of the current delivery
+ * @param railcar
+ */
+function update_delivery_stats (delivery, cb) {
+  var cb = typeof cb !== 'undefined' ? cb : function () {};
+  show_wagon_count(delivery, function () {
+    show_baril_count(delivery, cb);
+  });
+};
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -34,6 +34,7 @@ module.exports.routes = {
 
   '/delivery/station/:delivery' : 'HomeController.station',
   '/delivery/reports/:delivery' : 'HomeController.reports',
+  '/delivery/tasks/:delivery' : 'HomeController.tasks',
 
   'post /delivery/archive' : 'DeliveryController.archive',
 
@@ -44,11 +45,32 @@ module.exports.routes = {
   'post /delivery/reports/mesure/:delivery' : 'ReportController.mesure',
 
 
+
   '/delivery/reports/print/transfer' : 'PrintController.transfer',
   '/delivery/reports/print/inspection' : 'PrintController.inspection',
   '/delivery/reports/print/seal' : 'PrintController.seal',
   '/delivery/reports/print/offload' : 'PrintController.offload',
   '/delivery/reports/print/mesure' : 'PrintController.mesure',
+
+
+
+
+  'post /delivery/tasks/transfer/complete' : 'TaskController.transfer',
+  '/delivery/tasks/transfer/iscomplete' : 'TaskController.transferIsComplete',
+
+  'post /delivery/tasks/inspection/complete' : 'TaskController.inspection',
+  '/delivery/tasks/inspection/iscomplete' : 'TaskController.inspectionIsComplete',
+
+  'post /delivery/tasks/seal/complete' : 'TaskController.seal',
+  '/delivery/tasks/seal/iscomplete' : 'TaskController.sealIsComplete',
+
+  'post /delivery/tasks/offload/complete' : 'TaskController.offload',
+  '/delivery/tasks/offload/iscomplete' : 'TaskController.offloadIsComplete',
+
+  'post /delivery/tasks/mesure/complete' : 'TaskController.mesure',
+  '/delivery/tasks/mesure/iscomplete' : 'TaskController.mesureIsComplete',
+
+
 
 
   '/archives' : 'HomeController.archives',
