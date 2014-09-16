@@ -313,6 +313,53 @@ module.exports = {
     });
   },
 
+
+
+  daily: function (req, res) {
+    var delivery = req.param('delivery');
+    console.log(delivery);
+    DailyReport.query("DELETE FROM " + DailyReport._tableName + " WHERE delivery=" + delivery, function (err) {
+      if (err) return res.json({ error: err });
+
+      var report = req.body;
+
+      delete report.hour;
+      delete report.minute;
+      delete report.meridan;
+
+      RailcarInDelivery.count()
+      .where({ delivery: delivery, isDefective: false })
+      .then(function (count) {
+        report.emptyRailcarCount = count;
+        console.log(report);
+        DailyReport.create(report)
+        .then(function (report) {
+          return res.redirect('/delivery/tasks/' + report.delivery);
+        })
+
+      })
+      .fail(function (err) {
+        return res.json({ error: err });
+      })
+
+    })
+  },
+
+
+  dailyIsComplete: function (req, res) {
+    var delivery = req.param('delivery');
+    DailyReport.findOne()
+    .where({ delivery: delivery })
+    .then(function (daily) {
+      if (!daily) return res.json({ isComplete: false });
+      return res.json({ isComplete: true });
+    })
+    .fail(function (err) {
+      return res.json({ error: err });
+    })
+  },
+
+
   /**
    * Overrides for the settings in `config/controllers.js`
    * (specific to TaskController)

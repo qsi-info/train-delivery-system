@@ -1,5 +1,7 @@
 {
 
+  "AppName" : "QSI - Système de livraison de train v.2.0",
+
 	"Menu.Manage" : "Livraisons",
   "Menu.Create" : "Nouvelle livraison",
   "Menu.Archives" : "Archives",

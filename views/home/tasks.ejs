@@ -151,6 +151,17 @@
           <!-- END MESURE TASK -->
 
 
+          <!-- Daily TASK -->
+          <tr id="dailyReportRow">
+            <td><%= __('Daily') %></td>
+            <td>
+              <a class="btn btn-default" id="dailyCompleteLink" data-report="Daily"  href="javascript:;"><%= __('Complete') %></a>
+              <a class="btn btn-default print-link" data-report="Daily" href="javascript:;"><%= __('Print') %></a>
+            </td>
+            <td id="dailyReportStatus"></td>
+          </tr>
+          <!-- END Daily TASK -->
+
 
         </tbody>
       </table>
@@ -174,6 +185,7 @@
 <%- partial('./partials/modal.report.seal.ejs') %>
 <%- partial('./partials/modal.report.offload.ejs') %>
 <%- partial('./partials/modal.report.mesure.ejs') %>
+<%- partial('./partials/modal.report.daily.ejs') %>
 
 
 <script type="text/javascript">
@@ -192,7 +204,9 @@ window.addEventListener('load', function () {
         check_task_is_completed('seal', delivery, function () {
           check_task_is_completed('offload', delivery, function () {
             check_task_is_completed('mesure', delivery, function () {
-              $('body').removeClass('loading');
+              check_task_is_completed('daily', delivery, function () {
+                $('body').removeClass('loading');
+              })
             })
           });
         });
@@ -326,7 +340,26 @@ window.addEventListener('load', function () {
   // END MESURE TASK
 
 
+  // DAILY TASK
+  $('#dailyCompleteLink').on('click', function (e) {
+    e.preventDefault();
+    socket.get('/delivery/tasks/daily/iscomplete', { delivery: delivery }, function (response) {
+      if (response.error) return console.log(response.error);
+      if (response.isComplete) {
+        var confirm = new WindowConfirm();
+        confirm.setMessage('.report-completed-message');
+        confirm.setConfirm(function () {
+          show_daily_form(delivery, '/delivery/tasks/daily/complete', true);
+        });
+        confirm.show();
+      } else {
+        show_daily_form(delivery, '/delivery/tasks/daily/complete', false);
+      }
 
+    })
+  })
+
+  // END DAILY TASK
 
 
 
@@ -364,6 +397,9 @@ window.addEventListener('load', function () {
   })
   $('#ModalMesureReport').on('hide.bs.modal', function () {
     $(this).find('#MesureReportForm').parsley().reset();
+  })
+  $('#ModalDailyReport').on('hide.bs.modal', function () {
+    $(this).find('#DailyReportForm').parsley().reset();
   })
 
 
@@ -553,6 +589,49 @@ function show_seal_form (delivery, href) {
   window.setTimeout(function () {
     $modal.find('#firstSeal').focus()
   }, 700); 
+}
+
+
+
+
+function show_daily_form (delivery, href, alreadyCompile) {
+   var alreadyCompile = typeof alreadyCompile !== 'undefined' ? alreadyCompile : false;
+
+   var timepicker = $('#timepicker').timepicker(); 
+
+   var netVolBBL = $('#barilCount').html();
+   var railcarCount = $('#wagonCount').html();
+   console.log(alreadyCompile);
+  if (alreadyCompile) {
+    socket.get('/_api/dailyreport', { delivery: delivery }, function (reports) {
+      var report = reports[0];
+      $modal = $('#ModalDailyReport');
+      $modal.find('#DailyReportForm').attr('action', href);      
+      $modal.find('[name="comments"]').val(report.comments);
+      $modal.find('[name="delivery"]').val(report.delivery);
+      $modal.find('[name="deliveryDate"]').val(report.deliveryDate);
+      $modal.find('[name="flowMeter"]').val(report.flowMeter);
+      $modal.find('[name="netVolBBL"]').val(netVolBBL);
+      $modal.find('[name="railcarCount"]').val(railcarCount);
+      $modal.find('[name="sample"][value="' + report.sample + '"]').prop('checked', true);
+      $('#timepicker').timepicker('setTime', report.receiveTime);
+      $modal.modal('show'); 
+    })
+  }
+  else {
+    socket.get('/_api/delivery/' + delivery, function (delivery) {
+      console.log(netVolBBL);
+      $modal = $('#ModalDailyReport');
+      $modal.find('#DailyReportForm').attr('action', href);
+      $modal.find('#DailyReportDelivery').attr('value', delivery.id);
+      $modal.find('[name="deliveryDate"]').val(delivery.createdAt);
+      $modal.find('[name="netVolBBL"]').val(netVolBBL);
+      $modal.find('[name="railcarCount"]').val(railcarCount);
+      $modal.modal('show'); 
+    })
+
+  }
+ 
 }
 
 
