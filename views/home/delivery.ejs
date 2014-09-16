@@ -151,34 +151,37 @@ window.addEventListener('load', function () {
 						reports['offload'] = status;
 						get_report_status('mesure', delivery, function (status) {
 							reports['mesure'] = status;
+							get_report_status('daily', delivery, function (status) {
+								reports['daily'] = status
 
-							var incompleteReports = [];
+								var incompleteReports = [];
 
+								$.each(reports, function (report, status) {
+									if (status == 'incomplete') {
+										incompleteReports.push(report);
+									}
+								});
+								// console.log(incompleteReports.length);
 
-							$.each(reports, function (report, status) {
-								if (status == 'incomplete') {
-									incompleteReports.push(report);
+								if (incompleteReports.length < 1) {
+						      var confirm = new WindowConfirm();
+						      confirm.setMessage('.confirm-archive-delivery-message');
+						      confirm.setConfirm(function () {
+						        socket.post('/_api/delivery/archive', { delivery: delivery }, function (response) {
+						          if (response.error) return console.log(response.error);
+						          if (response.url) return window.location.href = response.url;
+						        })
+						      });
+						      confirm.show();
 								}
-							});
-							// console.log(incompleteReports.length);
+								else {
+						      reports.delivery = delivery;
+						      var alert = new WindowAlert();
+						      alert.setMessage('.cannot-archive-message', reports);
+						      alert.show();
+								}
 
-							if (incompleteReports.length < 1) {
-					      var confirm = new WindowConfirm();
-					      confirm.setMessage('.confirm-archive-delivery-message');
-					      confirm.setConfirm(function () {
-					        socket.post('/_api/delivery/archive', { delivery: delivery }, function (response) {
-					          if (response.error) return console.log(response.error);
-					          if (response.url) return window.location.href = response.url;
-					        })
-					      });
-					      confirm.show();
-							}
-							else {
-					      reports.delivery = delivery;
-					      var alert = new WindowAlert();
-					      alert.setMessage('.cannot-archive-message', reports);
-					      alert.show();
-							}
+							})
 						});
 					});
 				});
