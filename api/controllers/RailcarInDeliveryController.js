@@ -17,21 +17,31 @@
 
 module.exports = {
     
-  
+  /**
+   * - isAlreadyUsed
+   * 
+   * This function check if there is no railcar with the same number and billOfLading in a delivery
+   *  @return 1: is available, 2: is not available, 3: is defective
+   */
   isAlreadyUsed: function (req, res) {
-  	var cn_id = req.param('cn_id');
-  	RailcarInDelivery.findOneByCNRailcarID(cn_id, function (err, foundRailcar) {
-  		if (err) return res.json({ error: err });
-  		if (foundRailcar && !foundRailcar.isDefective) return res.json({ isAlreadyUsed: true, railcar: foundRailcar });
-  		if (foundRailcar && foundRailcar.isDefective) return res.json({ isDefective: true, isAvailable: true, railcar: foundRailcar });
-  		return res.json({isAvailable: true});
-  	})
+    var number = req.param('number');
+    var billOfLading = req.param('billOfLading');
+    RailcarInDelivery.findOne()
+    .where({ number: number, billOfLading: billOfLading })
+    .then(function (foundRailcar) {
+       if (foundRailcar && !foundRailcar.isDefective) return res.json({ isAlreadyUsed: true, railcar: foundRailcar });
+       if (foundRailcar && foundRailcar.isDefective) return res.json({ isDefective: true, isAvailable: true, railcar: foundRailcar });
+       return res.json({isAvailable: true});
+    })
+    .fail(function (err) {
+      return res.json({ error: err });
+    })
   },
 
 
   railcarsFromDelivery: function (req, res) {
     var delivery = req.param('delivery');
-    RailcarInDelivery.query("SELECT number, spot, id, isDefective, netVolBBL FROM " + RailcarInDelivery._tableName + " WHERE delivery='" + delivery + "'", function (err, railcars) {
+    RailcarInDelivery.query("SELECT number, spot, id, billOfLading, isDefective, netVolBBL FROM " + RailcarInDelivery._tableName + " WHERE delivery='" + delivery + "'", function (err, railcars) {
       if (err) return res.json({ error: err });
       return res.json(railcars);
     });

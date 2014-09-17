@@ -15,6 +15,7 @@ CREATE TABLE dbo.RailcarInDelivery (
 	number char(10),
 	netVolBBL float,
 	spot nvarchar(10),
+	billOfLading nvarchar(25),
 	isDefective bit default 0,
 	informations nvarchar(max),
 
