@@ -628,6 +628,7 @@ function show_daily_form (delivery, href, alreadyCompile) {
       $modal.find('[name="deliveryDate"]').val(delivery.createdAt);
       $modal.find('[name="netVolBBL"]').val(netVolBBL);
       $modal.find('[name="railcarCount"]').val(railcarCount);
+      $('#timepicker').timepicker('setTime', '8:30 AM');
       $modal.modal('show'); 
     })
 
