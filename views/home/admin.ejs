@@ -10,9 +10,10 @@
 
 
 <!-- Nav tabs -->
-<ul class="nav nav-tabs" role="tablist">
+<ul class="nav nav-tabs" role="tablist" style="margin-bottom: 25px;">
   <li class="active"><a href="#operators" role="tab" data-toggle="tab"><%= __('Operators') %></a></li>
   <li><a href="#queryTab" role="tab" data-toggle="tab"><%= __('Database') %></a></li>
+  <li><a href="#searchTab" role="tab" data-toggle="tab"><%= __('Search') %></a></li>
 </ul>
 
 <!-- Tab panes -->
@@ -79,6 +80,9 @@
 		</div>
 
 
+
+
+
 		<div class="row">
 			<div class="col-sm-12">
 				<br/>
@@ -89,15 +93,43 @@
 
 
 
+  <div class="tab-pane" id="searchTab">
+	  <div class="row">
+	  	<div class="col-sm-6">
+	  		<form id="SearchRailcar" autocomplete="off">
+	  			<div class="form-group">
+	  				<label><%= __('Railcar.Search') %></label>
+	  				<input type="text" name="number" class="form-control" placeholder="<%= __('Delivery.FilterInput.placeholder')%>"/>
+	  			</div>
+	  			<div class="form-group">
+	  				<button type="submit" class="btn btn-primary"><%= __('Search')%></button>
+	  			</div>
+	  		</form>
+	  	</div>
+	  </div>
+
+
+	  <div class="row">
+	  	<div class="col-sm-12">
+		  	<ul id="deliveryList" class="nav"></ul>
+	  	</div>
+	  </div>
+	</div>
+ 
+
+</div>
+
 </div>
 
 
 
 
+<script class="found-delivery" type="text/x-handlebars-template" lang="en">
+	<li>
+		<a class="{{status}}" href="/delivery/station/{{delivery}}"><b>{{number}}</b> in {{status}} delivery <b>{{delivery}}</b> at spot <b>{{spot}}</b>.</a>
+	</li>
+</script>
 
-
-
-</div>
 
 
 <%- partial('./partials/modal.operator.add.ejs') %>
@@ -166,6 +198,30 @@ window.addEventListener('load', function () {
 		});
 	});
 
+
+
+
+	$('#SearchRailcar').on('submit', function (e) {
+		e.preventDefault();
+
+		var $list = $('#deliveryList');
+		$list.html('');
+		$('body').addClass('loading');
+
+		var number = $(this).find('[name="number"]').val();
+
+		socket.get('/_api/search/railcar', { number: number }, function (response) {
+			if (response.error) return console.log(response.error);
+			$.each(response, function (index, delivery) {
+	      var source = $('.found-delivery').html();
+	      var template = Handlebars.compile(source);
+	      $list.append(template(delivery));
+			});
+			$('body').removeClass('loading');
+		})
+
+
+	})
 
 
 
