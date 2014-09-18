@@ -12,8 +12,8 @@
 <!-- Nav tabs -->
 <ul class="nav nav-tabs" role="tablist" style="margin-bottom: 25px;">
   <li class="active"><a href="#operators" role="tab" data-toggle="tab"><%= __('Operators') %></a></li>
-  <li><a href="#queryTab" role="tab" data-toggle="tab"><%= __('Database') %></a></li>
   <li><a href="#searchTab" role="tab" data-toggle="tab"><%= __('Search') %></a></li>
+  <li><a href="#queryTab" role="tab" data-toggle="tab"><%= __('Database') %></a></li>
 </ul>
 
 <!-- Tab panes -->
@@ -65,34 +65,6 @@
   </div>
 
 
-  <div class="tab-pane" id="queryTab">
-		<div class="row">
-			<div class="col-md-6">
-				<form id="queryForm" class="form">
-					<div class="form-group">
-						<label for="query">Custom query</label>
-						<textarea class="form-control" rows="5" id="query"></textarea>
-					</div>
-					<button type="submit" class="btn btn-primary">Submit</button>
-
-				</form>
-			</div>
-		</div>
-
-
-
-
-
-		<div class="row">
-			<div class="col-sm-12">
-				<br/>
-				<pre id="log"></pre>
-			</div>
-		</div>
-  </div>
-
-
-
   <div class="tab-pane" id="searchTab">
 	  <div class="row">
 	  	<div class="col-sm-6">
@@ -115,6 +87,29 @@
 	  	</div>
 	  </div>
 	</div>
+
+
+
+  <div class="tab-pane" id="queryTab">
+		<div class="row">
+			<div class="col-md-6">
+				<form id="queryForm" class="form">
+					<div class="form-group">
+						<label for="query">Custom query</label>
+						<textarea class="form-control" rows="5" id="query"></textarea>
+					</div>
+					<button type="submit" class="btn btn-primary">Submit</button>
+
+				</form>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<br/>
+				<pre id="log"></pre>
+			</div>
+		</div>
+  </div>
  
 
 </div>
