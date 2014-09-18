@@ -38,6 +38,7 @@ module.exports = {
     SealReport.query("DELETE FROM " + SealReport._tableName + " WHERE delivery=" + delivery, function (err) {if (err) return console.log(err);});
     OffloadReport.query("DELETE FROM " + OffloadReport._tableName + " WHERE delivery=" + delivery, function (err) {if (err) return console.log(err);});
     MesureReport.query("DELETE FROM " + MesureReport._tableName + " WHERE delivery=" + delivery, function (err) {if (err) return console.log(err);});
+    DailyReport.query("DELETE FROM " + DailyReport._tableName + " WHERE delivery=" + delivery, function (err) {if (err) return console.log(err);});
     done();
   },
 
