@@ -21,7 +21,7 @@ module.exports.TrainSystem = {
 
 
 
-	ADMIN_PASSWORD: 'coa%o%2288',
+	ADMIN_PASSWORD: 'admin%k1',
 
 	reports: ['transfer', 'inspection', 'seal', 'offload', 'mesure'],
 
