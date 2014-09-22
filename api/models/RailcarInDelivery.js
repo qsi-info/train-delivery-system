@@ -38,6 +38,10 @@ module.exports = {
   		type: 'json',
   	},
 
+    billOfLading: {
+      type: 'string',
+    },
+
   	isDefective: {
   		type: 'boolean',
   		defaultsTo: false,

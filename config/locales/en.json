@@ -1,5 +1,7 @@
 {
 
+  "AppName" : "QSI - Train Delivery System v.2.0",
+
 	"Menu.Manage" : "Deliveries",
   "Menu.Create" : "New delivery",
   "Menu.Archives" : "Archives",
@@ -7,7 +9,7 @@
   "Menu.Pause" : "Spot",
   "Menu.Delete" : "Delete",
   "Menu.Search" : "Search",
-  "Menu.Admin" : "Admin",
+  "Menu.Admin" : "Administration",
 
 
   "Tasks.To.Complete" : "Tasks to complete",

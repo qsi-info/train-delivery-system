@@ -31,9 +31,13 @@ module.exports = {
 	},
 
 	admin: function (req, res) {
-		Operator.find().exec(function (err, operators) {
-			if (err) return res.json({ error: err });
-			return res.view({ operators: operators });
+		Operator.find()
+		.sort('name')
+		.then(function (operators) {
+			return res.view({ operators: operators });			
+		})
+		.fail(function (err) {
+			return res.json({ error: err });
 		})
 	},
 
@@ -92,7 +96,7 @@ module.exports = {
 			RailcarInDelivery.findByDelivery(delivery.id, function (err, railcars) {
 				if (err) return res.json({ error: err });
 
-				Operator.find().exec(function (err, operators) {
+				Operator.find().sort('name').exec(function (err, operators) {
 					if (err) return res.json({ error: err });
 		
 					return res.view({ 
@@ -117,7 +121,7 @@ module.exports = {
 			RailcarInDelivery.findByDelivery(delivery.id, function (err, railcars) {
 				if (err) return res.json({ error: err });
 
-				Operator.find().exec(function (err, operators) {
+				Operator.find().sort('name').exec(function (err, operators) {
 					if (err) return res.json({ error: err });
 		
 					return res.view({ 

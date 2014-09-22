@@ -7,12 +7,15 @@
       </div>
       <form action="" method="post" id="MesureReportForm" autocomplete="off" data-parsley-validate="">
       	<input type="hidden" name="delivery" id="MesureReportDelivery"/>
-	      <div class="modal-body">
-	      <div class="row">
+	      <div class="modal-body" style="padding: 0px !important;">
+	      <div class="row" style="margin: 0px !important;">
 					<% sails.config.TrainSystem.rails.forEach(function (rail, i) {  %>
 						<div class="col-sm-3">
 							<h4 style=""><%= rail[0].substring(0, 4) %></h4> 
 						<% for(var j = rail.length; j > 0; j--) { %>
+							<% if (i == 0) { %> 
+
+
 							<div class="row mesure-row">
 								<div class="col-sm-1">
 									<%= j %>
@@ -34,6 +37,33 @@
 									<% } %>
 								</div>
 							</div>
+
+
+
+							<% } else { %>
+
+
+							<div class="row mesure-row">
+								<div class="col-sm-4">
+									<% var foundRailcar = Utils.find_railcar_by_spot(railcars, rail[j-1]) %>
+									<small><%= foundRailcar == '' ? '&nbsp;' : foundRailcar %></small>
+									<input type="hidden" name="<%= rail[j-1] %>_Railcar" value="<%= foundRailcar %>" readonly="readonly"/>
+								</div>
+								<div class="col-sm-8">
+									<% if (foundRailcar != '') { %> 
+										<select name="<%= rail[j-1] %>_Operator" class="" required="required">
+										<% operators.forEach(function (operator, index) { %>
+											<option value="<%= operator.initials %>"><%= operator.name %></option>
+										<% }) %>
+										</select>
+									<% } else { %>
+										<span>&nbsp;</span>
+									<% } %>
+								</div>
+							</div>
+
+							<% } %>
+
 						<% } %>							
 						</div>
 					<% }) %>

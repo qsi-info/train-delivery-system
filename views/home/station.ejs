@@ -286,11 +286,13 @@ function add_railcar_to_delivery (railcarNumber, spot, delivery, cb) {
 				var railcar = results;
 
 				// Check if Railcar already used
-				socket.get('/_api/railcarindelivery/isalreadyused', { cn_id: railcar.id }, function (results) {
+				socket.get('/_api/railcarindelivery/isalreadyused', { number: railcar.Railcar, billOfLading: railcar.BillofLading }, function (results) {
+					console.log(results);
 					if (results.error) return console.log(results.error);
 					if (results.isAlreadyUsed) {
 						// Check if the delivery is complete
 						get_delivery_informations(results.railcar.delivery, function (railcarDelivery) {
+							// If the delivery is archive
 							if (railcarDelivery.status == 'complete') {
 								$('#ModalWagonAdd').modal('hide');								
 								var confirm = new WindowConfirm();
@@ -298,7 +300,7 @@ function add_railcar_to_delivery (railcarNumber, spot, delivery, cb) {
 									railcar: results.railcar.number,
 									delivery: results.railcar.delivery,
 									spot: results.railcar.spot,
-									billOfLading: $.parseJSON(results.railcar.informations.replace(/'/ig, '"')).BillofLading,
+									billOfLading: results.railcar.billOfLading,
 								});
 								confirm.setConfirm(function () {
 
@@ -308,6 +310,7 @@ function add_railcar_to_delivery (railcarNumber, spot, delivery, cb) {
 										CNRailcarID  : railcar.id,
 										number       : railcar.Railcar,
 										netVolBBL    : railcar.NetVolBBL,
+										billOfLading : railcar.BillofLading,
 										isDefective  : (results.railcar && results.railcar.isDefective) ? true : false,
 										informations : railcar,
 									};
@@ -320,6 +323,7 @@ function add_railcar_to_delivery (railcarNumber, spot, delivery, cb) {
 								confirm.show();
 								return;
 							} 
+							// If the delivery is active
 							else {
 								$('#ModalWagonAdd').modal('hide');
 								var alert = new WindowAlert();
@@ -334,6 +338,7 @@ function add_railcar_to_delivery (railcarNumber, spot, delivery, cb) {
 						})
 					}
 
+					// If the railcar is available
 					if (results.isAvailable) {
 
 						var railcarToAdd = {
@@ -341,11 +346,13 @@ function add_railcar_to_delivery (railcarNumber, spot, delivery, cb) {
 							spot         : spot,
 							CNRailcarID  : railcar.id,
 							number       : railcar.Railcar,
+							billOfLading : railcar.BillofLading,
 							netVolBBL    : railcar.NetVolBBL,
 							isDefective  : (results.railcar && results.railcar.isDefective) ? true : false,
 							informations : railcar,
 						};
 
+						// If the railcar is defective
 						if (results.isDefective && results.railcar) {
 							$('#ModalWagonAdd').modal('hide');
 							var confirm = new WindowConfirm();							
@@ -362,7 +369,7 @@ function add_railcar_to_delivery (railcarNumber, spot, delivery, cb) {
 							return;
 						}
 
-						// Add railcar to delivery
+						// If the railcar is not defective
 						socket.post('/_api/railcarindelivery', railcarToAdd, function (results) {
 							cb(results);
 						})
@@ -556,7 +563,7 @@ function initialize_event_handlers (delivery, railcars, status) {
 				$modal.find("[name='id']").val(railcar.id);
 				$modal.find('#cnGlobalId').html(railcar.CNRailcarID);
 				$modal.find('#removeRailcarNumber').html(railcar.number);
-				$modal.find('#removeRailcarBillOfLading').html(informations.BillofLading);
+				$modal.find('#removeRailcarBillOfLading').html(railcar.billOfLading);
 				$modal.find('#removeRailcarProduct').html(informations.Product);
 				$modal.find('#removeRailcarSpot').html(railcar.spot);
 				$modal.find('#removeRailcarDelivery').html(railcar.delivery);

@@ -10,12 +10,13 @@ CREATE TABLE dbo.RailcarInDelivery (
 	updatedAt datetime,
 	createdAt datetime,
 
-	CNRailcarID char(36),
+	CNRailcarID char(36) default null,
 	delivery int,
 	number char(10),
-	netVolBBL float,
+	netVolBBL float default null,
 	spot nvarchar(10),
+	billOfLading nvarchar(25) default null,
 	isDefective bit default 0,
-	informations nvarchar(max),
+	informations nvarchar(max) default null,
 
 );

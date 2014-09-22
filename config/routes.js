@@ -70,6 +70,9 @@ module.exports.routes = {
   'post /delivery/tasks/mesure/complete' : 'TaskController.mesure',
   '/delivery/tasks/mesure/iscomplete' : 'TaskController.mesureIsComplete',
 
+  'post /delivery/tasks/daily/complete' : 'TaskController.daily',
+  '/delivery/tasks/daily/iscomplete' : 'TaskController.dailyIsComplete',
+
 
 
 

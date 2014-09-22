@@ -1,0 +1,62 @@
+<div class="modal fade window-message window-info" data-backdrop="static" data-keyboard="false" id="ModalDailyReport">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title "><%= __('DailyReport.CompleteForm') %></h4>
+      </div>
+      <form action="" method="post" data-parsley-validate="" id="DailyReportForm" autocomplete="off">
+      	<input type="hidden" name="delivery" id="DailyReportDelivery"/>
+      	<input type="hidden" name="deliveryDate"/>
+      	<input type="hidden" name="netVolBBL"/>
+      	<input type="hidden" name="railcarCount"/>
+	      <div class="modal-body">
+	      	<div class="row">
+	      		<div class="col-xs-8">
+	      				<div class="row">
+	      					<div class="col-sm-6">
+
+				      			<div class="form-group">
+											 <div class="input-group bootstrap-timepicker">
+												<input id="timepicker" class="form-control" name="receiveTime" type="text"/>
+												<span class="input-group-addon">
+													<i class="glyphicon glyphicon-time"></i>
+												</span>
+											</div>	      						
+					    			</div>	
+
+									  <div class="form-group">
+									    <label for="flowMeter"><%= __('FlowMeter') %></label>
+									    <input type="text" name="flowMeter" class="form-control" id="flowMeter" placeholder="" data-parsley-type="number" required="required"/>
+									  </div>
+									  <div class="form-group">
+									    <label for=""><%= __('Sample') %></label>
+											<div class="radio-inline">
+											  <label>
+											    <input type="radio" name="sample"  value="yes" />
+											    <%= __('Yes') %>
+											  </label>
+											</div>
+											<div class="radio-inline">
+											  <label>
+											    <input type="radio" name="sample"  value="no" />
+											    <%= __('No') %>
+											  </label>
+											</div>
+									  </div>
+								</div>
+						  </div>
+						  <div class="form-group">
+						    <label for=""><%= __('Comments') %></label>
+								<textarea class="form-control" name="comments" rows="3"></textarea>
+						  </div>	
+	      		</div>
+	      	</div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal"><%= __('Close') %></button>
+	        <button type="submit"  class="btn btn-primary"><%= __('Complete') %></button>
+	      </div>
+	    </form>
+    </div>
+  </div>
+</div>

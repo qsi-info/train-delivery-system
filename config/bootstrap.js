@@ -10,7 +10,7 @@
 
 module.exports.bootstrap = function (cb) {
 
-	sails.config.appName = 'QSI - Train Delivery System v.1.0';
+	sails.config.appName = 'AppName';
 
   // It's very important to trigger this callack method when you are finished 
   // with the bootstrap!  (otherwise your server will never lift, since it's waiting on the bootstrap)

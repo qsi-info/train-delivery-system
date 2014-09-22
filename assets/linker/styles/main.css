@@ -7,9 +7,13 @@ input {
 
 }
 
+#timepicker {
+  color: black !important;
+}
+
 h1 {
   /*text-align: center;*/
-  padding-bottom: 60px;
+  padding-bottom: 20px;
   font-size: 20px;
   /*font-weight: bolder;*/
 }
@@ -281,7 +285,9 @@ a[disabled] {
 
 
 
-
+#ModalMesureReport {
+  top: 0px !important;
+}
 
 
 
@@ -301,7 +307,6 @@ a[disabled] {
 #archiveLink {
   color: white !important;
   height: 50px;
-  margin-top: 30px;
   line-height: 32px;
   font-size: 20px;
 }
