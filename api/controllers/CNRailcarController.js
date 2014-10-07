@@ -19,7 +19,7 @@ module.exports = {
     
 
   getCloseRailcars: function (req, res) {
-  	CNRailcar.query("SELECT Railcar as number FROM " + CNRailcar._tableName + " WHERE CLMLocation LIKE '%PQ%'", function (err, railcars) {
+  	CNRailcar.query("SELECT Railcar as number FROM " + CNRailcar._tableName + " WHERE CLMLocation LIKE '%PQ%' OR CLMLocation LIKE '%ON%'", function (err, railcars) {
   		if (err) return res.json({ error: err });
   		return res.json(railcars);
   	})
