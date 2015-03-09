@@ -26,6 +26,7 @@ module.exports.adapters = {
     host: 'parachemsrv07',
     port: 1433,
     schema: true,
+    migrate: 'safe',
   },
 
 };

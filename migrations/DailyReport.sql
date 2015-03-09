@@ -20,3 +20,34 @@ CREATE TABLE dbo.DailyReport (
 	flowMeter float,
 	comments nvarchar(200)
 )	
+
+
+
+
+
+
+
+
+
+-- SELECT
+-- 	MAX(dbo.Delivery.createdAt) AS DeliveryDate,
+-- 	SUM(dbo.RailcarInDelivery.netVolBBL) AS DeliveryVolBBL, 
+-- 	COUNT(dbo.RailcarInDelivery.id) AS DeliveryCarCount
+-- 	FROM dbo.RailcarInDelivery 
+-- 		INNER JOIN dbo.Delivery ON dbo.RailcarInDelivery.delivery = dbo.Delivery.id
+-- 	WHERE dbo.RailcarInDelivery.delivery = 
+-- 	(SELECT MAX(dbo.RailcarInDelivery.delivery) AS DeliveryMax FROM dbo.RailcarInDelivery)
+
+
+
+
+
+
+
+
+
+
+
+
+
+

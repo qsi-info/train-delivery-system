@@ -18,7 +18,7 @@
 			<div id="menu" class="square">
 				<ul>
 					<li>
-						<a href="/delivery/create">
+						<a href="javascript:;" id="createButton">
 							<i class="fa fa-plus-circle create"></i>
 							<h4><%= __('Menu.Create') %></h4>
 						</a>
@@ -106,6 +106,12 @@ window.addEventListener('load', function () {
       }
     })
   })
+
+	$('#createButton').on('click', function () {
+		if (window.confirm('Etes vous certain de vouloir créer une nouvelle livraison pour la journée')) {
+			window.location.href = '/delivery/create';
+		}
+	});
 
 
 })

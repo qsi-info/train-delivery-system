@@ -5,5 +5,6 @@ $(document).ready(function () {
 		$('#deliveryCountNotification').html(response.count);
 	});
 
+	
 
 })
